@@ -1,0 +1,12 @@
+
+2d array is bounded in size and cannot contain different sizes of folowing sizes, whiole the jag array is just a uneven sized array 
+
+{{}{}{}}
+
+Abstraction: general characteristics of a system or a collection of a system,
+primitive datatypes (char, int, etc) - which can be stores in a var (lowest level in human lang)..
+Abstract datatypes are collection of primitive datatypes that can do special tasks or ordering in terms of the requirement of a programmer.
+
+setw and setprecision
+
+string and cstr are not but the int and other are more eff to write in bin for obscurity and effi.
