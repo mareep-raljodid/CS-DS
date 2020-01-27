@@ -1,0 +1,3 @@
+
+h and cpp seperatipon helps ofgustate the code to make it uneditable and just provide the objk file
+which can use linker and we can tre use it without code access
