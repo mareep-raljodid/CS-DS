@@ -104,7 +104,7 @@ bool team2_takeshot(){
 
 int main() {
 	BasketballPlayer players[5];
-	
+//#RIP KOBE
     players[0].setName("Kobe1");
     players[1].setName("Kobe2");
     players[2].setName("Kobe3");
@@ -180,6 +180,6 @@ int main() {
             break;
         }
     }
-
+i
 	return 0;
 }
