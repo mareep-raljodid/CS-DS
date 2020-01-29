@@ -29,7 +29,7 @@ class BasketballPlayer {
         }
     }
 	
-int TakeShot(int worth) {
+    int TakeShot(int worth) {
         int shootingPercentage = shotsMade / shotsMade;
         if (worth == 1) {
             shotsTaken++;
