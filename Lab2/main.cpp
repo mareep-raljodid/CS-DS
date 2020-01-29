@@ -28,6 +28,37 @@ class BasketballPlayer {
             return false;
         }
     }
+	
+int TakeShot(int worth) {
+        int shootingPercentage = shotsMade / shotsMade;
+        if (worth == 1) {
+            shotsTaken++;
+            int num = rand() % 80 + 1;
+            if (num < shootingPercentage) {
+                shotsMade++;
+                return worth;
+            }
+        }
+        if (worth == 2) {
+            shotsTaken++;
+            int num = rand() % 100 + 1;
+            if (num < shootingPercentage) {
+                shotsMade++;
+                return worth;
+            }
+        }
+        if (worth == 3){
+            shotsTaken++;
+            int num = rand() % 120 + 1;
+            if (num < shootingPercentage) {
+                shotsMade++;
+                return worth;
+            }
+        }
+        else {
+            shotsTaken++;
+        }
+    }
 
     BasketballPlayer (){
         passesAttempted = 4;
