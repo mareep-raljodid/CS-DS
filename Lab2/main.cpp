@@ -93,10 +93,17 @@ class BasketballPlayer {
     
 };
 
+bool team2_takeshot(){
+    bool a = (rand() % 100) < 60;
+    if (a == true)
+        return true;
+    else
+        return (rand() % 100) > 50;
+}
 
 int main() {
 	BasketballPlayer players[5];
-	
+//#RIP KOBE
     players[0].setName("Kobe1");
     players[1].setName("Kobe2");
     players[2].setName("Kobe3");
@@ -153,6 +160,6 @@ int main() {
             break;
         }
     }
-
+i
 	return 0;
 }
