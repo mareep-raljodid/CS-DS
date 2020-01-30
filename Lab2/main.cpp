@@ -117,6 +117,7 @@ int main() {
 
         int randNum = rand() % 5 + 1;
         int playerToPass;
+        int secondRandNum;
 
         BasketballPlayer currentPlayer = players[randNum];
 
@@ -129,8 +130,33 @@ int main() {
         case 's':
             cout << "You have chosen to take a shot. How many points would you like to shoot for? Enter 1, 2, or 3.";
             cin >> pointOption;
-            teamOneScore = teamOneScore + currentPlayer.TakeShot(pointOption);
+            
             teamOnePosessions += 1;
+
+            if(currentPlayer.TakeShot(pointOption) == 0){
+                cout << "The shot was not successful. You will now have a chance to regain possession." << endl;
+                secondRandNum = rand() % 1;
+                if(secondRandNum == 0){
+                    teamOnePosessions += 1;
+                    cout << "You have regained possession. " << endl;
+                    cout << "You will now take another shot. How many points would you like to shoot for? Enter 1, 2, or 3.";
+                    cin >> pointOption;
+                    if(currentPlayer.TakeShot(pointOption) != 0){
+                        cout << "Shot successful." << endl;
+                        teamOneScore = teamOneScore + currentPlayer.TakeShot(pointOption);
+                    }
+                    else{
+                        cout << "You have missed." << endl;
+                    }
+                }
+                else{
+                    cout << "You have not regained possession." << endl;
+                }
+            }
+            else{
+                cout << "Shot successful" << endl;
+                teamOneScore = teamOneScore + currentPlayer.TakeShot(pointOption);
+            }
             break;
         case 'p':
             passStatus = currentPlayer.PassBall();
@@ -141,24 +167,12 @@ int main() {
             cin >> playerToPass;
 
             if(passStatus){
+                cout << "Pass successful" << endl;
                 teamOnePosessions += 1;
                 currentPlayer = players[playerToPass];
             }
             else{
-                cout << "The pass was not successful. You will now have a chance to regain possesion. " << endl;
-                int randNum = rand() % 1;
-                if(randNum == 0){
-                    teamOnePosessions += 1;
-                    passStatus = currentPlayer.PassBall();
-
-                    cout << "You are " << currentPlayer.getName() << endl;
-                    cout << "Who would you like to pass to? " << endl;
-                    cout << "Enter 0 for Kobe1, 1 for Kobe2, 2 for Kobe3, 3 for Kobe4, or 4 for Kobe 5: " << endl;
-                    cin >> playerToPass;
-                }
-                else{
-                    teamTwoPossesions += 1;
-                }
+                cout << "The pass was not successful. Possesion will change to team two." << endl;
             }
             break;
         case 't':
