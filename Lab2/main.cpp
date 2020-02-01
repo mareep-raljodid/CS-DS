@@ -178,10 +178,10 @@ int main() {
         case 't':
             cout << "Player stats for " << currentPlayer.getName() << endl;
             cout << "___________________________________________" << endl;
-            cout << "Shots taken: " << currentPlayer.getShotsTaken << endl;
-            cout << "Shots made: " << currentPlayer.getShotsMade << endl;
-            cout << "Passess attempted: " << currentPlayer.getPassesAttemoted << endl;
-            cout << "Passess made: " << currentPlayer.getShotsMade << endl;
+            cout << "Shots taken: " << currentPlayer.getShotsTaken() << endl;
+            cout << "Shots made: " << currentPlayer.getShotsMade() << endl;
+            cout << "Passess attempted: " << currentPlayer.getPassesAttemoted() << endl;
+            cout << "Passess made: " << currentPlayer.getShotsMade() << endl;
             break;
         case 'c':
             cout << "Total Scores" << endl;
