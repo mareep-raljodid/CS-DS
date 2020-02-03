@@ -70,10 +70,10 @@ file_reenter:
     char ch;
 
     /* Storing total characters in file */
-    float tot = 0;
+    double tot = 0;
 
     /* ctar[4] is {spaces, lines, alphabets ...} */
-    int ctar[28] = {0};
+    double ctar[28] = {0};
     
     /* Looping to get all characters and checking what they are
      * to calculate letter frequency and number of words and lines
@@ -166,7 +166,7 @@ file_reenter:
     file.letterFrequency[19] = ctar[21];
     file.letterFrequency[20] = ctar[22];
     file.letterFrequency[21] = ctar[23];
-    file.letterFrequency[12] = ctar[24];
+    file.letterFrequency[22] = ctar[24];
     file.letterFrequency[23] = ctar[25];
     file.letterFrequency[24] = ctar[26];
     file.letterFrequency[25] = ctar[27];
