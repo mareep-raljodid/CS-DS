@@ -73,16 +73,16 @@ file_reenter:
     double tot = 0;
 
     /* ctar[4] is {spaces, lines, alphabets ...} */
-    double ctar[28] = {0};
+    double ctar[28] = {};
     
     /* Looping to get all characters and checking what they are
      * to calculate letter frequency and number of words and lines
      */
     while (data.get(ch)) {
         tot += 1;
-        if (ch == ' ')
+        if ((ch == ' ') || (ch == '\n'))
             ctar[0]+=1;
-        if (ch == '.')
+        if ((ch == '.') || (ch == '\n'))
             ctar[1]+=1;
         ch = toupper(ch);
         if (ch == 'A')
@@ -137,8 +137,7 @@ file_reenter:
             ctar[26] += 1;
         if (ch == 'Z')
             ctar[27] += 1;
-        if (ch == '\0')
-            break;
+        
     }
 
     /* Storing the date in the struct */
