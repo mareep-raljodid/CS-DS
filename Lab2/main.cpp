@@ -108,17 +108,17 @@ class BasketballPlayer {
 bool team2_takeshot(){                  //function to determine chance of team two making a shot
     bool a = (rand() % 100) < 60;
     if (a == true)
-        return true;
+        return true;                    // if first attempt is not successful, other team has 50% to regain possession
     else
         cout << "The first attempt was not successful. The other team will now have a shot at a rebound. " << endl;
         return (rand() % 100) > 50;
 }
 
 int main() {
-    srand ( time(NULL) );
+    srand ( time(NULL) );               //seeding random numbers
     BasketballPlayer players[5];
 //#RIP KOBE
-    players[0].setName("Kobe1");
+    players[0].setName("Kobe1");        // initializing player names
     players[1].setName("Kobe2");
     players[2].setName("Kobe3");
     players[3].setName("Kobe4");
@@ -151,8 +151,7 @@ int main() {
         bool passStatus;
         bool teamTwoStatus;
         
-        
-        cout << "You can perform one of the following actions: " << endl;
+        cout << "You can perform one of the following actions: " << endl;  //presenting user options
         cout << " (s) Shoot" << endl;
         cout << " (p) Pass" << endl;
         cout << " (t) See Player Stats" << endl;
@@ -163,7 +162,7 @@ int main() {
         cout << endl;
 
         switch (option){
-        case 's':
+        case 's':                   //code implemented if user decides to take a shot
             cout << "You have chosen to take a shot. How many points would you like to shoot for? Enter 1, 2, or 3: ";
             cin >> pointOption;
             
@@ -171,6 +170,7 @@ int main() {
 
             if(currentPlayer.TakeShot(pointOption) == 0){
                 cout << "The shot was not successful. You will now have a chance to regain possession." << endl;
+                cout << endl;
                 secondRandNum = (rand() % 2) + 1;
                 if(secondRandNum == 1){
                     teamOnePosessions += 1;
@@ -214,7 +214,7 @@ int main() {
                 teamOneScore = teamOneScore + currentPlayer.TakeShot(pointOption);
             }
             break;
-        case 'p':
+        case 'p':                           //code implemented if user decides to pass
             cout << "You are " << currentPlayer.getName() << endl;
             cout << "Who would you like to pass to? " << endl;
             cout << "Enter 0 for Kobe1, 1 for Kobe2, 2 for Kobe3, 3 for Kobe4, or 4 for Kobe 5: " << endl;
@@ -252,7 +252,7 @@ int main() {
                 
             }
             break;
-        case 't':
+        case 't':                       //code implemented if user decides to view player stats
             cout << "Player stats for " << currentPlayer.getName() << endl;
             cout << "___________________________________________" << endl;
             cout << "Shots taken: " << currentPlayer.getShotsTaken() << endl;
@@ -261,7 +261,7 @@ int main() {
             cout << "Passess made: " << currentPlayer.getShotsMade() << endl;
             cout << endl;
             break;
-        case 'c':
+        case 'c':                       //code implemented if user decides to view scores
             cout << "Total Scores" << endl;
             cout << "Team 1 score: " << teamOneScore << endl;
             cout << "Team 2 score: " << teamTwoScore << endl;
@@ -273,7 +273,7 @@ int main() {
             break;
         }
     }
-    cout << "_________________________________________________" << endl;
+    cout << "_________________________________________________" << endl;    //end of game, final scores printed
     cout << "The game is now over. Here are the final scores:" << endl;
     cout << "Team 1 score: " << teamOneScore << endl;
     cout << "Team 2 score: " << teamTwoScore << endl;
