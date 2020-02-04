@@ -1,3 +1,9 @@
+/* Authors:
+ * Rajdeep Bandopadhyay
+ * Sarah George
+ * Yulia Martinez
+ */
+
 #include <cctype>
 #include <iostream>
 #include <fstream>
