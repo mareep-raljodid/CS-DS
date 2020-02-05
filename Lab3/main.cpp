@@ -5,9 +5,9 @@
 #include "number.h"
 using namespace std;
 
-Number& operator +(const Number& obj1, const Number& obj2)
-{
-	obj2.rel += obj1.rel;
-    obj2.img += obj1.img;
-	return obj2;
+int main() {
+    Number n1(13, 7);
+    Number n2(11, 88.999);
+
+    cout << n1 + n2;
 }

@@ -31,8 +31,22 @@ public:
     virtual void display () = 0;
 };
 
-   void operator+ (Number &obj1, Number &obj2) {
-        obj1.setReal(obj1.getReal() + obj2.getReal());
-        obj1.setImg(obj1.getImg() + obj2.getImg());
-   }
+void operator+ (Number &obj1, Number &obj2) {
+    obj1.setReal(obj1.getReal() + obj2.getReal());
+    obj1.setImg(obj1.getImg() + obj2.getImg());
+}
 
+void operator- (Number &obj1, Number &obj2) {
+    obj1.setReal(obj1.getReal() - obj2.getReal());
+    obj1.setImg(obj1.getImg() - obj2.getImg());
+}
+
+void operator* (Number &obj1, int x) {
+    obj1.setReal(obj1.getReal() * x);
+    obj1.setImg(obj1.getImg() * x);
+}
+
+void operator/ (Number &obj1, int x) {
+    obj1.setReal(obj1.getReal() / x);
+    obj1.setImg(obj1.getImg() / x);
+}
