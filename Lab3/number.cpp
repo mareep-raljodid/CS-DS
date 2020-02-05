@@ -16,40 +16,41 @@ using namespace std;
 
 #define PI 3.14159265
 
-Number::Number () {
+
+Number::Number() {
 
     img = 0;
     rel = 0;
 }
 
-Number::Number (int i, int r) {
+Number::Number(int i, int r) {
 
     img = i;
     rel = r;
 }
 
-Number::Number (int r, float theta) {
+Number::Number(int r, float theta) {
 
-    img = r * ( sin (theta * PI / 180));
-    rel = r * ( cos (theta * PI / 180));
- }
+    img = r * (sin(theta * PI / 180));
+    rel = r * (cos(theta * PI / 180));
+}
 
-int Number::showPolarR (int i, int r){
-    int a = (i*i)+(r*r);
+int Number::showPolarR(int i, int r) {
+    int a = (i * i) + (r * r);
     a = sqrt(a);
-    
+
     return a;
 }
 
-double Number::showPolarAngle (int i, int r){
-    int a = (i*i) + (r*r)
+double Number::showPolarAngle(int i, int r) {
+    int a = (i * i) + (r * r);
     a = sqrt(a);
-    
-    int angle = acos(r/a);
+
+    int angle = acos(r / a);
     return angle;
 }
 
-void Number::display (){
+void Number::display() {
     cout << "Real: " << rel << endl;
     cout << "Imaginary: " << img << endl;
 }
