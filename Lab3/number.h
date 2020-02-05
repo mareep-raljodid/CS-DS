@@ -28,7 +28,9 @@ public:
         img =u;
     }
 
-    virtual void display () = 0;
+    void display ();
+    int showPolarR();
+    double showPolarAngle();
 };
 
 void operator+ (Number &obj1, Number &obj2) {
