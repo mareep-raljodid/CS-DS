@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include "number.h"
+
 using namespace std;
 
 #define PI 3.14159265
@@ -26,6 +27,7 @@ Number::Number (int r, float theta) {
  }
 
 void Number::display (){
+
     cout << "Real: " << rel << endl;
     cout << "Imaginary: " << img << endl;
 }

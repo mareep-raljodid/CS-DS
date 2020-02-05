@@ -3,11 +3,13 @@
 #include <math.h>
 
 #include "number.h"
+
 using namespace std;
 
 int main() {
-    Number n1(13, 7);
-    Number n2(11, 88.999);
+    Number n1(13,7);
+    Number n2(44, 56.55f);
 
-    cout << n1 + n2;
+    n1 + n2;
+    n1.display();
 }

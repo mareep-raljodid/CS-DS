@@ -1,3 +1,10 @@
+
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+
+using namespace std;
+
 class Number
 {
 private:
@@ -28,30 +35,30 @@ public:
         img =u;
     }
 
-    virtual void display () = 0;
+    void display ();
 };
 
-void operator+ (Number &obj1, Number &obj2) {
+inline void operator+ (Number &obj1, Number &obj2) {
     obj1.setReal(obj1.getReal() + obj2.getReal());
     obj1.setImg(obj1.getImg() + obj2.getImg());
 }
 
-void operator- (Number &obj1, Number &obj2) {
+inline void operator- (Number &obj1, Number &obj2) {
     obj1.setReal(obj1.getReal() - obj2.getReal());
     obj1.setImg(obj1.getImg() - obj2.getImg());
 }
 
-void operator* (Number &obj1, int x) {
+inline void operator* (Number &obj1, int x) {
     obj1.setReal(obj1.getReal() * x);
     obj1.setImg(obj1.getImg() * x);
 }
 
-void operator/ (Number &obj1, int x) {
+inline void operator/ (Number &obj1, int x) {
     obj1.setReal(obj1.getReal() / x);
     obj1.setImg(obj1.getImg() / x);
 }
 
-bool operator== (Number &obj1, Number &obj2){
+inline bool operator== (Number &obj1, Number &obj2){
     if((obj1.getReal() == obj2.getReal()) && (obj1.getImg() == obj2.getImg())){
         return true;
     }
@@ -59,3 +66,4 @@ bool operator== (Number &obj1, Number &obj2){
         return false;
     }
 }
+
