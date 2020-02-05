@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <iomanip>
 #include <math.h>
@@ -39,57 +38,31 @@ public:
         img = u;
     }
 
-<<<<<<< HEAD
     void display ();
 };
 
-inline void operator+ (Number &obj1, Number &obj2) {
-=======
-    void display();
-    int showPolarR(int i, int r);
-    double showPolarAngle(int i, int r);
-};
-
-void operator+ (Number& obj1, Number& obj2) {
->>>>>>> c72e60d252c3f94648c39db65723fdce6e9a8466
+inline void operator+ (Number& obj1, Number& obj2) {
     obj1.setReal(obj1.getReal() + obj2.getReal());
     obj1.setImg(obj1.getImg() + obj2.getImg());
 }
 
-<<<<<<< HEAD
 inline void operator- (Number &obj1, Number &obj2) {
-=======
-void operator- (Number& obj1, Number& obj2) {
->>>>>>> c72e60d252c3f94648c39db65723fdce6e9a8466
     obj1.setReal(obj1.getReal() - obj2.getReal());
     obj1.setImg(obj1.getImg() - obj2.getImg());
 }
 
-<<<<<<< HEAD
 inline void operator* (Number &obj1, int x) {
-=======
-void operator* (Number& obj1, int x) {
->>>>>>> c72e60d252c3f94648c39db65723fdce6e9a8466
     obj1.setReal(obj1.getReal() * x);
     obj1.setImg(obj1.getImg() * x);
 }
 
-<<<<<<< HEAD
 inline void operator/ (Number &obj1, int x) {
-=======
-void operator/ (Number& obj1, int x) {
->>>>>>> c72e60d252c3f94648c39db65723fdce6e9a8466
     obj1.setReal(obj1.getReal() / x);
     obj1.setImg(obj1.getImg() / x);
 }
 
-<<<<<<< HEAD
 inline bool operator== (Number &obj1, Number &obj2){
-    if((obj1.getReal() == obj2.getReal()) && (obj1.getImg() == obj2.getImg())){
-=======
-bool operator== (Number& obj1, Number& obj2) {
-    if ((obj1.getReal() == obj2.getReal()) && (obj1.getImg() == obj2.getImg())) {
->>>>>>> c72e60d252c3f94648c39db65723fdce6e9a8466
+    if((obj1.getReal() == obj2.getReal()) && (obj1.getImg() == obj2.getImg())) {
         return true;
     }
     else {

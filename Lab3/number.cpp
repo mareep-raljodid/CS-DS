@@ -39,15 +39,14 @@ Number::Number(int r, float theta) {
 int Number::showPolarR(int i, int r) {
     int a = (i * i) + (r * r);
     a = sqrt(a);
+    return a;
+}
 
-<<<<<<< HEAD
 void Number::display (){
 
     cout << "Real: " << rel << endl;
     cout << "Imaginary: " << img << endl;
-=======
-    return a;
->>>>>>> c72e60d252c3f94648c39db65723fdce6e9a8466
+    cout << "Complex Form is: (" << rel << " + " << img <<"i)" << endl;
 }
 
 double Number::showPolarAngle(int i, int r) {
@@ -58,7 +57,3 @@ double Number::showPolarAngle(int i, int r) {
     return angle;
 }
 
-void Number::display() {
-    cout << "Real: " << rel << endl;
-    cout << "Imaginary: " << img << endl;
-}
