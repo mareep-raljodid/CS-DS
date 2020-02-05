@@ -50,3 +50,12 @@ void operator/ (Number &obj1, int x) {
     obj1.setReal(obj1.getReal() / x);
     obj1.setImg(obj1.getImg() / x);
 }
+
+bool operator== (Number &obj1, Number &obj2){
+    if((obj1.getReal() == obj2.getReal()) && (obj1.getImg() == obj2.getImg())){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
