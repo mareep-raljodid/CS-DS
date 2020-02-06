@@ -18,6 +18,7 @@ int main() {
     cin >> b;
     Number n1(a, b);
     if (b == 0){
+        cout << "Enter theta in degrees: " << endl;
         cin>>aa;
         Number n1(a, aa);
     }
@@ -31,6 +32,7 @@ int main() {
     cin >> d;
     Number n2(c, d);
     if (d == 0){
+         cout << "Enter theta in degrees: " << endl;
          cin>>bb;
          Number n2(c, bb);
      }
@@ -41,12 +43,40 @@ int main() {
     cin >> l;
     if (l == 1){
         n1 + n2;
-        cout << "Result: " ;
+        cout << "Add Result: " ;
         n1.display();
         n1 - n2;
-        cout << "Result: " ;
+        cout << "Substract Result: " ;
         n1.display();
     }
+
+    cout << "Please enter the number for first Complex Point:" << endl;
+    cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
+    cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
+    cout << "Please enter A or r :>>  " ;
+    cin >> a;
+    cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format): " ;
+    cin >> b;
+    Number n5(a, b); 
+    if (b == 0){ 
+        cout << "Enter theta in degrees: " << endl;
+        cin>>aa;
+        Number n5(a, aa);
+    }   
+
+    cout << "Please enter the number for second Complex Point:" << endl;
+    cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
+    cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
+    cout << "Please enter A or r :>> " ;
+    cin >> c;
+    cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format) :>> " ;
+    cin >> d;
+    Number n6(c, d); 
+    if (d == 0){ 
+         cout << "Enter theta in degrees: " << endl;
+         cin>>bb;
+         Number n6(c, bb);
+     }  
 
     int y,v, num;
     cout << "Would you like to multiply or divide one these number with a scalar quantity? (press 1 for multiply and divide operations) :>> " ;
@@ -57,28 +87,28 @@ int main() {
         if (v == 1){
             cout << "Enter Scalar number to multiply with :>> " ;
             cin >> num;
-            n1 * num;
-            cout << "Result: " ;
-            n1.display();
+            n5 * num;
+            cout << "Multiply Result: " ;
+            n5.display();
 
             cout  << "Enter Scalar number to divide with :>> " ;
             cin >> num;
-            n1 / num;
-            cout << "Result: " ;
-            n1.display();
+            n5 / num;
+            cout << "Divide Result: " ;
+            n5.display();
         }
         else {
             cout << "Enter Scalar number to multiply with :>> " ;
             cin >> num;
-            n2 * num;
-            cout << "Result: " ;
-            n1.display();
+            n6 * num;
+            cout << "Multiply Result: " ;
+            n6.display();
   
             cout  << "Enter Scalar number to divide with :>> " ;
             cin >> num;
-            n2 / num;
-            cout << "Result: " ;
-            n1.display();
+            n6 / num;
+            cout << "Divide Result: " ;
+            n6.display();
         }
     }
 
