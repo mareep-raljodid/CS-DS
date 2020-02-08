@@ -24,7 +24,7 @@ Number::Number() {
     rel = 0;
 }
 
-Number::Number(int i, int r) {
+Number::Number(int r, int i) {
 
     img = i;
     rel = r;
@@ -36,7 +36,7 @@ Number::Number(int r, float theta) {
     rel = r * (cos(theta * PI / 180));
 }
 
-int Number::showPolarR(int i, int r) {
+int Number::showPolarR(int r, int i) {
     int a = (i * i) + (r * r);
     a = sqrt(a);
     return a;
@@ -49,7 +49,7 @@ void Number::display (){
     cout << "Complex Form is: (" << rel << " + " << img <<"i)" << endl;
 }
 
-double Number::showPolarAngle(int i, int r) {
+double Number::showPolarAngle(int r, int i) {
     int a = (i * i) + (r * r);
     a = sqrt(a);
 

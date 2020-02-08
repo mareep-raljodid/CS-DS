@@ -1,152 +1,140 @@
 #include <iostream>
 #include <iomanip>
 #include <math.h>
+#include <signal.h>
 
 #include "number.h"
 
 using namespace std;
 
+void annoyingHandler(int sig_num) {
+    signal(SIGINT, annoyingHandler);
+    cout << "\n Cannot be terminated using Ctrl+C, because this assignment was annoying. \n" << endl;
+    cout << "You HAVE to type : I want to exit this program (without spaces)" << endl;
+    fflush(stdout);
+}
+
 int main() {
     int a, c, b, d;
     float aa, bb;
-    cout << "Please enter the number for first Complex Point:" << endl;
-    cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
-    cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
-    cout << "Please enter A or r :>>  " ;
-    cin >> a;
-    cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format): " ;
-    cin >> b;
-    Number n1(a, b);
-    if (b == 0){
-        cout << "Enter theta in degrees: " << endl;
-        cin>>aa;
-        Number n1(a, aa);
-    }
+    bool feelz = true;
+    Number n1, n2;
+   
+    while (feelz == true){
 
-    cout << "Please enter the number for second Complex Point:" << endl;
-    cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
-    cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
-    cout << "Please enter A or r :>> " ;
-    cin >> c;
-    cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format) :>> " ;
-    cin >> d;
-    Number n2(c, d);
-    if (d == 0){
-         cout << "Enter theta in degrees: " << endl;
-         cin>>bb;
-         Number n2(c, bb);
-     }
- 
-    int l;
-    cout << "Would you like to add or substract these two numbers? (press 1 for  add and sunstract)" << endl;
-    cout << "You can also enter something else (other than 2 or 1) for skipping to scalar number multiply or divide :>> ";
-    cin >> l;
-    if (l == 1){
-        n1 + n2;
-        cout << "Add Result: " ;
-        n1.display();
-        n1 - n2;
-        cout << "Substract Result: " ;
-        n1.display();
-    }
+        signal(SIGINT, annoyingHandler);
 
-    cout << "Please enter the number for first Complex Point:" << endl;
-    cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
-    cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
-    cout << "Please enter A or r :>>  " ;
-    cin >> a;
-    cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format): " ;
-    cin >> b;
-    Number n5(a, b); 
-    if (b == 0){ 
-        cout << "Enter theta in degrees: " << endl;
-        cin>>aa;
-        Number n5(a, aa);
-    }   
-
-    cout << "Please enter the number for second Complex Point:" << endl;
-    cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
-    cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
-    cout << "Please enter A or r :>> " ;
-    cin >> c;
-    cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format) :>> " ;
-    cin >> d;
-    Number n6(c, d); 
-    if (d == 0){ 
-         cout << "Enter theta in degrees: " << endl;
-         cin>>bb;
-         Number n6(c, bb);
-     }  
-
-    int y,v, num;
-    cout << "Would you like to multiply or divide one these number with a scalar quantity? (press 1 for multiply and divide operations) :>> " ;
-    cin >> y;
-    if (y == 1){
-        cout << "Which number would you like to operate on, press 1 for first one or something else for second :>> " ;
-        cin >> v;
-        if (v == 1){
-            cout << "Enter Scalar number to multiply with :>> " ;
-            cin >> num;
-            n5 * num;
-            cout << "Multiply Result: " ;
-            n5.display();
-
-            cout  << "Enter Scalar number to divide with :>> " ;
-            cin >> num;
-            n5 / num;
-            cout << "Divide Result: " ;
-            n5.display();
+        int pp, kk;
+        cout << "Please enter the value you would like to enter, is that polar or cartessian? (Enter 0 for polar)" << endl;
+        cin >> pp;
+        if (pp != 0){
+            cout << "Please enter the number for first Complex Point:" << endl;
+            cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
+            cout << "Please enter A :  " ;
+            cin >> a;
+            cout << "\nPlease enter B: " ;
+            cin >> b;
+            Number n01(a,b);
+            n1 = n01;
         }
+        
         else {
-            cout << "Enter Scalar number to multiply with :>> " ;
-            cin >> num;
-            n6 * num;
-            cout << "Multiply Result: " ;
-            n6.display();
-  
-            cout  << "Enter Scalar number to divide with :>> " ;
-            cin >> num;
-            n6 / num;
-            cout << "Divide Result: " ;
-            n6.display();
+            cout << "Please enter the number for first Complex Point:" << endl;
+            cout << "Format is (r, Θ) here, r is the distance from origin and Θ is angle it makes with respect to X cordinate," << endl;
+            cout << "Please enter r :  " ;
+            cin >> a;
+            cout << "\nPlease enter Θ: " ;
+            cin >> aa;
+            Number n01(a, aa);
+            n1 = n01;
         }
+
+        cout << "Enter the second number." << endl;
+        cout << "Please enter the value you would like to enter, is that polar or cartessian? (Enter 0 for polar)" << endl;
+        cin >> pp;
+        if (pp != 0){
+            cout << "Please enter the number for second Complex Point:" << endl;
+            cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
+            cout << "Please enter A :  " ;
+            cin >> c;
+            cout << "\nPlease enter B: " ;
+            cin >> d;
+            Number n02(c, d);
+            n2 = n02;
+        }
+
+        else {
+            cout << "Please enter the number for first Complex Point:" << endl;
+            cout << "Format is (r, Θ) here, r is the distance from origin and Θ is angle it makes with respect to X cordinate," << endl;
+            cout << "Please enter r :  " ;
+            cin >> c;
+            cout << "\nPlease enter Θ: " ;
+            cin >> bb;
+            Number n02(c, bb);
+            n2 = n02;
+        }
+
+reet:
+        char option;
+        cout << "Enter a to add and s to do substract operation," << endl;
+        cout << "Enter m for multiplication, and d for division." << endl;
+        cout << "Enter option (a,s,m,d): ";
+        cin >> option;
+
+        switch (option) {
+
+            case 'a':
+                n1 + n2;
+                cout << "Add Result: " ;
+                n1.display();
+                break;
+
+            case 's': 
+                n1 - n2;
+                cout << "Substract Result: " ;
+                n1.display();
+                break;
+
+            case 'm':
+                cout << "Enter number to multiply with: ";
+                cin >> kk;
+                n1 * kk;
+                n2 * kk;
+                cout << "Multiplication Result (first number): " ;
+                n1.display();
+                cout << "Multiplication Result (second number): " ;
+                n2.display();
+                break;
+
+           case 'd':
+                cout << "Enter number to divide with: ";
+                cin >> kk;
+                n1 / kk;
+                n2 / kk;
+                cout << "Division Result (first number): " ;
+                n1.display();
+                cout << "Division Result (second number): " ;
+                n2.display();
+                break;
+           case 'e':
+                if(n1 == n2)
+                    cout << "Two numbers are equal.";
+                else
+                    cout << "two numbers are not equal";
+                break;
+           default: 
+                cout << "Wrong choice, try again." << endl;
+                goto reet;
+                break;
+        }
+        
+        cout << "Would you like to operate on complex numbers again? (enter enter exit to exit): ";
+        string s;
+        cin >> s;
+        if ((s != "exit") || (s != "iwanttoexitthisprogram"))
+            feelz = true;
     }
 
-    int t;
-    cout << "Would you like to check two complex numbers for equality? (enter 1 for yes) :>> " ;
-    cin >> t;
-    if (t == 1){
-        cout << "Please enter the number for first Complex Point:" << endl;
-        cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
-        cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
-        cout << "Please enter A or r :>> " ;
-        cin >> a;
-        cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format) :>> " ;
-        cin >> b;
-        Number n3(a, b);
-        if (b == 0){
-            cin>>aa;
-            Number n3(a, aa);
-        }
-
-        cout << "Please enter the number for second Complex Point " << endl;
-        cout << "Format is (A + Bi) here, A is real point and B is imaginary point while i being SQRT(-1)," << endl;
-        cout << "You can also enter 0 in B for making the equation Polar and A as r" << endl;
-        cout << "Please enter A or r :>> " ;
-        cin >> c;
-        cout << "\nPlease enter B (or enter 0 to enter degrees and provide polar format) :>> " ;
-        cin >> d;
-        Number n4(c, d);
-        if (d == 0){
-             cin>>bb;
-             Number n4(c, bb);
-        }
-
-        if (n3 == n4)
-            cout << "Two numbers you entered are equal!" << endl;
-        else
-            cout << "They are different. " <<endl;
-    }
 
 }
 

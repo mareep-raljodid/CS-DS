@@ -14,13 +14,13 @@ public:
 
     Number();
 
-    Number(int i, int r);
+    Number(int r, int i);
 
     Number(int r, float theta);
 
-    int showPolarR(int i, int r);
+    int showPolarR(int r, int i);
 
-    double showPolarAngle(int i, int r);
+    double showPolarAngle(int r, int i);
 
     int getReal() {
         return rel;
