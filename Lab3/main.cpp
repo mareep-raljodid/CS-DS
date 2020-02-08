@@ -78,7 +78,8 @@ reet:
         char option;
         cout << "Enter a to add and s to do substract operation," << endl;
         cout << "Enter m for multiplication, and d for division." << endl;
-        cout << "Enter option (a,s,m,d): ";
+        cout << "Enter e to check if two numbers are equal." << endl;
+        cout << "Enter option (a,s,m,d,e): ";
         cin >> option;
 
         switch (option) {
