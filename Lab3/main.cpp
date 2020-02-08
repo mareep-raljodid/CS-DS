@@ -118,7 +118,7 @@ reet:
                 break;
         }
         
-        cout << "Would you like to operate on complex numbers again? (enter enter exit to exit): ";
+        cout << "Would you like to operate on complex numbers again? (enter exit to exit): ";
         string s;
         cin >> s;
         if (s == "exit")
