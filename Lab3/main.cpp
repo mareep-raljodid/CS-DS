@@ -1,18 +1,10 @@
 #include <iostream>
 #include <iomanip>
 #include <math.h>
-#include <signal.h>
 
 #include "number.h"
 
 using namespace std;
-
-void annoyingHandler(int sig_num) {
-    signal(SIGINT, annoyingHandler);
-    cout << "\n Cannot be terminated using Ctrl+C, because this assignment was annoying. \n" << endl;
-    cout << "You HAVE to type : I want to exit this program (without spaces)" << endl;
-    fflush(stdout);
-}
 
 int main() {
     double a, c, b, d;
@@ -21,9 +13,6 @@ int main() {
     Number n1, n2;
    
     while (feelz == true){
-
-        signal(SIGINT, annoyingHandler);
-
         int pp, kk;
         cout << "Please enter the value you would like to enter, is that polar or cartessian? (Enter 0 for polar)" << endl;
         cin >> pp;
