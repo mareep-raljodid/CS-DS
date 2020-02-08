@@ -24,20 +24,20 @@ Number::Number() {
     rel = 0;
 }
 
-Number::Number(int r, int i) {
+Number::Number(double r, double i) {
 
     img = i;
     rel = r;
 }
 
-Number::Number(int r, float theta) {
+Number::Number(double r, float theta) {
 
     img = r * (sin(theta * PI / 180));
     rel = r * (cos(theta * PI / 180));
 }
 
-int Number::showPolarR(int r, int i) {
-    int a = (i * i) + (r * r);
+double Number::showPolarR(double r, double i) {
+    double a = (i * i) + (r * r);
     a = sqrt(a);
     return a;
 }
@@ -47,13 +47,14 @@ void Number::display (){
     cout << "Real: " << rel << endl;
     cout << "Imaginary: " << img << endl;
     cout << "Complex Form is: (" << rel << " + " << img <<"i)" << endl;
+    cout << "Polar Form is: ("<<showPolarR(rel,img)<<", "<<showPolarAngle(rel,img)<<")" << endl;
 }
 
-double Number::showPolarAngle(int r, int i) {
-    int a = (i * i) + (r * r);
+double Number::showPolarAngle(double r, double i) {
+    double a = (i * i) + (r * r);
     a = sqrt(a);
 
-    int angle = acos(r / a);
+    double angle = acos(r / a);
     return angle;
 }
 

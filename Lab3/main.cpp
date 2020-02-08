@@ -15,7 +15,7 @@ void annoyingHandler(int sig_num) {
 }
 
 int main() {
-    int a, c, b, d;
+    double a, c, b, d;
     float aa, bb;
     bool feelz = true;
     Number n1, n2;

@@ -7,34 +7,34 @@ using namespace std;
 class Number
 {
 private:
-    int img;
-    int rel;
+    double img;
+    double rel;
 
 public:
 
     Number();
 
-    Number(int r, int i);
+    Number(double r, double i);
 
-    Number(int r, float theta);
+    Number(double r, float theta);
 
-    int showPolarR(int r, int i);
+    double showPolarR(double r, double i);
 
-    double showPolarAngle(int r, int i);
+    double showPolarAngle(double r, double i);
 
-    int getReal() {
+    double getReal() {
         return rel;
     }
 
-    int getImg() {
+    double getImg() {
         return img;
     }
 
-    void setReal(int i) {
+    void setReal(double i) {
         rel = i;
     }
 
-    void setImg(int u) {
+    void setImg(double u) {
         img = u;
     }
 
