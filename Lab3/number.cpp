@@ -1,10 +1,9 @@
-//
-//  number.cpp
-//  Lab3
-//
-//  Created by Sarah George on 2/5/20.
-//  Copyright © 2020 Sarah George. All rights reserved.
-//
+/*
+ * authors:
+ * Rajdeep Bandopadhyay
+ * Sarah George
+ * Yulia Martinez
+ */
 
 #include <iostream>
 #include <iomanip>
