@@ -121,8 +121,8 @@ reet:
         cout << "Would you like to operate on complex numbers again? (enter enter exit to exit): ";
         string s;
         cin >> s;
-        if ((s != "exit") || (s != "iwanttoexitthisprogram"))
-            feelz = true;
+        if (s == "exit")
+            feelz = false;
     }
 
 
