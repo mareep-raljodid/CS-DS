@@ -10,41 +10,47 @@
 #include <string>
 using namespace std;
 
-class Service{
-public: 
+class Service {
+public:
 
     Service(); //default constructor
-    
-    Service(string t, string d){   //overload constructor
+
+    Service(string t, string d) {   //overload constructor
         title = t;
-        desc  = ;
-    }
-    
-    void setTitle(string t){        //getters and setters
-        title = t;
-    }
-    
-    void setDesc(string d){
         desc = d;
     }
-    
-    string getTitle(){
+
+    void setTitle(string t) {        //getters and setters
+        title = t;
+    }
+
+    void setDesc(string d) {
+        desc = d;
+    }
+
+    string getTitle() {
         return title;
     }
-    
-    string getDesc(){
+
+    string getDesc() {
         return desc;
     }
-    
-    void details(){             //non-virtual details function
+
+    void details() {             //non-virtual details function
         cout << "Title: " << title << endl;
         cout << "Description: " << desc << endl;
     }
-    
-    virtual Play(); //virtual Play function
+
+    virtual int Play() = 0; //virtual Play function
 
 private:
     string title;
     string desc;
-    
-}
+
+};
+
+
+
+
+
+ 
