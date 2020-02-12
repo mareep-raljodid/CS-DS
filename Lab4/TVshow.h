@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include "Header.h"
 using namespace std;
 
 class TVshow : Service {
@@ -43,15 +44,22 @@ public:
         cout << "What show would you like?" << endl;
         cin >> show;
 
-    TVshow::setTitle(show);
+        TVshow::setTitle(show);
 
         cout << "What season would you like?" << endl;
         cin >> season;
-    TVshow.setSeason(season);
+        TVshow.setSeason(season);
+
+        cout << TVshow.getSeason();
+
 
         cout << "What Episode would you like?" << endl;
-    TVshow.setEpisode(episode);
+        TVshow.setEpisode(episode);
         cin >> episode;
+        
+        cout << TVshow.getEpisode();
+
+
 
         cout << showList[season][episode];
 
@@ -62,7 +70,7 @@ public:
 
         cout << "The description is: " << TVshow::getDesc() << endl;
 
-        numSeasons = sizeof(showList) / sizeof(showList[0])
+        numSeasons = sizeof(showList) / sizeof(int)
 
         cout << "The number of seasons is: " << numSeasons << endl;
     }
