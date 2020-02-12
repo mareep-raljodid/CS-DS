@@ -62,7 +62,7 @@ public:
 
         cout << "The description is: " << TVshow::getDesc() << endl;
 
-        numSeasons = sizeof(showList) / sizeof(int)
+        numSeasons = sizeof(showList) / sizeof(showList[0])
 
         cout << "The number of seasons is: " << numSeasons << endl;
     }
