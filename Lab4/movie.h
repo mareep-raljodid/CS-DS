@@ -8,8 +8,8 @@
 
 #include <iostream>
 #include <string>
+#include "service.h"
 using namespace std;
-
 
 
 class Movie : Service {
@@ -25,8 +25,16 @@ public:
         return openingCredits;
     }
 
+    virtual int Play() {
+        cout << "The opening credits are: " << endl;
+        
+        cred = GetopeningCredits();
 
+        cout << cred << endl;
+
+    }
 private:
     string openingCredits;
-
-}; #pragma once
+    string cred;
+}; 
+#pragma once
