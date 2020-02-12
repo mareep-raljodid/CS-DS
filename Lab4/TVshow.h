@@ -43,24 +43,36 @@ public:
         cout << "What show would you like?" << endl;
         cin >> show;
 
-    TVshow:setTitle(show);
+    TVshow::setTitle(show);
 
         cout << "What season would you like?" << endl;
         cin >> season;
-    TVshow:setSeason(season);
+    TVshow.setSeason(season);
 
         cout << "What Episode would you like?" << endl;
-    TVshow:setEpisode(episode);
+    TVshow.setEpisode(episode);
         cin >> episode;
+
+        cout << showList[season][episode];
 
     }
 
+    void details() {
+        cout << "The title is: " << TVshow::getTitle() << endl;
 
+        cout << "The description is: " << TVshow::getDesc() << endl;
+
+        numSeasons = sizeof(showList) / sizeof(int)
+
+        cout << "The number of seasons is: " << numSeasons << endl;
+    }
 
 private:
     int season;
+    int numSeasons;
     int episode;
     string show;
+    int showList[season][episode];
 
 
 
