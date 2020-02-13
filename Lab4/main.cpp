@@ -14,6 +14,7 @@
 using namespace std;
 
 int main(){
+loop:
     int choice;
     cout << "Press 1 for an instance of Show." << endl;
     cout << "Press 2 for an instance of Movie." << endl;
@@ -62,9 +63,10 @@ int main(){
         Service *s4 = new TVshow;
         s4->Play();
     }
-
-    
-
-
+    char y;
+    cout << "Wanna do it again? (y/n): ";
+    cin>>y;
+    if ((y == 'y') || (y == 'Y'))
+        goto loop;
     return 0;
 }
