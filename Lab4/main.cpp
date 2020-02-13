@@ -37,10 +37,31 @@ int main(){
 
     if(choice == 2){
         cout << "Movie show() caller" << endl;
-        Movie show1;
-        show1.Play();
+        Movie *s1 = new Movie();
+        s1->Play();
     }
     
+    if(choice == 3){
+        int s,e;
+        cout << "TVshow show() caller" << endl;
+        //cout << "Input season and eposode number" << endl;
+        //cin >> s;
+        //cin >> e;
+        TVshow show2;
+        show2.Play(show);
+    }
+
+    if(choice == 4){
+        cout << "Movie as Service caller" << endl;
+        Service *s3 = new Movie;
+        s3->Play();
+    }
+
+    if(choice == 5){
+        cout << "TVshow as Service caller" << endl;
+        Service *s4 = new TVshow;
+        s4->Play();
+    }
 
     
 

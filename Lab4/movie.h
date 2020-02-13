@@ -12,7 +12,7 @@
 using namespace std;
 
 
-class Movie : Service {
+class Movie : public Service {
 
 public:
     Movie(){
@@ -33,7 +33,6 @@ public:
 
     virtual void Play() {
         cout << "The opening credits are: " << endl;
-        
         cred = GetopeningCredits();
 
         cout << cred << endl;

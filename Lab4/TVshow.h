@@ -13,10 +13,10 @@
 #include "service.h"
 using namespace std;
 
-class TVshow : Service {
+class TVshow : public Service {
 public:
 
-    TVshow(); //Default constructor
+    TVshow(){} //Default constructor
 
     TVshow(int ep, int sn) {   //overload constructor
         season = sn;

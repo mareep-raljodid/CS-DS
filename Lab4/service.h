@@ -16,7 +16,12 @@ using namespace std;
 class Service {
 public:
 
-    Service(); //default constructor
+    Service(){
+       cout << "Default constructor of service called" << endl;
+       title = "default";
+       desc =  "default";
+        //default constructor
+    }
 
     Service(string t, string d) {   //overload constructor
         title = t;
