@@ -1,3 +1,5 @@
+#ifndef TVSHOW
+#define TVSHOW
 /*
  * authors:
  *
@@ -8,7 +10,7 @@
 
 #include <iostream>
 #include <string>
-#include "Header.h"
+#include "service.h"
 using namespace std;
 
 class TVshow : Service {
@@ -38,30 +40,30 @@ public:
         return episode;
     }
 
+    void printShow(int a, int b) {
+        cout << showList[a][b] << endl;
+    }
 
-
-    virtual int Play() {
+    virtual void Play(Service &s) {
+       
         cout << "What show would you like?" << endl;
         cin >> show;
 
-        TVshow::setTitle(show);
+        s.setTitle(show);
 
         cout << "What season would you like?" << endl;
         cin >> season;
-        TVshow.setSeason(season);
+        setSeason(season);
 
-        cout << TVshow.getSeason();
+        cout << getSeason();
 
 
         cout << "What Episode would you like?" << endl;
-        TVshow.setEpisode(episode);
+        setEpisode(episode);
         cin >> episode;
         
-        cout << TVshow.getEpisode();
-
-
-
-        cout << showList[season][episode];
+        cout << getEpisode();
+        printShow(season, episode);
 
     }
 
@@ -70,7 +72,7 @@ public:
 
         cout << "The description is: " << TVshow::getDesc() << endl;
 
-        numSeasons = sizeof(showList) / sizeof(int)
+        numSeasons = sizeof(showList) / sizeof(int);
 
         cout << "The number of seasons is: " << numSeasons << endl;
     }
@@ -80,9 +82,9 @@ private:
     int numSeasons;
     int episode;
     string show;
-    int showList[season][episode];
+    int showList[25][25];
 
 
 
 };
-#pragma once
+#endif

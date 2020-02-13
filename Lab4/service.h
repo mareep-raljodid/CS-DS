@@ -6,6 +6,9 @@
  * Yulia Martinez
  */
 
+#ifndef SERVICE
+#define SERVICE
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -20,7 +23,7 @@ public:
         desc = d;
     }
 
-    void setTitle(string t) {        //getters and setters
+    virtual void setTitle(string t) {        //getters and setters
         title = t;
     }
 
@@ -41,7 +44,7 @@ public:
         cout << "Description: " << desc << endl;
     }
 
-    virtual int Play() = 0; //virtual Play function
+    virtual void Play() {} //virtual Play function
 
 private:
     string title;
@@ -49,7 +52,7 @@ private:
 
 };
 
-
+#endif
 
 
 

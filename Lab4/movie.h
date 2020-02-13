@@ -15,7 +15,13 @@ using namespace std;
 class Movie : Service {
 
 public:
-    Movie();//defualt constructor
+    Movie(){
+       
+        cout << "Please type in Opening credits: ";
+        cin >> openingCredits;
+        SetopeningCredits(openingCredits);
+        //defualt constructor
+    }
 
     void SetopeningCredits(string credits) {
         openingCredits = credits;
@@ -25,7 +31,7 @@ public:
         return openingCredits;
     }
 
-    virtual int Play() {
+    virtual void Play() {
         cout << "The opening credits are: " << endl;
         
         cred = GetopeningCredits();
@@ -37,4 +43,4 @@ private:
     string openingCredits;
     string cred;
 }; 
-#pragma once
+
