@@ -57,7 +57,7 @@ int main(){
             
             if(wagerChoice == 1){
                 currentBet = currentBet *2;
-                if(ball1 > playerBall || ball2 > playerBall){
+                if(ball1 < playerBall || ball2 < playerBall){
                     cout << "You won the turn!" << endl;
                     player.incrementTotal(currentBet);
                 }
@@ -68,7 +68,7 @@ int main(){
             }
             else if(wagerChoice == 2){
                 currentBet = currentBet / 2;
-                if(ball1 > playerBall && ball2 > playerBall){
+                if(ball1 < playerBall && ball2 < playerBall){
                     cout << "You won the turn!" << endl;
                     player.incrementTotal(currentBet);
                 } 
