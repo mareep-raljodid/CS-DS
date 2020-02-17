@@ -28,10 +28,10 @@ string GetopeningCredits() {
     return openingCredits;
 }
 
-    virtual void Play() {
-        cout << "The opening credits are: " << endl;
-        cred = GetopeningCredits();
+void Movie::Play() {
+    cout << "The opening credits are: " << endl;
+    cred = GetopeningCredits();
 
-        cout << cred << endl;
+    cout << cred << endl;
 
-    }
+}

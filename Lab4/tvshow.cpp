@@ -37,7 +37,7 @@ void TVshow::printShow(int a, int b) {
     cout << showList[a][b] << endl;
 }
 
-virtual void TVshow::Play(Service &s) {
+void TVshow::Play(Service &s) {
        
     cout << "What show would you like?" << endl;
     cin >> show;
