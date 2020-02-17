@@ -6,9 +6,12 @@
  * Yulia Martinez
  */
 
+#ifndef TVSHOW_H
+#define TVSHOW_H
+
 #include <iostream>
 #include <string>
-#include "TVshow.h"
+#include "tvshow.h"
 
 using namespace std;
 
@@ -69,3 +72,4 @@ void TVshow::details() {
 
     cout << "The number of seasons is: " << numSeasons << endl;
 }
+#endif

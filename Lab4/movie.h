@@ -5,6 +5,8 @@
  * Sarah George
  * Yulia Martinez
  */
+#ifndef MOVIE_H
+#define MOVIE_H
 
 #include <iostream>
 #include <string>
@@ -26,3 +28,4 @@ private:
     string cred;
 }; 
 
+#endif
