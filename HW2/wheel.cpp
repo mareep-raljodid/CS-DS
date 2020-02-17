@@ -1,6 +1,7 @@
 #include <iostream>
 #include "wheel.h"
-
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 srand ( time(NULL) );    
@@ -11,11 +12,11 @@ Wheel::Wheel(){
     endVal = 10;
 }
 
-int Wheel::setStartVal(int start){
+void Wheel::setStartVal(int start){
     startVal = start;
 }
 
-int Wheel::setEndVal(int end){
+void Wheel::setEndVal(int end){
     endVal = end;
 }
 
