@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-
+#include <stdlib.h>
+#include <time.h>
 using namespace st;
 
 class Wheel{
@@ -11,7 +12,7 @@ public:
     int setStartVal(int start);
     int setEndVal(int end);
     
-    void spin();
+    int spin();
     
 private:
     int startVal;

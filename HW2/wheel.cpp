@@ -3,6 +3,9 @@
 
 using namespace std;
 
+srand ( time(NULL) );    
+
+
 Wheel::Wheel(){
     startVal = 1;
     endVal = 10;
@@ -16,7 +19,8 @@ int Wheel::setEndVal(int end){
     endVal = end;
 }
 
-void Wheel::spin(){
-    
-}
+int Wheel::spin(){
+    int x = (rand() % endVal) + startVal;
+    return x;
+})
 
