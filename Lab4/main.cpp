@@ -7,8 +7,8 @@
  */
 
 #include "service.h"
-#include "tvshow.cpp"
-#include "movie.cpp"
+#include "tvshow.h"
+#include "movie.h"
 #include <iostream>
 #include <string>
 using namespace std;
