@@ -13,9 +13,22 @@
 #include <string>
 using namespace std;
 
+void printSE(Service &ss){
+    ss.details();
+    ss.Play();
+}
+
 int main(){
 loop:
     int choice;
+    string qq,qqq;
+    cout << "\nInput title: " ;
+    cin >> qq;
+    cout << "\nInput Description: ";
+    cin >> qqq;
+    Service showww(qq,qqq);
+    cout << "Calling the special function that executes the play and details in a service object." << endl;
+    printSE(showww);
     cout << "Press 1 for an instance of Show." << endl;
     cout << "Press 2 for an instance of Movie." << endl;
     cout << "Press 3 for an instance of TV Show." << endl;
