@@ -12,6 +12,8 @@
 
 using namespace std;
 
+string openingCredits;
+
 Movie::Movie(){
        
     cout << "Please type in Opening credits: ";
@@ -20,11 +22,11 @@ Movie::Movie(){
     //defualt constructor
 }
 
-void SetopeningCredits(string credits) {
+void Movie::SetopeningCredits(string credits) {
         openingCredits = credits;
     }
 
-string GetopeningCredits() {
+string Movie::GetopeningCredits() {
     return openingCredits;
 }
 
