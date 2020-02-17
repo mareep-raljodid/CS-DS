@@ -4,9 +4,6 @@
 #include <time.h>
 using namespace std;
 
-srand ( time(NULL) );    
-
-
 Wheel::Wheel(){
     startVal = 1;
     endVal = 10;
@@ -21,7 +18,8 @@ void Wheel::setEndVal(int end){
 }
 
 int Wheel::spin(){
+    srand (time(NULL));  
     int x = (rand() % endVal) + startVal;
     return x;
-})
+}
 

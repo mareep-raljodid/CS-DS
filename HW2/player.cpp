@@ -1,4 +1,5 @@
 #include <iostream>
+#include "player.h"
 
 using namespace std;
 
@@ -17,6 +18,11 @@ int Player::getTotal(){
 
 int Player::releaseBall(){
     wheel.spin();
+}
+
+void Player::setWheel(int f, int e){
+    wheel.setStartVal(f);
+    wheel.setEndVal(e);
 }
 
 void Player::showCurrentTotal(){

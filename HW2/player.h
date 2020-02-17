@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "wheel.h"
 using namespace std;
 
 class Player{
@@ -8,6 +8,7 @@ public:
     void setBet(int b);
     void incrementTotal(int a);
     void decrementTotal(int c);
+    void setWheel(int f, int e);
     int releaseBall();
     int getBet();
     int getTotal();

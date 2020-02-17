@@ -1,14 +1,14 @@
 #include <iostream>
 
-using namespace st;
+using namespace std;
 
 class Wheel{
 public:
 
     Wheel();
     
-    int setStartVal(int start);
-    int setEndVal(int end);
+    void setStartVal(int start);
+    void setEndVal(int end);
     
     int spin();
     
