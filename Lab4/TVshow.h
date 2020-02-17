@@ -18,64 +18,22 @@ public:
 
     TVshow(){} //Default constructor
 
-    TVshow(int ep, int sn) {   //overload constructor
-        season = sn;
-        episode = ep;
-    }
+    TVshow(int ep, int sn);
 
 
-    void setEpisode(int ep) {        //getters and setters
-        episode = ep;
-    }
+    void setEpisode(int ep);
 
-    void setSeason(int sn) {
-        season = sn;
-    }
+    void setSeason(int sn);
 
-    int getSeason() {
-        return season;
-    }
+    int getSeason();
 
-    int getEpisode() {
-        return episode;
-    }
+    int getEpisode();
 
-    void printShow(int a, int b) {
-        cout << showList[a][b] << endl;
-    }
+    void printShow(int a, int b);
 
-    virtual void Play(Service &s) {
-       
-        cout << "What show would you like?" << endl;
-        cin >> show;
+    virtual void Play(Service &s);
 
-        s.setTitle(show);
-
-        cout << "What season would you like?" << endl;
-        cin >> season;
-        setSeason(season);
-
-        cout << getSeason();
-
-
-        cout << "What Episode would you like?" << endl;
-        setEpisode(episode);
-        cin >> episode;
-        
-        cout << getEpisode();
-        printShow(season, episode);
-
-    }
-
-    void details() {
-        cout << "The title is: " << TVshow::getTitle() << endl;
-
-        cout << "The description is: " << TVshow::getDesc() << endl;
-
-        numSeasons = sizeof(showList) / sizeof(int);
-
-        cout << "The number of seasons is: " << numSeasons << endl;
-    }
+    void details();
 
 private:
     int season;
@@ -83,8 +41,6 @@ private:
     int episode;
     string show;
     int showList[25][25];
-
-
 
 };
 #endif

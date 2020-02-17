@@ -15,29 +15,12 @@ using namespace std;
 class Movie : public Service {
 
 public:
-    Movie(){
-       
-        cout << "Please type in Opening credits: ";
-        cin >> openingCredits;
-        SetopeningCredits(openingCredits);
-        //defualt constructor
-    }
+    Movie();
+    void SetopeningCredits(string credits);
 
-    void SetopeningCredits(string credits) {
-        openingCredits = credits;
-    }
+    string GetopeningCredits();
 
-    string GetopeningCredits() {
-        return openingCredits;
-    }
-
-    virtual void Play() {
-        cout << "The opening credits are: " << endl;
-        cred = GetopeningCredits();
-
-        cout << cred << endl;
-
-    }
+    virtual void Play();
 private:
     string openingCredits;
     string cred;

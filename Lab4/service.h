@@ -17,7 +17,7 @@ class Service {
 public:
 
     Service(){
-       cout << "Default constructor of service called" << endl;
+       // cout << "Default constructor of service called" << endl;
        title = "default";
        desc =  "default";
         //default constructor

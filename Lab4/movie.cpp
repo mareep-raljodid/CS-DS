@@ -1,0 +1,37 @@
+/*
+ * authors:
+ *
+ * Rajdeep Bandopadhyay
+ * Sarah George
+ * Yulia Martinez
+ */
+
+#include <iostream>
+#include <string>
+#include "movie.h"
+
+using namespace std;
+
+Movie::Movie(){
+       
+    cout << "Please type in Opening credits: ";
+    cin >> openingCredits;
+    SetopeningCredits(openingCredits);
+    //defualt constructor
+}
+
+void SetopeningCredits(string credits) {
+        openingCredits = credits;
+    }
+
+string GetopeningCredits() {
+    return openingCredits;
+}
+
+    virtual void Play() {
+        cout << "The opening credits are: " << endl;
+        cred = GetopeningCredits();
+
+        cout << cred << endl;
+
+    }
