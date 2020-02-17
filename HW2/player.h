@@ -5,9 +5,13 @@ using namespace std;
 class Player{
 public:
     Player();
-    int setBet(int b);
+    void setBet(int b);
+    void incrementTotal(int a);
+    void decrementTotal(int c);
+    int releaseBall();
     int getBet();
     int getTotal();
+    void showCurrentTotal();
 private:
     Wheel wheel;
     int bet;
