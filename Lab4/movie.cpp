@@ -17,7 +17,7 @@ string openingCredits;
 Movie::Movie(){
        
     cout << "Please type in Opening credits: ";
-    cin >> openingCredits;
+    getline(cin,openingCredits);
     SetopeningCredits(openingCredits);
     //defualt constructor
 }

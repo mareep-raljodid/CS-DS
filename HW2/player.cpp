@@ -17,7 +17,7 @@ int Player::getTotal(){
 }
 
 int Player::releaseBall(){
-    wheel.spin();
+    return wheel.spin();
 }
 
 void Player::setWheel(int f, int e){

@@ -20,14 +20,16 @@ void printSE(Service &ss){
 
 int main(){
 loop:
-    int choice;
+    string choice;
     string qq,qqq;
     cout << "\nInput title: " ;
-    cin >> qq;
+    getline(cin,qq);
+    cout << " \nYou entered:" << qq;
     cout << "\nInput Description: ";
-    cin >> qqq;
+    getline(cin,qqq);
+    cout << " \nYou entered:" << qqq;
     Service showww(qq,qqq);
-    cout << "Calling the special function that executes the play and details in a service object." << endl;
+    cout << "\nCalling the special function that executes the play and details in a service object." << endl;
     printSE(showww);
     cout << "Press 1 for an instance of Show." << endl;
     cout << "Press 2 for an instance of Movie." << endl;
@@ -35,27 +37,30 @@ loop:
     cout << "Press 4 for an instance of a MOVIE declared as a Show" << endl;
     cout << "Press 5 for an instance of a TV Show declared as a Show" << endl;
     cout << "Your choice: ";
-    cin >> choice;
+    getline(cin,choice);
+    cout << endl;
     string t,d;
-    cout << "\nInput title: " ;
-    cin >> t;
-    cout << "\nInput Description: ";
-    cin >> d;
-    Service show(t,d);
+    cout << "Input title: ";
+    getline(cin,t);
     
-    if(choice == 1){
+    cout << "\nInput Description: ";
+    getline(cin,d);
+    
+    Service show(t,d);
+    cout << endl;
+    if(choice == "1"){
         cout << "Service show() caller" << endl;
         show.Play();
         show.details();
     }
 
-    if(choice == 2){
+    if(choice == "2"){
         cout << "Movie show() caller" << endl;
         Movie *s1 = new Movie();
         s1->Play();
     }
     
-    if(choice == 3){
+    if(choice == "3"){
         int s,e;
         cout << "TVshow show() caller" << endl;
         //cout << "Input season and eposode number" << endl;
@@ -65,21 +70,21 @@ loop:
         show2.Play(show);
     }
 
-    if(choice == 4){
+    if(choice == "4"){
         cout << "Movie as Service caller" << endl;
         Service *s3 = new Movie;
         s3->Play();
     }
 
-    if(choice == 5){
+    if(choice == "5"){
         cout << "TVshow as Service caller" << endl;
         Service *s4 = new TVshow;
         s4->Play();
     }
-    char y;
+    string y;
     cout << "Wanna do it again? (y/n): ";
-    cin>>y;
-    if ((y == 'y') || (y == 'Y'))
+    getline(cin,y);
+    if ((y == "y") || (y == "Y"))
         goto loop;
     return 0;
 }

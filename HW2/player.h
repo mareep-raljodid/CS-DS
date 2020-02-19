@@ -9,7 +9,7 @@ public:
     void incrementTotal(int a);
     void decrementTotal(int c);
     void setWheel(int f, int e);
-    int releaseBall();
+    void releaseBall();
     int getBet();
     int getTotal();
     void showCurrentTotal();

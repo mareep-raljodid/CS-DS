@@ -43,7 +43,7 @@ void TVshow::printShow(int a, int b) {
 void TVshow::Play(Service &s) {
        
     cout << "What show would you like?" << endl;
-    cin >> show;
+    getline(cin,show);
 
     s.setTitle(show);
 
