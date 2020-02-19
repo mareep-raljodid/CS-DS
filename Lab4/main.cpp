@@ -54,7 +54,7 @@ loop:
         show.details();
     }
 
-    if(choice == "2"){
+    if(choice == "4"){
         cout << "Movie show() caller" << endl;
         Movie *s1 = new Movie();
         s1->Play();
@@ -70,7 +70,7 @@ loop:
         show2.Play(show);
     }
 
-    if(choice == "4"){
+    if(choice == "2"){
         cout << "Movie as Service caller" << endl;
         Service *s3 = new Movie;
         s3->Play();
