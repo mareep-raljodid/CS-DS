@@ -18,6 +18,16 @@ void printSE(Service &ss){
     ss.Play();
 }
 
+bool exitp(){
+    char y;
+    cout << "Wanna do it again? (y/n): ";
+    cin >> y;
+    if ((y=='n') || (y=='N'))
+        exit(0);
+    else 
+        return true;
+}
+
 int main(){
 loop:
     string choice;
@@ -81,12 +91,6 @@ loop:
         Service *s4 = new TVshow;
         s4->Play();
     }
-    string y;
-    fflush(stdin);
-    
-    cout << "Wanna do it again? (y/n): ";
-    getline(cin,y);
-    if ((y != "n") || (y != "N"))
+    if(exitp())
         goto loop;
-    return 0;
 }
