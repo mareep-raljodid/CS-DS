@@ -14,6 +14,6 @@ int main(){
     
     if (ch == 1) {
         cout << "Adding a Game to the shelf" << endl;
-
+        
     return 0;
 }
