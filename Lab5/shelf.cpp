@@ -1,22 +1,33 @@
 #include <iostream>
 #include "shelf.h"
+#include "show.h"
 
 using namespace std;
 
 Shelf::Shelf(){
-    shelf[] = {};
+    Show def;
+    for(unsigned i = 0; i< MAX_SIZE; i++)
+        shelf[i] = {def};
 }
 
-Shelf::getCurrentAmount(){
-    
+int Shelf::getCurrentAmount(){
+    unsigned s = 0;
+    for (unsigned i = 0; i < 10; i++){
+       if (compareNul(shelf[i]))
+           return s+1;
+        else
+            s++;
+   }
+
 }
 
-Shelf::addShow(Show &s){
+void Shelf::addShow(Show &s){
     shelf[index] = s;
-    index ++;
+    shelf[index+1] = new Show(true);
     
 }
 
-Shelf::removeShow(){
+void Shelf::removeShow(){
+     shelf[getCurrentAmount()].details();
     
 }

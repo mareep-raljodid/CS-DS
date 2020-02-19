@@ -1,17 +1,25 @@
 #include <iostream>
 #include "show.h"
 #define MAX_SIZE 10
+#ifndef SHELF
+#define SHELF
+
 
 class Shelf{
 public:
     unsigned index;
-    Show shelf[MAX_SIZE];
+    Show shelf[MAX_SIZE] = {};
     Shelf();
-    void setCurrentAmount(int c);
     int getCurrentAmount();
     void addShow(Show &s);
-    Show removeShow();
+    void removeShow();
+    bool compareNul(Show &s){
+        if ((s.getTitle() == "") && (s.getDesc() == ""))
+            return true;
+        return false;
+    }
 
 private:
     int currentNumOfShows;
 };
+#endif

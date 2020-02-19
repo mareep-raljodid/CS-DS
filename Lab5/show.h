@@ -1,4 +1,4 @@
-\/*
+/*
  * authors:
  *
  * Rajdeep Bandopadhyay
@@ -28,6 +28,13 @@ public:
         desc = d;
     }
 
+    Show(bool shit){
+        if (shit == 1){
+            title = "";
+            desc = "";
+        }
+    }
+        
     virtual void setTitle(string t) {        //getters and setters
         title = t;
     }
