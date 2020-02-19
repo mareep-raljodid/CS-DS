@@ -3,10 +3,20 @@
 
 using namespace std;
 
-Shelf::setCurrentAmount(int c){
-    currentAmount = c;
+Shelf::Shelf(){
+    shelf[] = {};
 }
 
 Shelf::getCurrentAmount(){
-    return currentAmount;
+    
+}
+
+Shelf::addShow(Show &s){
+    shelf[index] = s;
+    index ++;
+    
+}
+
+Shelf::removeShow(){
+    
 }
