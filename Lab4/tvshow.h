@@ -40,7 +40,7 @@ private:
     int numSeasons;
     int episode;
     string show;
-    int showList[25][25];
+    int showList[25][25]={{}};
 
 };
 #endif

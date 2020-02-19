@@ -38,9 +38,13 @@ int TVshow::getEpisode() {
 
 void TVshow::printShow(int a, int b) {
     cout << showList[a][b] << endl;
+    return;
 }
 
 void TVshow::Play(Service &s) {
+    for(int i = 0; i < 25; i++)
+        for (int j = 0; j < 25; j++)
+            showList[i][j]=0;
        
     cout << "What show would you like?" << endl;
     getline(cin,show);

@@ -63,9 +63,9 @@ loop:
     if(choice == "3"){
         int s,e;
         cout << "TVshow show() caller" << endl;
-        //cout << "Input season and eposode number" << endl;
-        //cin >> s;
-        //cin >> e;
+        cout << "Input season and eposode number" << endl;
+        cin >> s;
+        cin >> e;
         TVshow show2;
         show2.Play(show);
     }
@@ -82,9 +82,11 @@ loop:
         s4->Play();
     }
     string y;
+    fflush(stdin);
+    
     cout << "Wanna do it again? (y/n): ";
     getline(cin,y);
-    if ((y == "y") || (y == "Y"))
+    if ((y != "n") || (y != "N"))
         goto loop;
     return 0;
 }
