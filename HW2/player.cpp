@@ -5,7 +5,7 @@ using namespace std;
 
 Player::Player(){
     bet = 0;
-    total = 0;
+    total = 500;
 }
 
 int Player::getBet(){

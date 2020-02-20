@@ -21,7 +21,7 @@ int easy(){
     
     cout << "Welcome to the Roulette game!" << endl;
     
-    while(selection == 'y' || player.getTotal() != 0){
+    while(selection == 'y' || player.getTotal() < 0){
         
         cout << "Enter the starting and ending values for the range of the wheel: " << endl;
         cout << "Starting value: "; 
@@ -78,6 +78,17 @@ int easy(){
                 }
             }
         }
+        else{
+            ball1 = house.releaseBall();
+            if(ball1 > playerBall){
+                cout << "You lost the turn." << endl;
+                player.decrementTotal(currentBet);
+            }
+            else{
+                cout << "You won the turn!" << endl;
+                player.incrementTotal(currentBet);
+            }
+        }
         
         cout << "Would you like to view your current total? Enter y for yes and n for no: ";
         cin >> show;
@@ -115,7 +126,7 @@ int hard(){
     cout << "Welcome to the Roulette game!" << endl;
     bool plw = false;
 
-    while(selection == 'y' || player.getTotal() != 0){
+    while(selection == 'y' || player.getTotal() < 0){
 
         cout << "Enter the starting and ending values for the range of the wheel: " << endl;
         cout << "Starting value: ";
@@ -176,6 +187,19 @@ int hard(){
                 }
             }
         }
+        else{
+            ball1 = house.releaseBall(plw);
+            if(ball1 > playerBall){
+                cout << "You lost the turn." << endl;
+                player.decrementTotal(currentBet);
+                plw = false;
+            }
+            else{
+                cout << "You won the turn!" << endl;
+                player.incrementTotal(currentBet);
+                plw = true;
+            }
+        }
 
         cout << "Would you like to view your current total? Enter y for yes and n for no: ";
         cin >> show;
@@ -191,13 +215,17 @@ int hard(){
             return 0;
 
     }
+    if(player.getTotal() == 0){
+        cout << "You have run out of money. The game is now over" << endl;
+    }
 
 }
 
 int main() {
     int cc;
     cout << "Hard or easy?" << endl;
-    cout << " Enter 1 for hard or anything else for easy mode: ";
+    cout << "You will start the game with an initial total of $500 in either mode." << endl;
+    cout << "Enter 1 for hard or any other number for easy mode: ";
     cin >> cc;
     cout << endl;
     if (cc == 1)

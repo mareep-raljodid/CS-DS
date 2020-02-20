@@ -19,7 +19,7 @@ void Wheel::setEndVal(int end){
 
 int Wheel::spin(){
     srand (time(NULL));  
-    int x = (rand() % endVal) + startVal;
+    int x = (rand() % endVal) + startVal + 1;
     return x;
 }
 
