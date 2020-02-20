@@ -6,8 +6,9 @@ using namespace std;
 
 Shelf::Shelf(){
     Show def;
-    for(unsigned i = 0; i< MAX_SIZE; i++)
-        shelf[i] = {def};
+    for(unsigned i = 0; i< MAX_SIZE; i++){
+        shelf[i] = def;
+    }
 }
 
 int Shelf::getCurrentAmount(){
