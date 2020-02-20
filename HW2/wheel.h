@@ -1,3 +1,6 @@
+#ifndef W
+#define W
+
 #include <iostream>
 
 using namespace std;
@@ -12,8 +15,9 @@ public:
     
     int spin();
     
-private:
     int startVal;
     int endVal;
     
 };
+
+#endif
