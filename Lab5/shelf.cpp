@@ -23,9 +23,13 @@ int Shelf::getCurrentAmount(){
 }
 
 void Shelf::addShow(Show &s){
-    shelf[index] = s;
-    shelf[index+1] = new Show(true);
-    
+    if(getCurrentAmount() == MAX_SIZE){
+        throw FullShelf();
+    }
+    else{
+        shelf[index] = s;
+        shelf[index+1] = new Show(true);
+    }
 }
 
 void Shelf::removeShow(){

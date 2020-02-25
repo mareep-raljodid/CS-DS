@@ -26,11 +26,15 @@ int main(){
         
             case 1:
                 cout << "Adding a Game to the shelf" << endl;
-                shelf.addShow(show);
+                try{
+                    shelf.addShow(show);
+                }
+                catch (Shelf::FullShelf)
+                    cout << "Cannot add another show, the shelf is full. \n." << endl;
+                }
                 cout << endl;
                 break;
             
-        
             case 2:
                 cout << "Removing a game from the shelf"  << endl;
                 shelf.removeShow();

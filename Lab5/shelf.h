@@ -18,6 +18,7 @@ public:
             return true;
         return false;
     }
+    class FullShelf {};
 
 private:
     int currentNumOfShows;
