@@ -6,24 +6,26 @@
  * Yulia Martinez
  */
 
-#ifndef SERVICE
-#define SERVICE
+#ifndef SERVICEITEM
+#define SERVICEITEM
 
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Item {
+
+template <class T> {
 public:
 
-    Item() {
+
+    T() {
         // cout << "Default constructor of service called" << endl;
         title = "default";
         desc = "default";
         //default constructor
     }
 
-    Item(string t, string d) {   //overload constructor
+    T(string t, string d) {   //overload constructor
         title = t;
         desc = d;
     }
@@ -32,7 +34,7 @@ public:
         title = t;
     }
 
-    void setDesc(string d) {
+    virtual void setDesc(string d) {
         desc = d;
     }
 
