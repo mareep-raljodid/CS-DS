@@ -1,17 +1,37 @@
 #include <iostream>
-#include "Item.h"
+#include "item.h"
 #define MAX_SIZE 10
+#ifndef SHELF
+#define SHELF
 
 class entertainmentCollection {
 public:
     unsigned index;
-    Item shelf[MAX_SIZE];
+    T<int> entertainmentcollection[MAX_SIZE] = {};
+
     entertainmentCollection();
-    void setCurrentAmount(int c);
+
     int getCurrentAmount();
-    void addShow(Item& s);
-    Item removeShow();
+
+    void addItem(T<void> &s);
+
+    void removeItem();
+
+    bool compareNul(T<int> &s) {
+        if ((s.getTitle() == "") && (s.getDesc() == "")) {
+
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    class FullententertainmentCollection {};
 
 private:
-    int currentNumOfShows;
+    int currentNumOfItems;
 };
+
+
+#endif
