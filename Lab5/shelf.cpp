@@ -4,26 +4,40 @@
 
 using namespace std;
 
-Shelf::Shelf(){
-    Show def(true);
-    shelf[0] = def;
+Shelf::Shelf() {
+    Show def;
+    for (unsigned i = 0; i < MAX_SIZE; i++) {
+        shelf[i] = def;
+    }
 }
 
-int Shelf::getCurrentAmount(){
-    return index;
+int Shelf::getCurrentAmount() {
+    unsigned s = 0;
+    for (unsigned i = 0; i < 10; i++) {
+        if (compareNul(shelf[i]))
+            return s + 1;
+        else
+            s++;
+    }
+
 }
 
-void Shelf::addShow(Show &s){
-    if(index == MAX_SIZE){
+void Shelf::addShow(Show& s) {
+    if (getCurrentAmount() == MAX_SIZE) {
         throw FullShelf();
     }
-    else{
-        shelf[getCurrentAmount()] = s;
-        index ++;
+    else {
+        shelf[index] = s;
+        shelf[index + 1] = new Show(true);
     }
 }
 
-void Shelf::removeShow(){
-     shelf[getCurrentAmount()].details();
-    
+void Shelf::removeShow() {
+    if (getCurrentAmount() == 0) {
+        throw EmptyShelf();
+    }
+    else {
+        shelf[getCurrentAmount()].details();
+    }
+
 }
