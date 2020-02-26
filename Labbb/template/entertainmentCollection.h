@@ -4,21 +4,20 @@
 #ifndef SHELF
 #define SHELF
 
-template <typename T>
 class entertainmentCollection {
 public:
     unsigned index;
-    T entertainmentcollection[MAX_SIZE] = {};
+    T<int> entertainmentcollection[MAX_SIZE] = {};
 
     entertainmentCollection();
 
     int getCurrentAmount();
 
-    void addItem(T &s);
+    void addItem(T<void> &s);
 
     void removeItem();
 
-    bool compareNul(T &s) {
+    bool compareNul(T<int> &s) {
         if ((s.getTitle() == "") && (s.getDesc() == "")) {
 
             return true;

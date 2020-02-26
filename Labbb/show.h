@@ -13,15 +13,13 @@
 #include <string>
 using namespace std;
 
-
 class Show {
-
 public:
 
-    Show() {
-        // cout << "Default constructor of service called" << endl;
-        title = "default";
-        desc = "default";
+    Show(){
+       // cout << "Default constructor of service called" << endl;
+       title = "default";
+       desc =  "default";
         //default constructor
     }
 
@@ -30,13 +28,13 @@ public:
         desc = d;
     }
 
-    Show(bool shit) {
-        if (shit == 1) {
+    Show(bool shit){
+        if (shit == 1){
             title = "";
             desc = "";
         }
     }
-
+        
     virtual void setTitle(string t) {        //getters and setters
         title = t;
     }
@@ -67,4 +65,7 @@ private:
 };
 
 #endif
-#pragma once
+
+
+
+ 
