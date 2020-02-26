@@ -29,7 +29,7 @@ int main(){
                 try{
                     shelf.addShow(show);
                 }
-                catch (Shelf::FullShelf)
+                catch (Shelf::FullShelf){
                     cout << "Cannot add another show, the shelf is full. \n." << endl;
                 }
                 cout << endl;
