@@ -1,33 +1,27 @@
 #include <iostream>
 #include "item.h"
 #define MAX_SIZE 10
-#ifndef SHELF
-#define SHELF
+#ifndef EBNT
+#define EBNT
 
-class entertainmentCollection {
+template <class Item> class entertainmentCollection {
 public:
+
+
     unsigned index;
-    T<int> entertainmentcollection[MAX_SIZE] = {};
+    Item entertainmentcollection[MAX_SIZE] = {};
 
     entertainmentCollection();
 
     int getCurrentAmount();
 
-    void addItem(T<void> &s);
+    void addItem(Item &s);
 
     void removeItem();
 
-    bool compareNul(T<int> &s) {
-        if ((s.getTitle() == "") && (s.getDesc() == "")) {
-
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     class FullententertainmentCollection {};
+    class EEmptyShelf {};
+
 
 private:
     int currentNumOfItems;

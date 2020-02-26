@@ -14,6 +14,7 @@ public:
     void addShow(Show &s);
     void removeShow();
     class FullShelf {};
+    class EmptyShelf {};
 
 private:
     int currentNumOfShows;

@@ -24,7 +24,11 @@ void Shelf::addShow(Show &s){
 }
 
 void Shelf::removeShow(){
-     shelf[getCurrentAmount()].details();
-     index --;
-    
+    if (getCurrentAmount() == 0) {
+        throw EmptyShelf();
+    }
+    else {
+        shelf[getCurrentAmount()].details();
+        index --;
+    }
 }

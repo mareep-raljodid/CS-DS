@@ -4,37 +4,37 @@
 
 using namespace std;
 
-entertainmentCollection::entertainmentCollection() {
-    T<int> def;
-    for (unsigned i = 0; i < MAX_SIZE; i++) {
-        entertainmentcollection[i] = def;
-    }
+template <class Item>
+entertainmentCollection<Item>::entertainmentCollection() {
+    Item def(true);
+    entertainmentcollection[0] = def;
 }
 
-int entertainmentCollection::getCurrentAmount() {
-    unsigned s = 0;
-    for (unsigned i = 0; i < 10; i++){
-        if (compareNul(entertainmentcollection[i])) {
-            return s + 1;
-        }
-        else {
-            s++;
-        }
-    } 
+template <class Item>
+int entertainmentCollection<Item>::getCurrentAmount() {
+   return index;
+    
 }
 
-void entertainmentCollection::addItem(T<Item> &s) {
+template <class Item>
+void entertainmentCollection<Item>::addItem(Item &s) {
     if (getCurrentAmount() == MAX_SIZE) {
         throw FullententertainmentCollection();
     }
     else {
-        entertainmentcollection[index] = s;
-        entertainmentcollection[index + 1] = new T<Item>(true);
+        entertainmentcollection[getCurrentAmount()] = s;
+        index ++;
     }
 
 }
 
-void entertainmentCollection::removeItem() {
-    entertainmentcollection[getCurrentAmount()].details();
-
+template <class Item>
+void entertainmentCollection<Item>::removeItem() {
+    if (getCurrentAmount() == 0) {
+         throw EEmptyShelf();
+     }
+     else {
+         entertainmentcollection[getCurrentAmount()].details();
+         index --;
+     }
 }
