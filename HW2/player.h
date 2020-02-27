@@ -1,3 +1,9 @@
+/* Authors:
+ * Rajdeep Bandopadhyay
+ * Sarah George
+ * Yulia Martinez
+ */
+
 #ifndef PL
 #define PL
 
