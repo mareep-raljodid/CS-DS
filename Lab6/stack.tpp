@@ -29,12 +29,21 @@ void Stack<T>::push(T *inPtr){
 template <class T>
 T *Stack<T>::pop(){
     if(!isEmpty()){
-        top--;
-        return data[top];
+        return data[top--];
     }
     else{
         throw StackUnderflow();
     }
+}
+
+template <class T>
+T *Stack<T>::Top(){
+    if(!isEmpty()){
+        return data[top];
+    }   
+    else{
+        throw StackUnderflow();
+    }   
 }
 
 template <class T>
@@ -46,12 +55,13 @@ template <class T>
 void Stack<T>::makeEmpty(){
     for(int i= 0;i < top; i++){
         delete data[i];
+    top = 0;
     }
 }
 
 template <class T>
 bool Stack<T>::isFull(){
-    return top == defaul-1;
+    return top == defaul;
 }
 
 template <class T>

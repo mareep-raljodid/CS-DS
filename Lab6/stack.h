@@ -11,20 +11,22 @@
 #include <iostream>
 template <class T>
 class Stack{
-private:
-    T *data[10];
 public:
-    int defaul = 10;
+    int defaul;
     int top = 0;
     Stack<T>(int size);
     void push(T *inPtr);
-    T *pop();
-    void Top();
+    T* pop();
+    T* Top();
     int length();
     void makeEmpty();
     bool isFull();
     bool isEmpty();
     class StackOverlfow{};
     class StackUnderflow{};
+private:
+    T *data[];
 }; 
+#include "stack.tpp"
+
 #endif
