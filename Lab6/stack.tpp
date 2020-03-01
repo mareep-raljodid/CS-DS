@@ -1,37 +1,30 @@
-/*
- * authors:
- *
- * Rajdeep Bandopadhyay
- * Sarah George
- * Yulia Martinez
- */
 #include "stack.h"
- 
+
 using namespace std;
 template <class T>
-Stack<T>::Stack(int s){
-    
+Stack<T>::Stack(int s) {
+
     defaul = s;
 }
 
 template <class T>
-void Stack<T>::push(T *inPtr){
-    if(!isFull()){
-        data[top] =  inPtr;
+void Stack<T>::push(T* inPtr) {
+    if (!isFull()) {
+        data[top] = inPtr;
         top++;
-    } 
-    else{
+    }
+    else {
         throw StackOverlfow();
     }
-    
+
 }
 
 template <class T>
-T *Stack<T>::pop(){
-    if(!isEmpty()){
+T* Stack<T>::pop() {
+    if (!isEmpty()) {
         return data[top--];
     }
-    else{
+    else {
         throw StackUnderflow();
     }
 }
@@ -52,8 +45,8 @@ int Stack<T>::length(){
 }
 
 template <class T>
-void Stack<T>::makeEmpty(){
-    for(int i= 0;i < top; i++){
+void Stack<T>::makeEmpty() {
+    for (int i = 0; i < top; i++) {
         delete data[i];
     top = 0;
     }
@@ -65,6 +58,6 @@ bool Stack<T>::isFull(){
 }
 
 template <class T>
-bool Stack<T>::isEmpty(){
+bool Stack<T>::isEmpty() {
     return top == 0;
 }

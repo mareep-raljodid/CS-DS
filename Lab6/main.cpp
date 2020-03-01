@@ -1,3 +1,11 @@
+/*
+ * authors:
+ *
+ * Rajdeep Bandopadhyay
+ * Sarah George
+ * Yulia Martinez
+ */
+
 #include <iostream>
 #include <fstream>
 
@@ -6,7 +14,6 @@
 using namespace std;
 
 int main() {
-
     //vector<string> wordArr;
     //ifstream daFile("a.txt");
     
@@ -18,7 +25,8 @@ int main() {
     cout << "Enter the size of the array: ";
     cin >> arrSize;
     Stack<int> stack(arrSize);
- 
+
+
     int* numPtr;
     int* outPtr;
     int num;
