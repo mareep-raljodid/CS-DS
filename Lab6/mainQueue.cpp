@@ -14,8 +14,8 @@ using namespace std;
 
 int main() {
     
-    int option = 1;
-    while (option != 4) {
+    char option = '1';
+    while (option != '4') {
         cout << "Stack or Queue?" << endl;
         cout << "1: Stack" << endl;
         cout << "2: Queue" << endl;
@@ -24,8 +24,7 @@ int main() {
 
         cin >> option;
 
-        switch (option) {
-        case 1:
+        if (option == '1'){
             cout << "Making a stack" << endl;
             int arrSize;
             cout << "Enter the size of the array: ";
@@ -90,9 +89,9 @@ int main() {
                 }
             }
 
-            break;
+        }
 
-        case 2:
+        if (option == '2') {
             cout << "Making a Queue" << endl;
             int queueSize;
             cout << "Enter size of Queue:" << endl;
@@ -101,6 +100,7 @@ int main() {
             cout << endl;
             cout << endl;
             cout << endl;
+            int choice, num;
             cout << "Enter your action for the queue: " << endl;
             cout << "1: enqueue" << endl;
             cout << "2: dequeue" << endl;
@@ -140,9 +140,10 @@ int main() {
 
                 break;
             }
-            break;
+        
+        }
 
-        case 3: 
+        if (option == '3') {
             cout << "Would you like to parse a file to demonstrate the";
             cout << " stack and quque usage? (y/n)" << endl;
             char yy;
@@ -163,12 +164,11 @@ int main() {
                 daFile.close();
             }
             
-            break;
+        }
 
-
-        case 4:
+        else {
             cout << "Exit" << endl;
-            break;
+            exit(0);
         }
     }
     return 0;
