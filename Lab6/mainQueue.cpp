@@ -9,15 +9,18 @@
 #include <iostream>
 #include "queue.h"
 #include "stack.h"
+#include "parse.h"
 using namespace std;
 
 int main() {
+    
     int option = 1;
-    while (option != 3) {
+    while (option != 4) {
         cout << "Stack or Queue?" << endl;
         cout << "1: Stack" << endl;
         cout << "2: Queue" << endl;
-        cout << "3: Quit" << endl;
+        cout << "3: Parse a file" << endl;
+        cout << "4: Quit" << endl;
 
         cin >> option;
 
@@ -105,6 +108,7 @@ int main() {
             cout << "4: Exit" << endl;
 
             cin >> choice;
+
             switch (choice) {
             case 1:
                 cout << "What number would you like to enqueu" << endl;
@@ -137,23 +141,35 @@ int main() {
                 break;
             }
             break;
-        case 3:
+
+        case 3: 
+            cout << "Would you like to parse a file to demonstrate the";
+            cout << " stack and quque usage? (y/n)" << endl;
+            char yy;
+            cout << "Your choice: ";
+            cin >> yy;
+            string fl;
+
+            if ((yy == 'y') || (yy == 'Y')) {
+                cout << "Enter filename: ";
+                cin >> fl;
+                vector<string> wordArr;
+                ifstream daFile(fl);
+
+                string delim;
+                while (daFile >> delim) wordArr.push_back(delim);
+                parse(wordArr);
+
+                daFile.close();
+            }
+            
+            break;
+
+
+        case 4:
             cout << "Exit" << endl;
             break;
         }
     }
-
-    
-
-
-
-
-
-    
-
-    
-
-   
-        
     return 0;
 }
