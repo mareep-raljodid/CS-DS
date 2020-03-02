@@ -24,7 +24,7 @@ void Queue<T>::Enqueue(int inVal) {
 
 template <class T>
 int Queue<T>::Dequeue() {
-    if (isEmpty())throw Underflow;
+    if (isEmpty())throw Underflow();
     int retVal = data[0];
     for (int i = 0; i < back; i++) {
         data[i] = data[i + 1];
