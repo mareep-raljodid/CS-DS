@@ -6,8 +6,8 @@
  * Yulia Martinez
  */
 
-#include <bits/stdc++.h>
 #include <queue>
+#include <stack>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -16,7 +16,7 @@
 #include <string>
 
 
-#include "stack.h"
+//#include "stack.h"
 
 
 using namespace std;
@@ -24,30 +24,29 @@ using namespace std;
 void parse (vector<string> wordArr) {
 
     int wordLen;
-    vector<char *> wordAddr;
-    vector<string> revW;
+    vector<string> revW; // our queue simulatiuon
 
     for (unsigned i = 0; i < wordArr.size(); i++) {
-        Stack<const char> revWord(wordArr[i].length());
+        stack<char*> revWord;//(wordArr[i].length()); //our stack simulation
 
-        const char* arr = wordArr[i].c_str();
         for(int j = 0; j < wordArr[i].length(); j++)
-            revWord.push(&arr[j]);
+            revWord.push(&wordArr[i][0] + j * sizeof(char));
 
         string rev;
         for (int j = 0; j < wordArr[i].length(); j++){
-            char* s = (char*)revWord.pop();
+            char* s = revWord.top();
+            revWord.pop();
             rev = rev + *s;
         }
-        cout << rev;
+        revW.push_back(rev);
         
     } 
-    /*for (int ll = 0; ll < revW.size(); ll++){
+    for (int ll = 0; ll < revW.size(); ll++){
         cout << revW[ll];
         if (ll == revW.size() -1)
             cout << "."<<endl;
         else
             cout << " ";
-    }*/
+    }
 }
 

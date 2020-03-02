@@ -14,12 +14,30 @@
 using namespace std;
 
 int main() {
-    //vector<string> wordArr;
-    //ifstream daFile("a.txt");
+
+    cout << "Would you like to parse a file to demonstrate the";
+    cout << " stack and quque usage? (y/n)" << endl;
+    char yy;
+    cout << "Your choice: ";
+    cin >> yy;
+    string fl;
+
+    if ((yy == 'y') || (yy == 'Y')){
+        cout << "Enter filename: ";
+        cin >> fl;
+        vector<string> wordArr;
+        ifstream daFile(fl);
     
-    //string delim;
-    //while (daFile >> delim) wordArr.push_back(delim);
-    //parse(wordArr);
+        string delim;
+        while (daFile >> delim) wordArr.push_back(delim);
+        parse(wordArr);
+
+        daFile.close();
+    }
+
+
+    cout << "\n\n\n";
+    cout << "Moving on.." << endl;
 
     int arrSize;
     cout << "Enter the size of the array: ";

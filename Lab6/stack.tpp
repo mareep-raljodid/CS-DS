@@ -22,7 +22,8 @@ void Stack<T>::push(T* inPtr) {
 template <class T>
 T* Stack<T>::pop() {
     if (!isEmpty()) {
-        return data[top--];
+        top --;
+        return data[top];
     }
     else {
         throw StackUnderflow();
