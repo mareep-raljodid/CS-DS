@@ -26,6 +26,8 @@ public:
     class Underflow {};
 };
 
+#include "queue.tpp"
+
 #endif
 #pragma once
     
