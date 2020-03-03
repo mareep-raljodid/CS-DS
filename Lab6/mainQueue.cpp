@@ -113,10 +113,10 @@ int main() {
             case 1:
                 cout << "What number would you like to enqueu" << endl;
                 cin >> num;
-                queue.Enqueue(num);
+                queue.Enqueue((int)(num));
 
                 cout << "Number in queue" << endl;
-                break;
+                
 
             case 2:
                 try {
@@ -128,17 +128,15 @@ int main() {
                     cout << "Error: Underflow." << endl;
                 }
                 
-                break;
+                
 
             case 3:
 
                 cout << queue.peek() << endl;
-                break;
+                
 
             case 4:
                 cout << "Exit!" << endl;
-
-                break;
             }
         
         }
