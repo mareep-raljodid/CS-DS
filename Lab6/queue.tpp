@@ -16,16 +16,21 @@ Queue<T>::Queue(int s) {
 
 template <class T>
 void Queue<T>::Enqueue(int inVal) {
-    data[back] = &inVal;
-    back++;
-
+    if(isFull()){
+        throw Overflow();
+    }
+    else{
+        data[back] = inVal;
+        back++;
+    }
 }
 
 
 template <class T>
 int Queue<T>::Dequeue() {
     if (isEmpty())throw Underflow();
-    int retVal = *data[0];
+    int retVal = data[0];
+    back--;
     for (int i = 0; i < back; i++) {
         data[i] = data[i + 1];
     }
@@ -34,8 +39,8 @@ int Queue<T>::Dequeue() {
 
 template <class T>
 
-int Queue<T>::peek() {
-    return *data[0];
+T Queue<T>::peek() {
+    return data[0];
 }
 
 template <class T>
@@ -49,6 +54,10 @@ bool Queue<T>::isEmpty() {
     return back == 0;
 }
 
+template <class T>
+bool Queue<T>::isFull(){
+    return back == defaul;
+}
 
 template <class T>
 void Queue<T>::makeEmpty() {

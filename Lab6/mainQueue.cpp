@@ -90,43 +90,51 @@ void queuef(){
             cout << endl;
             cout << endl;
             int choice, num;
-            cout << "Enter your action for the queue: " << endl;
-            cout << "1: enqueue" << endl;
-            cout << "2: dequeue" << endl;
-            cout << "3: Peek" << endl;
-            cout << "4: Exit" << endl;
 
-            cin >> choice;
+            while (choice != 4){
+                cout << "Enter your action for the queue: " << endl;
+                cout << "1: enqueue" << endl;
+                cout << "2: dequeue" << endl;
+                cout << "3: Peek" << endl;
+                cout << "4: Exit" << endl;
 
-            switch (choice) {
-            case 1:
-                cout << "What number would you like to enqueu" << endl;
-                cin >> num;
-                queue.Enqueue((int)(num));
+                cin >> choice;
 
-                cout << "Number in queue" << endl;
-                
+                switch (choice) {
+                    case 1:
+                        try{
+                            cout << "What number would you like to enqueu" << endl;
+                            cin >> num;
+                            queue.Enqueue(num);
 
-            case 2:
-                try {
-                    cout << "Dequeue in process" << endl;
-                    queue.Dequeue();
-                    cout << "dequeue successful" << endl;
+                            cout << "Number in queue" << endl;
+                        }
+                        catch(Queue<int>::Overflow){
+                            cout << "Error: Overflow"  << endl;
+                        }
+                        break;
+
+                    case 2:
+                        try {
+                            cout << "Dequeue in process" << endl;
+                            queue.Dequeue();
+                            cout << "dequeue successful" << endl;
+                        }
+                        catch (Queue<int>::Underflow) {
+                            cout << "Error: Underflow." << endl;
+                        }
+                        break;
+                    case 3:
+
+                        cout << queue.peek() << endl;
+                        break;
+                        
+                    case 4:
+                        cout << "Exit!" << endl;
+                        break;
                 }
-                catch (Queue<int>::Underflow) {
-                    cout << "Error: Underflow." << endl;
-                }
-                
-                
-
-            case 3:
-
-                cout << queue.peek() << endl;
-                
-
-            case 4:
-                cout << "Exit!" << endl;
             }
+            
         
         }
 

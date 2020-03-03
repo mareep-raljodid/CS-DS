@@ -12,17 +12,19 @@
 template <class T>
 class Queue {
 private:
-    T* data[10];
+    T data[10];
 public:
     int defaul = 10;
     int back = 0;
     Queue<T>(int size);
     void Enqueue(int inVal);
     int Dequeue();
-    int peek();
+    T peek();
     int length();
     bool isEmpty();
+    bool isFull();
     void makeEmpty();
+    class Overflow {};
     class Underflow {};
 };
 
