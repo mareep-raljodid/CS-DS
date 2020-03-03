@@ -16,7 +16,7 @@ class Stack {
 
 public:
     int defaul;
-    Stack<T>(int size);
+    Stack<T*>(int size);
     void push(T);
     T pop();
     T Top();

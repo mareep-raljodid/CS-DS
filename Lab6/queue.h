@@ -17,13 +17,14 @@ public:
     int defaul = 10;
     int back = 0;
     Queue<T>(int size);
-    void Enqueue(int inVal);
+    void Enqueue(T inVal);
     int Dequeue();
     T peek();
     int length();
     bool isEmpty();
     bool isFull();
     void makeEmpty();
+    T viewItems(int iter);
     class Overflow {};
     class Underflow {};
 };

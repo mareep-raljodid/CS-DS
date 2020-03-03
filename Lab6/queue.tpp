@@ -15,7 +15,7 @@ Queue<T>::Queue(int s) {
 }
 
 template <class T>
-void Queue<T>::Enqueue(int inVal) {
+void Queue<T>::Enqueue(T inVal) {
     if(isFull()){
         throw Overflow();
     }
@@ -62,4 +62,8 @@ bool Queue<T>::isFull(){
 template <class T>
 void Queue<T>::makeEmpty() {
     back = 0;
+}
+template <class T>
+T Queue<T>::viewItems(int iter){
+    return data[iter];
 }

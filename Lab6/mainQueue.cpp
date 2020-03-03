@@ -59,7 +59,7 @@ void stackf(){
                         cout << "Popping a pointer off the stack" << endl;
                         outPtr = stack.pop();
                         cout << "Pop successful" << endl;
-                        cout << *outPtr;
+                        cout << "Result of pop: " << *outPtr;
                     }
                     catch (Stack<int*>::StackUnderflow) {
                         cout << "Stack Underflow" << endl;
@@ -67,7 +67,7 @@ void stackf(){
                     break;
 
                 case 3:
-                    cout << stack.length();
+                    cout << "Length: " << stack.length();
                     break;
                 case 4:
                     cout << "Exit";
@@ -124,7 +124,7 @@ void queuef(){
                         break;
                     case 3:
 
-                        cout << queue.peek() << endl;
+                        cout << "Result of peek: " <<  queue.peek() << endl;
                         break;
                         
                     case 4:
@@ -138,7 +138,7 @@ void queuef(){
 
 void prse(){
             cout << "Would you like to parse a file to demonstrate the";
-            cout << " stack and quque usage? (y/n)" << endl;
+            cout << " stack and queue usage? (y/n)" << endl;
             char yy;
             cout << "Your choice: ";
             cin >> yy;
