@@ -18,15 +18,13 @@ void stackf(){
             int arrSize;
             cout << "Enter the size of the array: ";
             cin >> arrSize;
-            Stack<int> stack(arrSize);
+            Stack<int*> stack(arrSize);
 
             int* numPtr;
             int* outPtr;
             int num;
 
             int choice = 1;
-
-
 
             while (choice != 4) {
                 cout << endl;
@@ -51,7 +49,7 @@ void stackf(){
                         cout << "Push successful" << endl;
 
                     }
-                    catch (Stack<int>::StackOverlfow) {
+                    catch (Stack<int*>::StackOverlfow) {
                         cout << "Error: Stack Overflow." << endl;
                     }
                     break;
@@ -63,7 +61,7 @@ void stackf(){
                         cout << "Pop successful" << endl;
                         cout << *outPtr;
                     }
-                    catch (Stack<int>::StackUnderflow) {
+                    catch (Stack<int*>::StackUnderflow) {
                         cout << "Stack Underflow" << endl;
                     }
                     break;
@@ -173,19 +171,19 @@ int main() {
 
         cin >> option;
 
-        if (option == '1')
+        if (option == '1'){
             stackf();
-        
-
-        if (option == '2') 
+        }
+            
+        if (option == '2'){
             queuef();
+        } 
 
-        if (option == '3') 
+        if (option == '3'){
             prse();
-
+        } 
 
         else {
-            cout << "Exit" << endl;
             exit(0);
         }
     }

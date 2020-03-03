@@ -3,27 +3,24 @@
 using namespace std;
 template <class T>
 Stack<T>::Stack(int s) {
-
+    arr = new T[s];
     defaul = s;
 }
 
 template <class T>
-void Stack<T>::push(T* inPtr) {
+void Stack<T>::push(T t) {
     if (!isFull()) {
-        data[top] = inPtr;
-        top++;
+        arr[++top] = t;
     }
     else {
         throw StackOverlfow();
     }
-
 }
 
 template <class T>
-T* Stack<T>::pop() {
+T Stack<T>::pop() {
     if (!isEmpty()) {
-        top --;
-        return data[top];
+        return arr[top--];
     }
     else {
         throw StackUnderflow();
@@ -31,30 +28,30 @@ T* Stack<T>::pop() {
 }
 
 template <class T>
-T *Stack<T>::Top(){
-    if(!isEmpty()){
-        return data[top];
-    }   
-    else{
+T Stack<T>::Top() {
+    if (!isEmpty()) {
+        return arr[top];
+    }
+    else {
         throw StackUnderflow();
-    }   
+    }
 }
 
 template <class T>
-int Stack<T>::length(){
-    return top;
+int Stack<T>::length() {
+    return top + 1;
 }
 
 template <class T>
 void Stack<T>::makeEmpty() {
     for (int i = 0; i < top; i++) {
         delete data[i];
-    top = 0;
+        top = 0;
     }
 }
 
 template <class T>
-bool Stack<T>::isFull(){
+bool Stack<T>::isFull() {
     return top == defaul;
 }
 
