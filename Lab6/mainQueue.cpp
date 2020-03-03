@@ -12,19 +12,8 @@
 #include "parse.h"
 using namespace std;
 
-int main() {
-    
-    char option = '1';
-    while (option != '4') {
-        cout << "Stack or Queue?" << endl;
-        cout << "1: Stack" << endl;
-        cout << "2: Queue" << endl;
-        cout << "3: Parse a file" << endl;
-        cout << "4: Quit" << endl;
+void stackf(){
 
-        cin >> option;
-
-        if (option == '1'){
             cout << "Making a stack" << endl;
             int arrSize;
             cout << "Enter the size of the array: ";
@@ -91,7 +80,7 @@ int main() {
 
         }
 
-        if (option == '2') {
+void queuef(){
             cout << "Making a Queue" << endl;
             int queueSize;
             cout << "Enter size of Queue:" << endl;
@@ -141,7 +130,7 @@ int main() {
         
         }
 
-        if (option == '3') {
+void prse(){
             cout << "Would you like to parse a file to demonstrate the";
             cout << " stack and quque usage? (y/n)" << endl;
             char yy;
@@ -163,6 +152,29 @@ int main() {
             }
             
         }
+
+int main() {
+    
+    char option = '1';
+    while (option != '4') {
+        cout << "Stack or Queue?" << endl;
+        cout << "1: Stack" << endl;
+        cout << "2: Queue" << endl;
+        cout << "3: Parse a file" << endl;
+        cout << "4: Quit" << endl;
+
+        cin >> option;
+
+        if (option == '1')
+            stackf();
+        
+
+        if (option == '2') 
+            queuef();
+
+        if (option == '3') 
+            prse();
+
 
         else {
             cout << "Exit" << endl;
