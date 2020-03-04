@@ -6,14 +6,17 @@
 using namespace std;
 int addCount;
 int removeCount;
+int *x;
 
-void add(List<int> l){
-    int x = rand () % 10 + 1;
+void add(List<int*> l){
+    x = new int;
+    *x = rand () % 10 + 1;
     l.addItem(x);
     addCount++;
 }
 
-void remove(List<int> l){
+void remove(List<int*> l){
+    int choice;
     cout << "Enter the position you would like to remove from: "; 
     cin >> choice;
     l.removeItem(choice);
