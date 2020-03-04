@@ -22,7 +22,7 @@ void stackf(){
 
             int* numPtr;
             int* outPtr;
-            int num;
+            int* num;
 
             int choice = 1;
 
@@ -42,10 +42,10 @@ void stackf(){
                 case 1:
                     try {
                         cout << "What pointer would you like to add?" << endl;
-                        cin >> num;
+                        num = new int;
+                        cin >> *num;
                         cout << "Pushing the num pointer to stack" << endl;
-                        numPtr = &num;
-                        stack.push(numPtr);
+                        stack.push(num);
                         cout << "Push successful" << endl;
 
                     }
@@ -151,10 +151,12 @@ void prse(){
                 ifstream daFile(fl);
 
                 string delim;
-                while (daFile >> delim) wordArr.push_back(delim);
-                parse(wordArr);
+                while (daFile >> delim) {
+                    wordArr.push_back(delim);
+                }
 
                 daFile.close();
+                parse(wordArr);
             }
             
         }
