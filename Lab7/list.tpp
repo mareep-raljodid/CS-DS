@@ -14,24 +14,36 @@ void List<T>::makeEmpty(){
 
 template <class T>
 void List<T>::addItem(T t){
-    for(int i = 0; i < 25; i++){
+    if(!isFull()){
+        for(int i = 0; i < 25; i++){
         if(data[i] == NULL){
             data[i] = t;
-        }
+            }
+        }  
     }
+    else{
+        throw ListIsFull();
+    }
+    
 }
 
 template <class T>
 void List<T>::removeItem(int pos){
     pos -= 1;
-    data[pos] = NULL;
-    if(pos != 24)
-        for(int i = pos; i < 25; i++){
-            data[i] = data[i+1];
-            if (i == (25-pos+1))
-                data[i] = NULL;
-        }
+    if ((pos < 25) && (pos > -1) && (data[pos] != NULL)){
+        data[pos] = NULL;
+        if(pos != 24)
+            for(int i = pos; i < 25; i++){
+                data[i] = data[i+1];
+                if (i == (25-pos+1))
+                    data[i] = NULL;
+            }
+    }
+    
+    else
+        throw ItemDoesntExist();
 }
+
 
 template <class T>
 bool List<T>::isFull(){
