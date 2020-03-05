@@ -34,13 +34,27 @@ int main(){
     while(addIter < 30 && remIter < 20){
         selector  = rand() % 2;
         if(selector == 0){
-            add(list1);
+            try{
+                add(list1);
+                addIter++;
+            }
+            catch(List<int*>::ListIsFull){
+                cout << "Cannot add item. List is full." << endl;
+            }
         }
         if(selector == 1){
-            remove(list1);
+            try{
+                remove(list1);
+                remIter++;
+            }
+            catch(List<int*>::ItemDoesntExist){
+                cout << "Cannot remove item. Item does not exist." << endl;
+            }
         }
     }
-    
+
+    cout << "Add operation total: " << addIter << endl;
+    cout << "Remove operation total: " << remIter << endl;
     
     return 0;
 }

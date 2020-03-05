@@ -1,5 +1,5 @@
 #include "list.h"
-
+#include <stddef.h>
 using namespace std;
 
 template <class T>
@@ -17,7 +17,7 @@ void List<T>::addItem(T t){
     if(!isFull()){
         for(int i = 0; i < 25; i++){
         if(data[i] == NULL){
-            data[i] = t;
+            data[i] = &t;
             }
         }  
     }

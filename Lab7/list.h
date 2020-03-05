@@ -7,8 +7,8 @@ private:
     T* data[25];
 public:
     List<T>();
-    void addItem(T t);
-    T removeItem(int pos);
+    void addItem(T);
+    void removeItem(int pos);
     bool isFull();
     bool isEmpty();
     void makeEmpty();
@@ -16,4 +16,5 @@ public:
     class ListIsFull{};
     class ItemDoesntExist{};
 }; 
+#include "list.tpp"
 #endif
