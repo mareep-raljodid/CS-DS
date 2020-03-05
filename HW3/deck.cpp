@@ -12,53 +12,51 @@
 #include "deck.h"
 
 using namespace std;
+node *topCard, *bottomCard;
 
-
-class node {
+struct node {
     int data;
-    Node* next;
-    Node* head;
+    node* next;
+    node* head;
 
-    Node(int d) {
+    node(int d) {
         data = d;
         next = NULL;
     }
 
 };
 
-
 Deck::Deck() {
-    Node *topCard, *bottomCard;
     srand(time(NULL));
     for (int i = 0; i < 52; i++) {  
         int x = rand() % 52 + 1;
-        Node* temp = new Node(x);
+        node* temp = new node(x);
         bottomCard->next = temp;
         bottomCard = temp;
 
     }
 }
 
-void Deck::takeTopCard() {
+int Deck::takeTopCard() {
     if (deckEmpty()) {
-        throw deckIsEmpty
+        throw deckIsEmpty();
     }
     else {
-
+        return topCard->data;
+        numOfCards--;
     }
-  
 }
 
 void Deck::addCardtoBottom(int card) {
-    Node* temp = new Node(card);
+    node* temp = new node(card);
     bottomCard->next = temp;
     bottomCard = temp;
-
+    numOfCards++;
 }
 
 
 int Deck::sizeOfDeck() {
-    
+    return numOfCards;
 }
 
 bool Deck::deckEmpty() {
