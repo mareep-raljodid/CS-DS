@@ -17,23 +17,42 @@ using namespace std;
 class node {
     int data;
     Node* next;
+    Node* head;
+
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
 
 };
 
 
 Deck::Deck() {
+    Node *topCard, *bottomCard;
     srand(time(NULL));
-    for (int i = 0; i < 25; i++) {  //uhhhh how many cards need to be in the pile in the beginning
+    for (int i = 0; i < 52; i++) {  
         int x = rand() % 52 + 1;
-        mainDeck[i] = new Node();
+        Node* temp = new Node(x);
+        bottomCard->next = temp;
+        bottomCard = temp;
+
     }
 }
 
 void Deck::takeTopCard() {
+    if (deckEmpty()) {
+        throw deckIsEmpty
+    }
+    else {
+
+    }
   
 }
 
 void Deck::addCardtoBottom(int card) {
+    Node* temp = new Node(card);
+    bottomCard->next = temp;
+    bottomCard = temp;
 
 }
 

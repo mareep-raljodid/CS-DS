@@ -21,7 +21,7 @@ public:
 
     bool deckEmpty();
 
-    class deckEmpty {};
+    class deckIsEmpty {};
 private:
     int numOfCards;
 
