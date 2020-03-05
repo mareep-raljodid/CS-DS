@@ -1,6 +1,6 @@
 #include "list.h"
 #include <stdlib.h>
-#include <time.h>  
+#include <ctime>  
 #include <iostream>
 
 using namespace std;
@@ -21,35 +21,38 @@ void remove(List<int*> l){  //calls removeItem method
 
 int main(){
     srand(time(NULL));
-    int choice;     //holds choice of position to remove from
+    int choice;    //holds choice of position to remove from
     int selector;   //holds value to select whether add or remove is called
     List<int*> list1;
     
-    int addCount;    //counts number of times add is called
-    int removeCount;    //counts number of times remove is called
+    unsigned int addCount = 0;    //counts number of times add is called
+    unsigned int removeCount = 0;    //counts number of times remove is called
     
-    for(int i=0; i < 100;i++){
+    for(int i=0; i < 30;i++){
         while(addCount < 30 && removeCount < 20){
-        selector  = rand() % 2;
-        if(selector == 0){
-            try{
-                add(list1);
-                addCount++;
-            }
-            catch(List<int*>::ListIsFull){
-                cout << "Cannot add item. List is full." << endl;
-            }
+            selector = rand () % 2;
+            switch (selector){
+                case 0:
+                    try{
+                        add(list1);
+                        addCount++;
+                    }
+                    catch(List<int*>::ListIsFull){
+                        cout << "Cannot add item. List is full." << endl;
+                    }
+                    break;
+                
+                case 1:
+                    try{
+                        remove(list1);
+                        removeCount++;
+                    }
+                    catch(List<int*>::ItemDoesntExist){
+                        cout << "Cannot remove item. Item does not exist." << endl;
+                    }
+                    break;
+                }
         }
-        if(selector == 1){
-            try{
-                remove(list1);
-                removeCount++;
-            }
-            catch(List<int*>::ItemDoesntExist){
-                cout << "Cannot remove item. Item does not exist." << endl;
-            }
-        }
-    }
     }
     
     cout << "Add operation total: " << addCount << endl;
