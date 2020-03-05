@@ -23,7 +23,7 @@ public:
 
     class deckIsEmpty {};
 private:
-    int numOfCards;
+    int numOfCards = 52;
 
 };
 #endif
