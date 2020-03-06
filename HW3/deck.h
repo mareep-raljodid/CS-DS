@@ -9,18 +9,14 @@
 #ifndef DECK
 #define DECK
 
-
-
 class Deck{
 public:
     Deck();
     int takeTopCard();
     void addCardtoBottom(int card);
     int sizeOfDeck();
-
-
+    int peekAtTop();
     bool deckEmpty();
-
     class deckIsEmpty {};
 private:
     int numOfCards = 52;

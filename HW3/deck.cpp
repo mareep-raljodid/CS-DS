@@ -5,14 +5,13 @@
  * Sarah George
  * Yulia Martinez
  */
-#include <iostream>>
+#include <iostream>
 #include <stddef.h>
 #include <stdlib.h>
 #include <ctime> 
 #include "deck.h"
 
 using namespace std;
-node *topCard, *bottomCard;
 
 struct node {
     int data;
@@ -26,11 +25,16 @@ struct node {
 
 };
 
+node *topCard, *bottomCard;
+
 Deck::Deck() {
     srand(time(NULL));
-    for (int i = 0; i < 52; i++) {  
-        int x = rand() % 52 + 1;
+    for (int i = 0; i < 25; i++) {  
+        int x = rand() % 25 + 1;
         node* temp = new node(x);
+        if(bottomCard == NULL){
+            topCard = bottomCard = temp;
+        }
         bottomCard->next = temp;
         bottomCard = temp;
 
@@ -39,10 +43,14 @@ Deck::Deck() {
 
 int Deck::takeTopCard() {
     if (deckEmpty()) {
+        bottomCard = NULL;
         throw deckIsEmpty();
     }
     else {
+        node* temp = topCard;
+        topCard = topCard->next;
         return topCard->data;
+        delete(temp);
         numOfCards--;
     }
 }
@@ -54,6 +62,9 @@ void Deck::addCardtoBottom(int card) {
     numOfCards++;
 }
 
+int Deck::peekAtTop(){
+    return topCard->data;
+}
 
 int Deck::sizeOfDeck() {
     return numOfCards;

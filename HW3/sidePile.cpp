@@ -15,7 +15,7 @@ using namespace std;
 
 SidePile::SidePile(){
     srand(time(NULL));
-    for(int i = 0; i < 5; i++){  //sets random cards for player sidepile
+    for(int i = 0; i < 5; i++){  //sets random cards for sidepile
         int x = rand() % 52 + 1;
         pile[i] = x;
     }
