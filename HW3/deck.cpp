@@ -29,8 +29,8 @@ node *topCard, *bottomCard;
 
 Deck::Deck() {
     srand(time(NULL));
-    for (int i = 0; i < 25; i++) {  
-        int x = rand() % 25 + 1;
+    for (int i = 0; i < 52; i++) {  
+        int x = rand() % 52 + 1;
         node* temp = new node(x);
         if(bottomCard == NULL){
             topCard = bottomCard = temp;
