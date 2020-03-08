@@ -3,12 +3,14 @@
 
 template <class T>
 class List{
-private:
-    T* data[25];
+    
 public:
+
+    T* data[25];
+
     List<T>();
-    void addItem(T);
-    void removeItem(int pos);
+    virtual void addItem(T);
+    virtual void removeItem(int pos);
     bool isFull();
     bool isEmpty();
     void makeEmpty();
@@ -17,4 +19,5 @@ public:
     class ItemDoesntExist{};
 }; 
 #include "list.tpp"
+#include "middleOut.h"
 #endif

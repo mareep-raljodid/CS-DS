@@ -1,4 +1,6 @@
 #include "list.h"
+#include "middleOut.h"
+
 #include <stdlib.h>
 #include <ctime>  
 #include <iostream>

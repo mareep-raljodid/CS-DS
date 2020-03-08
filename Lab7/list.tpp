@@ -18,6 +18,7 @@ void List<T>::addItem(T t){
         for(int i = 0; i < 25; i++){
         if(data[i] == NULL){
             data[i] = &t;
+            break;
             }
         }  
     }
