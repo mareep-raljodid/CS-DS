@@ -19,6 +19,7 @@ SidePile::SidePile(){
         int x = rand() % 52 + 1;
         pile[i] = x;
     }
+    numCards =  5;
 }
 
 void SidePile::addCard(int c){  //adding card to stack
@@ -46,7 +47,7 @@ int SidePile::numCardsLeft(){   //returns number of cards left in the side pile
 }
 
 bool SidePile::pileEmpty(){  //checks if pile is empty
-    return top == 0;
+    return numCards - top == 0;
 }
 
 bool SidePile::pileFull(){  //checks if pile is full
