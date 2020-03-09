@@ -7,6 +7,8 @@ class List{
 public:
 
     T* data[25];
+    int comparisonCount;
+    int moveCount;
 
     List<T>();
     virtual void addItem(T);
@@ -14,6 +16,8 @@ public:
     bool isFull();
     bool isEmpty();
     void makeEmpty();
+
+    void showFinalCounts();
     
     class ListIsFull{};
     class ItemDoesntExist{};

@@ -1,5 +1,7 @@
 #include "list.h"
 #include <stddef.h>
+#include <iostream>
+
 using namespace std;
 
 template <class T>
@@ -18,6 +20,7 @@ void List<T>::addItem(T t){
         for(int i = 0; i < 25; i++){
         if(data[i] == NULL){
             data[i] = &t;
+            moveCount++;
             break;
             }
         }  
@@ -25,17 +28,18 @@ void List<T>::addItem(T t){
     else{
         throw ListIsFull();
     }
-    
 }
 
 template <class T>
 void List<T>::removeItem(int pos){
     pos -= 1;
     if ((pos < 25) && (pos > -1) && (data[pos] != NULL)){
+        comparisonCount++;
         data[pos] = NULL;
         if(pos != 24)
             for(int i = pos; i < 25; i++){
                 data[i] = data[i+1];
+                moveCount++;
                 if (i == (25-pos+1))
                     data[i] = NULL;
             }
@@ -64,4 +68,10 @@ bool List<T>::isEmpty(){
         }
     }
     return true;
+}
+
+template <class T>
+void List<T>::showFinalCounts(){
+    cout << "Final move count: " << moveCount << endl;
+    cout << "Final comparison count: " << comparisonCount << endl;
 }
