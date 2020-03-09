@@ -46,13 +46,29 @@ int main(){
     cin >> startNum;
     
     if(startNum == 1){
-        while(numRounds < 11 || (!playerDeck.deckEmpty() || !playerSidePile.pileEmpty())){
+        while(numRounds != 11){    //continues until 10 rounds have been played.
             int action = 0;
             int playerRoundTotal = 0;
 
-            playerDrawnCard = playerDeck.takeTopCard();
-            computerDrawnCard = computerDeck.takeTopCard();
+            cout << "__________________________________________" << endl;
+            cout << "Drawing cards for both player and computer." << endl;
 
+            try{
+                playerDrawnCard = playerDeck.takeTopCard(); //draw player card from deck
+                playerDeck.decrementCardCount();
+            }
+            catch(Deck::deckIsEmpty){
+                cout << "Cannot draw from deck. Deck is empty. Must draw from sidepile. " << endl;
+            }
+
+            if(!computerDeck.deckEmpty()){
+                computerDrawnCard = computerDeck.takeTopCard(); //draw computer card from deck if comp. deck not empty
+                computerDeck.decrementCardCount();
+            }
+            else{
+                computerDrawnCard = computerSidePile.removeCard();
+            }
+            
             char viewDeck;
 
             cout << "Would you like to see how many cards the computer has left in their deck? Enter y for yes and n for no: ";
@@ -60,6 +76,15 @@ int main(){
 
             if(viewDeck == 'y'){
                 cout << "The computer has " << computerDeck.sizeOfDeck() << " cards in their deck. " << endl;
+            }
+
+            char viewPlayerDeck;
+
+            cout << "Would you like to see how many cards are left in your deck? Enter y for yes and n for no: ";
+            cin >> viewPlayerDeck;
+
+            if(viewPlayerDeck == 'y'){
+                cout << "You have " << playerDeck.sizeOfDeck() << " cards in your deck." << endl;
             }
 
             display();
@@ -72,28 +97,31 @@ int main(){
                     playerRoundTotal = playerDrawnCard + sidePileCard;
                 }
                 catch(SidePile::PileEmpty){
-                    cout << "Side pile is empty. Cannott draw from side pile." << endl;
+                    cout << "Side pile is empty. Cannot draw from side pile." << endl;
                 }
                 
             }
             if(action == 2){
                 char doAction;
                 int peekCard = playerDeck.peekAtTop();
+                cout << "The top card is " << peekCard << endl;
                 cout << "Would you like to keep this card or move it to your side pile?  Enter y for yes and n for no: "; 
                 cin >> doAction;
                 if(doAction == 'y'){
-                    playerSidePile.addCard(peekCard);
-                    cout << "Card was added to side pile." << endl;
-                    cout << "Now drawing you a new card from your deck" << endl;
-                    playerDrawnCard = playerDeck.takeTopCard();
-                    playerRoundTotal = playerDrawnCard;
+                    try{
+                        playerSidePile.addCard(peekCard);
+                        cout << "Card was added to side pile." << endl;
+                        cout << "Now drawing you a new card from your deck" << endl;
+                        playerDrawnCard = playerDeck.takeTopCard();
+                        playerDeck.decrementCardCount();
+                        playerRoundTotal = playerDrawnCard;
+                    }
+                    catch(SidePile::PileFull){
+                        cout << "Cannot add card to side pile. Side pile is full." << endl;
+                    }
                 }
             }
-            // else{
-            //     cout << "Invalid input. Please enter in a valid choice: ";
-            //     cin >> action;
-            // }
-
+        
             if(playerRoundTotal > computerDrawnCard){
                 cout << "You have won this round!" << endl;
                 playerWins++;
@@ -102,12 +130,24 @@ int main(){
                 cout << "The computer won this round. " << endl;
                 computerWins++;
             }
+
+            numRounds++;
         }
         
     }
     else{
         cout << "Invalid input. Please enter 1 to begin: ";
         cin >> startNum;
+    }
+
+    cout << "______________________________________________" << endl;
+
+    cout << "The game is now over." << endl;
+
+    if(computerWins > playerWins){
+        cout << "The computer has won. Nice try. " << endl;
+    } else{
+        cout << "You have won, congrats!" << endl;
     }
 
     return 0;

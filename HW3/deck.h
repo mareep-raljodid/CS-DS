@@ -18,6 +18,7 @@ public:
     int peekAtTop();
     bool deckEmpty();
     class deckIsEmpty {};
+    void decrementCardCount();
 private:
     int numOfCards = 52;
 

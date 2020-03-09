@@ -74,3 +74,7 @@ bool Deck::deckEmpty() {
     return topCard == NULL;
 }
 
+void Deck::decrementCardCount(){
+    numOfCards = numOfCards - 1;
+}
+
