@@ -22,7 +22,7 @@ public:
     bool pileEmpty();
     class PileFull{};
     class PileEmpty{};
-private:
+private: 
     int pile[MAX_SIZE] = {};
 };
 #endif
