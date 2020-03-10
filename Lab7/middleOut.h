@@ -8,37 +8,38 @@ class ListMOut : public List<T> {
 
 public:
 
-    int moveCount1 = 0;
+    int moveCount1;
 
     virtual void addItem(T t) {
 
-        if(!List<T>::isFull())
+        if(!ListMOut<T>::isFull()){
+            for(int i = 0; i < 5; i++){
 
-            for(int i = 0; i < 12; i++){
-
-                if (List<T>::data[12 + i] == NULL){
+                if (ListMOut<T>::data[5 + i] == NULL){
+                    ListMOut<T>::data[5 + i] = &t;
                     moveCount1++;
-                    List<T>::data[12 + i] = &t;
                     break;
                 }
 
-                else if(List<T>::data[12 - i] == NULL){
+                else if(ListMOut<T>::data[5 - i] == NULL){
+                    ListMOut<T>::data[5 - i] = &t;
                     moveCount1++;
-                    List<T>::data[12 - i] = &t;
                     break;
                 }
             }
-
-        else
-
+        }
+        else{
             throw ListIsFull();
+        }
     }
     
     class ListIsFull{};
     class ItemDoesntExist{};
 
     void showFinalCounts(){
+        cout << "COUNTS FOR 2ND CLASS VERSION:" << endl;
         cout << "Final move count: " << moveCount1 << endl;
+        cout << "___________________________________________"  << endl;
     }
 }; 
 
@@ -49,19 +50,24 @@ public:
     int moveCount2 = 0;
     int comparisonCount2 = 0;
 
-    void incrementCompCount(){
-        comparisonCount2 = comparisonCount2 + 1;
+    bool isFull(){
+    for(int i = 0; i < 10; i ++){
+        if(List<T>::data[i] == NULL){
+            return false;
+        }
+    }
+    return true;
     }
 
     virtual void addItem(T t, int pos) {
 
         pos -= 1;
 
-        if(!List<T>::isFull()){
+        if(!isFull()){
            
             int nul_index;
 
-            for (int i = 0; i < 25; i++){
+            for (int i = 0; i < 10; i++){
                 if (List<T>::data[i] == NULL){
 
                     nul_index = i;
@@ -69,42 +75,41 @@ public:
                 }
             }
             if (nul_index == pos){
+                comparisonCount2++;
                 moveCount2++;
                 List<T>::data[pos] = &t;
             }
             else if (nul_index > pos){
 
                 for (int i = nul_index; i < pos; i--){
+                    moveCount2++;
                     List<T>::data[i] = List<T>::data[i - 1]; 
                 }
-                moveCount2++;
                 List<T>::data[pos] = &t;
             }
 
             else {
-
                 for (int i = pos; i < nul_index; i++){
-                    incrementCompCount();
-                    moveCount2++;
+                    comparisonCount2++;
                     List<T>::data[i] = List<T>::data[i + 1];
                 }
-                moveCount2++;
                 List<T>::data[pos] = &t;
             }
                     
         }
             
-        else
+        else{
             throw ListIsFull();
+        }
     }
 
     virtual void removeItem(int pos){
 
         pos -= 1;
 
-        if ((pos < 25) && (pos > -1) && (List<T>::data[pos] != NULL)){
-            incrementCompCount();
-            List<T>::data[pos] = NULL;
+        if ((pos < 10) && (pos > -1) && (List<T>::data[pos] != NULL)){
+            comparisonCount2++;
+            ListInsertOrdered<T>::data[pos] = NULL;
         }
         else{
             throw ItemDoesntExist();
@@ -114,9 +119,11 @@ public:
     class ListIsFull{};
     class ItemDoesntExist{};
 
-    void showFinalCount(){
+    void showFinalThirdCounts(){
+        cout << "COUNTS FOR 3RD CLASS VERSION:" << endl;
         cout << "Final move count: " << moveCount2 << endl;
         cout << "Final comparison count: " << comparisonCount2 << endl;
+        cout << "___________________________________________"  << endl;
     }
 };
 

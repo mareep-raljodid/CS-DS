@@ -6,7 +6,7 @@ class List{
     
 public:
 
-    T* data[25];
+    T* data[10];
     int comparisonCount;
     int moveCount;
 

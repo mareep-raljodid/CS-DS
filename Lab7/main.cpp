@@ -33,6 +33,9 @@ int main(){
     unsigned int addCount = 0;    //counts number of times add is called
     unsigned int removeCount = 0;    //counts number of times remove is called
 
+    unsigned int addCount2 = 0;
+    unsigned int removeCount2 = 0;
+
     int* item1;
     int* item2;
     int* item3;
@@ -40,15 +43,14 @@ int main(){
     int position;
     int pos2;
     
-    for(int i=0; i < 5; i++){
+    for(int i=0; i < 100; i++){
         while(addCount < 30 && removeCount < 20){
             selector = rand () % 2;
             switch (selector){
                 case 0:
                     try{
                         item1 = new int;
-                        cout << "What value would you like to add: ";
-                        cin >> *item1;
+                        *item1 = rand() % 100;
                         list1.addItem(item1);
                         addCount++;
                     }
@@ -59,8 +61,7 @@ int main(){
                 
                 case 1:
                     try{
-                        cout << "What position in the array would you like to remove from? ";
-                        cin >> position;
+                        position = rand() % 10 + 1;
                         list1.removeItem(position);
                         removeCount++;
                     }
@@ -72,33 +73,33 @@ int main(){
         }
     }
 
-    for(int i=0; i < 5; i++){
-        try{
-            item2 = new int;
-            cout << "What value would you like to add: ";
-            cin >> *item2;
-            list2.addItem(item2);
-            addCount++;
-        }
-        catch(ListMOut<int*>::ListIsFull){
-            cout << "Cannot add item. List is full." << endl;
+    for(int i=0; i < 100; i++){
+        for(int j = 0; j < 30; j++){
+            try{
+                item2 = new int;
+                *item2 = rand() % 100;
+                list2.addItem(item2);
+                addCount++;
+            }
+            catch(ListMOut<int*>::ListIsFull){
+                cout << "Cannot add item. List is full." << endl;
+            }
         }
     }
 
-    for(int i=0; i < 5; i++){
-        while(addCount < 30 && removeCount < 20){
+    for(int i=0; i < 100; i++){
+        while(addCount2 < 30 && removeCount2 < 20){
             selector = rand () % 2;
             switch (selector){
                 case 0:
                     try{
                         item3 = new int;
-                        cout << "What value would you like to add: ";
-                        cin >> *item3;
+                        *item3 = rand() % 100;
 
-                        cout << "What position would you like to add to? "; 
-                        cin >> pos2;
+                        pos2 = rand() % 10 + 1;
+
                         list3.addItem(item3, pos2);
-                        addCount++;
+                        addCount2++;
                     }
                     catch(ListInsertOrdered<int*>::ListIsFull){
                         cout << "Cannot add item. List is full." << endl;
@@ -107,10 +108,9 @@ int main(){
                 
                 case 1:
                     try{
-                        cout << "What position in the array would you like to remove from? ";
-                        cin >> position;
+                        position = rand() % 10 + 1;
                         list3.removeItem(position);
-                        removeCount++;
+                        removeCount2++;
                     }
                     catch(ListInsertOrdered<int*>::ItemDoesntExist){
                         cout << "Cannot remove item. Item does not exist." << endl;
@@ -123,9 +123,11 @@ int main(){
     // cout << "Add operation total: " << addCount << endl;
     // cout << "Remove operation total: " << removeCount << endl;
 
+    cout << "___________________________________________"  << endl;
+
     list1.showFinalCounts();
     list2.showFinalCounts();
-    list3.showFinalCounts();
+    list3.showFinalThirdCounts();
     
     return 0;
 }

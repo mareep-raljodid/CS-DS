@@ -9,7 +9,7 @@ List<T>::List(){}
 
 template <class T>
 void List<T>::makeEmpty(){
-    for(int i = 0; i < 25; i++){
+    for(int i = 0; i < 10; i++){
         data[i] = NULL;
     }
 }
@@ -17,7 +17,7 @@ void List<T>::makeEmpty(){
 template <class T>
 void List<T>::addItem(T t){
     if(!isFull()){
-        for(int i = 0; i < 25; i++){
+        for(int i = 0; i < 10; i++){
         if(data[i] == NULL){
             data[i] = &t;
             moveCount++;
@@ -33,14 +33,14 @@ void List<T>::addItem(T t){
 template <class T>
 void List<T>::removeItem(int pos){
     pos -= 1;
-    if ((pos < 25) && (pos > -1) && (data[pos] != NULL)){
+    if ((pos < 10) && (pos > -1) && (data[pos] != NULL)){
         comparisonCount++;
         data[pos] = NULL;
-        if(pos != 24)
-            for(int i = pos; i < 25; i++){
+        if(pos != 9)
+            for(int i = pos; i < 10; i++){
                 data[i] = data[i+1];
                 moveCount++;
-                if (i == (25-pos+1))
+                if (i == (10-pos+1))
                     data[i] = NULL;
             }
     }
@@ -52,7 +52,7 @@ void List<T>::removeItem(int pos){
 
 template <class T>
 bool List<T>::isFull(){
-    for(int i = 0; i < 25; i ++){
+    for(int i = 0; i < 10; i ++){
         if(data[i] == NULL){
             return false;
         }
@@ -62,7 +62,7 @@ bool List<T>::isFull(){
 
 template <class T>
 bool List<T>::isEmpty(){
-    for(int i = 0; i < 25; i++){
+    for(int i = 0; i < 10; i++){
         if(data[i] != NULL){
             return false;
         }
@@ -72,6 +72,8 @@ bool List<T>::isEmpty(){
 
 template <class T>
 void List<T>::showFinalCounts(){
+    cout << "COUNTS FOR 1ST CLASS VERSION:" << endl;
     cout << "Final move count: " << moveCount << endl;
     cout << "Final comparison count: " << comparisonCount << endl;
+    cout << "___________________________________________"  << endl;
 }
