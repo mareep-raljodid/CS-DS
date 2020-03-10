@@ -23,7 +23,6 @@ public:
     class PileFull{};
     class PileEmpty{};
 private:
-    int numCards;
     int pile[MAX_SIZE] = {};
 };
 #endif
