@@ -7,7 +7,7 @@
 template <typename T>
 class List
 {
-    public:
+public:
     struct node {
         T* value;
         node* prev;
@@ -178,4 +178,4 @@ template<typename T>
 bool operator == (List<T> const& obj1, List<T> const& obj2) { return *(obj1->value) == *(obj2->value); }
 
 
-#endif
+#endif -m "pushh"
