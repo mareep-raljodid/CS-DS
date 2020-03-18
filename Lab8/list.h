@@ -113,7 +113,7 @@ class List
 
     T* seeNext () {
 
-        if (head == NULL) throw head;
+        if (head == NULL) throw "Empty List";
 
         T* val = cursor->value;
         cursor = cursor->next;
@@ -122,7 +122,7 @@ class List
 
     T* seePrev () {
 
-        if (head == NULL) throw head;
+        if (head == NULL) throw "Empty List";
 
         T* val = cursor->value;
         cursor = cursor->prev;
@@ -131,9 +131,9 @@ class List
 
     T* seeAt (unsigned pos) {
 
-        if (head == NULL) throw head;
+        if (head == NULL) throw "Empty List";
 
-        if (pos > length) throw pos;
+        if (pos > length) throw "Out of Range Error";
         T* val;
         for (int i = 0; i <= pos; i++) {
             val = cursor->value;
@@ -144,17 +144,15 @@ class List
     }
 
     void display() {
-        cout << "----------------" << endl;
-        cout << "| SKU: " << SKU << endl;
-        cout << "| Price: " << price << endl;
-        cout << "| Quantity: " << quantity << endl;
-        cout << "| Descriotion: " << desc << endl;
-        cout << "----------------" << endl;
-        cout << "      |   |  " << endl;
-        cout << "      |   | " << endl;
-        cout << "      \   /  " << endl;
-        cout < "        \ / " << endl;
+         node* temp = head;
 
+        if (temp == NULL) throw "Empty List";
+
+        while (temp != NULL)
+            temp->value.displ();
+
+        temp = temp->next;
+               
     }
 
     void reset() {

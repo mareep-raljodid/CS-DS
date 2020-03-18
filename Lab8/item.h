@@ -1,6 +1,8 @@
 #ifndef ITEM
 #define ITEM
 
+#include "list.h"
+
 #include <bits/stdc++.h>
 #include <string>
 using namespace std;
@@ -34,6 +36,19 @@ class Item {
             if (date > leadtime)
                 return true;
         return false;
+    }
+
+    void displ() {
+        cout << "----------------" << endl;
+        cout << "| SKU: " << sku << endl;
+        cout << "| Price: " << price << endl;
+        cout << "| Quantity: " << qoh << endl;
+        cout << "| Description: " << description << endl;
+        cout << "----------------" << endl;
+        cout << "      |   |  " << endl;
+        cout << "      |   | " << endl;
+        cout << "      :   /  " << endl;
+        cout << "       | / " << endl;
     }
 
 };
