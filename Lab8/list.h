@@ -10,11 +10,11 @@ class List
         node* next;
     };
 
-        node* head = NULL;
-        node* cursor = head;
-        unsigned length = 0;
+    node* head = NULL;
+    node* cursor = head;
+    unsigned length = 0;
 
-    List(){}
+    List() {}
 
     node* makeNode(T elem) {
 
@@ -22,7 +22,7 @@ class List
         temp->value = elem;
         temp->prev = NULL;
         temp->next = NULL;
-        return temp; 
+        return temp;
     }
 
     void insert(T elem, bool at_tail = true) {
@@ -63,12 +63,12 @@ class List
         if (temp == NULL)
             return NULL;
 
-        while (temp != NULL) 
+        while (temp != NULL)
             if (temp->value == elem)
                 to_be_deleted = temp;
 
         T val = to_be_deleted->value;
-        
+
         if (to_be_deleted == NULL)
             return NULL;
 
@@ -92,12 +92,12 @@ class List
         if (temp == NULL)
             return false;
 
-        while (temp != NULL){
+        while (temp != NULL) {
             if (temp->value == elem)
-               return true;
+                return true;
         }
 
-       return false; 
+        return false;
     }
 
     bool isEmpty() {
@@ -108,7 +108,7 @@ class List
         return length;
     }
 
-    T seeNext () {
+    T seeNext() {
 
         if (head == NULL) throw head;
 
@@ -117,7 +117,7 @@ class List
         return val;
     }
 
-    T seePrev () {
+    T seePrev() {
 
         if (head == NULL) throw head;
 
@@ -126,7 +126,7 @@ class List
         return val;
     }
 
-    T seeAt (unsigned pos) {
+    T seeAt(unsigned pos) {
 
         if (head == NULL) throw head;
 
@@ -145,18 +145,33 @@ class List
     }
 
     ~List() {
-        node *temp  = head->next;
-        head->data  = temp->data;
-        head->next  = temp->next;
+        node* temp = head->next;
+        head->data = temp->data;
+        head->next = temp->next;
         free(temp);
         length = 0;
         cursor = NULL;
     }
+
+    void display() {
+        cout << "----------------" << endl;
+        cout << "| SKU: " << SKU << endl;
+        cout << "| Price: " << price << endl;
+        cout << "| Quantity: " << quantity << endl;
+        cout << "| Descriotion: " << desc << endl;
+        cout << "----------------" << endl;
+        cout << "      |   |  " << endl;
+        cout << "      |   | " << endl;
+        cout << "      \   /  " << endl;
+        cout < "        \ / " << endl;
+
+    }
 };
 
 template<typename T>
-bool operator < (List<T> const &obj1, List<T> const &obj2) { return obj1->value < obj2->value; }
+bool operator < (List<T> const& obj1, List<T> const& obj2) { return obj1->value < obj2->value; }
 template<typename T>
-bool operator > (List<T> const &obj1, List<T> const &obj2) { return obj1->value > obj2->value; }
+bool operator > (List<T> const& obj1, List<T> const& obj2) { return obj1->value > obj2->value; }
 template<typename T>
-bool operator == (List<T> const &obj1, List<T> const &obj2) { return obj1->value == obj2->value; }
+bool operator == (List<T> const& obj1, List<T> const& obj2) { return obj1->value == obj2->value; }
+#pragma once
