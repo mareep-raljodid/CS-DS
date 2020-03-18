@@ -150,7 +150,7 @@ public:
         if (temp == NULL) throw "Empty List";
 
         while (temp != NULL)
-            temp->value.displ();
+            temp->value->displ();
 
         temp = temp->next;
 
@@ -162,7 +162,7 @@ public:
 
     ~List() {
         node* temp = head->next;
-        head->data = temp->data;
+        head->value = temp->value;
         head->next = temp->next;
         free(temp);
         length = 0;
@@ -178,4 +178,4 @@ template<typename T>
 bool operator == (List<T> const& obj1, List<T> const& obj2) { return *(obj1->value) == *(obj2->value); }
 
 
-#endif -m "pushh"
+#endif
