@@ -7,6 +7,7 @@
 template <typename T>
 class List
 {
+    public:
     struct node {
         T* value;
         node* prev;

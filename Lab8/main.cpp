@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 
-    List<Item> myList();
+    List<Item> myList;
 
     int selection;
     char option = '1';
@@ -63,7 +63,7 @@ int main() {
         }
         if (option == '4') {
             cout << "Checking to see if its empty" << endl;
-            if (myList.isEmpty == true) {
+            if (myList.isEmpty() == true) {
                 cout << "Empty" << endl;
             }
             else {
