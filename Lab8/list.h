@@ -1,3 +1,6 @@
+#ifndef LIST
+#define LIST
+
 #include <cstddef>
 #include <utility>
 
@@ -5,7 +8,7 @@ template <typename T>
 class List
 {
     struct node {
-        T value;
+        T* value;
         node* prev;
         node* next;
     };
@@ -16,7 +19,7 @@ class List
 
     List(){}
 
-    node* makeNode(T elem) {
+    node* makeNode(T* elem) {
 
         node* temp = new node;
         temp->value = elem;
@@ -25,7 +28,7 @@ class List
         return temp; 
     }
 
-    void insert(T elem, bool at_tail = true) {
+    void insert(T* elem, bool at_tail = true) {
         if (at_tail) {
             node* temp = makeNode(elem);
             if (head == NULL) {
@@ -56,7 +59,7 @@ class List
 
     }
 
-    node* getItem(T elem) {
+    node* getItem(T* elem) {
 
         node* temp = head;
         node* to_be_deleted = NULL;
@@ -67,7 +70,7 @@ class List
             if (temp->value == elem)
                 to_be_deleted = temp;
 
-        T val = to_be_deleted->value;
+        T* val = to_be_deleted->value;
         
         if (to_be_deleted == NULL)
             return NULL;
@@ -86,7 +89,7 @@ class List
         return val;
     }
 
-    bool inList(T elem) {
+    bool inList(T* elem) {
         node* temp = head;
 
         if (temp == NULL)
@@ -108,30 +111,30 @@ class List
         return length;
     }
 
-    T seeNext () {
+    T* seeNext () {
 
         if (head == NULL) throw head;
 
-        T val = cursor->value;
+        T* val = cursor->value;
         cursor = cursor->next;
         return val;
     }
 
-    T seePrev () {
+    T* seePrev () {
 
         if (head == NULL) throw head;
 
-        T val = cursor->value;
+        T* val = cursor->value;
         cursor = cursor->prev;
         return val;
     }
 
-    T seeAt (unsigned pos) {
+    T* seeAt (unsigned pos) {
 
         if (head == NULL) throw head;
 
         if (pos > length) throw pos;
-        T val;
+        T* val;
         for (int i = 0; i <= pos; i++) {
             val = cursor->value;
             cursor = cursor->next;
@@ -155,8 +158,11 @@ class List
 };
 
 template<typename T>
-bool operator < (List<T> const &obj1, List<T> const &obj2) { return obj1->value < obj2->value; }
+bool operator < (List<T> const &obj1, List<T> const &obj2) { return *(obj1->value) < *(obj2->value); }
 template<typename T>
-bool operator > (List<T> const &obj1, List<T> const &obj2) { return obj1->value > obj2->value; }
+bool operator > (List<T> const &obj1, List<T> const &obj2) { return *(obj1->value) > *(obj2->value); }
 template<typename T>
-bool operator == (List<T> const &obj1, List<T> const &obj2) { return obj1->value == obj2->value; }
+bool operator == (List<T> const &obj1, List<T> const &obj2) { return *(obj1->value) == *(obj2->value); }
+
+
+#endif
