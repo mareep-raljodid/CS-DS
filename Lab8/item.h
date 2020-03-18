@@ -2,8 +2,6 @@
 #define ITEM
 
 #include "list.h"
-
-//#include <bits/stdc++.h>
 #include <string>
 #include <iostream>
 using namespace std;
@@ -23,6 +21,8 @@ public:
         this->uom = uom;
         this->qoh = qoh;
     }
+
+
 
     string getPartInfo() { return to_string(sku) + description; }
 
