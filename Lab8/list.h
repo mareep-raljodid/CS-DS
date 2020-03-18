@@ -143,6 +143,20 @@ class List
         return val;
     }
 
+    void display() {
+        cout << "----------------" << endl;
+        cout << "| SKU: " << SKU << endl;
+        cout << "| Price: " << price << endl;
+        cout << "| Quantity: " << quantity << endl;
+        cout << "| Descriotion: " << desc << endl;
+        cout << "----------------" << endl;
+        cout << "      |   |  " << endl;
+        cout << "      |   | " << endl;
+        cout << "      \   /  " << endl;
+        cout < "        \ / " << endl;
+
+    }
+
     void reset() {
         cursor = head;
     }
