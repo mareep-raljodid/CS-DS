@@ -14,11 +14,10 @@ public:
         node* next;
     };
 
+    node* top = NULL;
     node* head = NULL;
     node* cursor = head;
     unsigned length = 0;
-
-    List() {}
 
     node* makeNode(T* elem) {
 
@@ -32,8 +31,10 @@ public:
     void insert(T* elem, bool at_tail = true) {
         if (at_tail) {
             node* temp = makeNode(elem);
+            cout << "inserting this- " << temp->value;
             if (head == NULL) {
                 head = temp;
+                top = head;
                 return;
             }
             else {
@@ -60,9 +61,9 @@ public:
 
     }
 
-    node* getItem(T* elem) {
+    T* getItem(T* elem) {
 
-        node* temp = head;
+        node* temp = top;
         node* to_be_deleted = NULL;
         if (temp == NULL)
             return NULL;
@@ -76,8 +77,8 @@ public:
         if (to_be_deleted == NULL)
             return NULL;
 
-        if (to_be_deleted == head)
-            head = to_be_deleted->next;
+        if (to_be_deleted == top)
+            top = to_be_deleted->next;
 
         if (to_be_deleted->next != NULL)
             to_be_deleted->next->prev = to_be_deleted->prev;
@@ -91,7 +92,7 @@ public:
     }
 
     bool inList(T* elem) {
-        node* temp = head;
+        node* temp = top;
 
         if (temp == NULL)
             return false;
@@ -99,6 +100,7 @@ public:
         while (temp != NULL) {
             if (temp->value == elem)
                 return true;
+            else temp = temp->next;
         }
 
         return false;
@@ -109,12 +111,14 @@ public:
     }
 
     unsigned size() {
+        if(top == NULL)
+            return -1;
         return length;
     }
 
     T* seeNext() {
 
-        if (head == NULL) throw "Empty List";
+        if (top == NULL) throw "Empty List";
 
         T* val = cursor->value;
         cursor = cursor->next;
@@ -132,7 +136,7 @@ public:
 
     T* seeAt(unsigned pos) {
 
-        if (head == NULL) throw "Empty List";
+        if (top == NULL) throw "Empty List";
 
         if (pos > length) throw "Out of Range Error";
         T* val;
@@ -145,28 +149,33 @@ public:
     }
 
     void display() {
-        node* temp = head;
+        node* temp = top;
 
         if (temp == NULL) throw "Empty List";
 
-        while (temp != NULL)
+        while (temp != NULL){
             temp->value->displ();
-
-        temp = temp->next;
+            temp = temp->next;
+        }
 
     }
 
     void reset() {
-        cursor = head;
+        cursor = top;
     }
 
-    ~List() {
-        node* temp = head->next;
-        head->value = temp->value;
-        head->next = temp->next;
-        free(temp);
+    ~List(void) {
+        
+        node* temp = top;
+        while( temp != NULL ) {
+            node* next = temp->next;
+            delete temp;
+            temp = next;
+        }
         length = 0;
         cursor = NULL;
+        head = NULL;
+        top = NULL;
     }
 };
 
