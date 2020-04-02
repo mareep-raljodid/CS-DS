@@ -43,9 +43,11 @@ public:
             while(curr->left != NULL || curr->right == NULL){
                 if(element < curr->data){
 		        curr = curr->left;
+                size++;
                 }
                 else{
                     curr = curr->right;
+                    size++;
                 }
         }
 	}
@@ -76,7 +78,7 @@ public:
 
 // This functions converts an unbalanced BST to 
 // a balanced BST 
-    Node buildTree(Node* head) { 
+    Node buildTree() { 
    
         vector<Node *> Nodes; 
         storeBSTNodes(head, Nodes); 
@@ -107,9 +109,55 @@ public:
             throw ItemNotFound();
         }
     }
+
     void ItemNotFound(){
         cout << "Item not found";
     };
 
+    int getSize(){       //calculate size of tree
+        return size;
+    }
+
+    vector<T> getAllAscending(){
+        vector<T> ascendingOrder;
+        if(head == NULL){
+            return;
+        }
+        Node *temp = head;
+        
+        getAllAscending(temp->left); 
+        if(temp == NULL){
+            return;
+        } else{
+            ascendingOrder.push_back(temp->data);
+        }
+        getAllAscending(temp->right); 
+        
+    }
+
+    vector<Node> getAllDescending(){
+        vector<Node> descendingOrder;
+    }
+
+
+
+
+
 };
 #endif
+
+int main(){
+    Tree<int> binaryTree;
+    binaryTree.insert(5);
+    binaryTree.insert(8);
+    binaryTree.insert(6);
+    binaryTree.insert(4);
+    binaryTree.insert(12);
+    binaryTree.insert(1);
+
+    binaryTree.buildTree();
+    vector<int> a = binaryTree.getAllAscending();
+    for(int i = 0; i < 5; i++){
+        cout << a[i];
+    }
+}
