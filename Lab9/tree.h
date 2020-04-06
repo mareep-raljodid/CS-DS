@@ -28,11 +28,11 @@ class BinaryTree{
         }
         void remove(T x){
             root=removeNode(root, x);
+            ascendingOrder.clear();
+            descendingOrder.clear();
         }
         Node * search(T x){
             return findNode(root,x);
-            ascendingOrder.clear();
-            descendingOrder.clear();
         }
         void getAllAscending(){
             ascending(root);
