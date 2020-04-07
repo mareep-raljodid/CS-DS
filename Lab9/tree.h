@@ -54,6 +54,8 @@ class BinaryTree{
             cout << "EMPTYING TREE" << endl;
             deleteItems(root);
         }
+
+        ~BinaryTree();
     private:
         int height(Node* head){
             if(head==NULL) return 0;
