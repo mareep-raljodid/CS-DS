@@ -1,23 +1,40 @@
 #include <iostream>
 #include <vector>
+
 #include "tree.h"
+#include "tokenizer.h"
 using namespace std;
 
 int main(){
-    BinaryTree<int> t;
-    t.insert(1);
-    t.insert(2);
-    t.insert(3);
-    t.insert(4);
-    t.insert(5);
-    t.insert(6);
-    t.insert(7);
-    t.getAllAscending();
-    t.getAllDescending();
-    t.remove(5);
-    t.remove(6);
-    t.remove(7);
-    t.getAllAscending();
-    t.getAllDescending();
-    t.emptyTree();
+
+redo:
+    word_list.init();
+    char choice;
+    cout << "Words Loaded!" << endl;
+    cout << " Ascending, descending or search (a/d/s)?: " ;
+    cin >> choice;
+
+    if (choice == 'a')
+        word_list.tokens.getAllAscending();
+    else if (choice == 'd')
+        word_list.tokens.getAllDescending();
+    else if (choice == 's') {
+        string worrd;
+        cout <<"\n Type in word: ";
+        cin >> worrd;
+        Token defaul;
+        BinaryTree<Token>::Node* tempNod;
+        tempNod = word_list.tokens.search(true, worrd, defaul);
+
+        if (tempNod == NULL)
+            cout << "WORD NOT FOUND! " << endl;
+        else 
+            cout << tempNod->data;
+    }
+
+    else {
+        cout << "TRY AGAIN!!" << endl;
+        goto redo;
+    }
+
 }
