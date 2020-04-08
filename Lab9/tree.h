@@ -19,6 +19,11 @@ class BinaryTree{
                     left = NULL;
                     right = NULL;
                 }
+                Node(){
+                    height = 1;
+                    left = NULL;
+                    right = NULL;
+                }
         };
         Node* root = NULL;
         vector<T> ascendingOrder;
@@ -31,8 +36,11 @@ class BinaryTree{
             ascendingOrder.clear();
             descendingOrder.clear();
         }
-        Node * search(T x){
-            return findNode(root,x);
+        Node * search(bool spl=false, string word = NULL, T x = NULL){
+            if (spl) 
+                return findSNode(root,word);
+            else 
+                return findNode(root,x);
         }
         void getAllAscending(){
             ascending(root);
@@ -55,7 +63,7 @@ class BinaryTree{
             deleteItems(root);
         }
 
-        ~BinaryTree();
+        ~BinaryTree(){ emptyTree(); }
     private:
         int height(Node* head){
             if(head==NULL) return 0;
@@ -168,6 +176,16 @@ class BinaryTree{
             if(key == num) return head;
             if(key > num) return findNode(head->left, num);
             if(key < num) return findNode(head->right, num);
+            return NULL;
+        }
+
+        Node* findSNode(Node* head, string word){
+            if(head == NULL) return NULL;
+            T key = head->data;
+            if(key.word == word) return head;
+            if(key.word > word) return findSNode(head->left, word);
+            if(key.word < word) return findSNode(head->right, word);
+            return NULL;
         }
 
         void deleteItems(Node* head){
@@ -177,4 +195,6 @@ class BinaryTree{
             delete(head);
         }
 };
+
+
 #endif
