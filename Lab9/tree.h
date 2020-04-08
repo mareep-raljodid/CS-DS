@@ -63,7 +63,7 @@ class BinaryTree{
             deleteItems(root);
         }
 
-        ~BinaryTree(){}
+        ~BinaryTree(){ emptyTree(); }
     private:
         int height(Node* head){
             if(head==NULL) return 0;
@@ -110,12 +110,6 @@ class BinaryTree{
             }
             if(num < head->data) head->left = insertNode(head->left, num);
             else if(num > head->data) head->right = insertNode(head->right, num);
-            else {
-                if(rand() & 1)
-                    head->left = insertNode(head->left, num);
-                else
-                    head->right = insertNode(head->right, num);
-            }
             head->height = 1 + max(height(head->left), height(head->right));
             int balance = height(head->left) - height(head->right);
             if(balance>1){
@@ -189,8 +183,9 @@ class BinaryTree{
             if(head == NULL) return NULL;
             T key = head->data;
             if(key.word == word) return head;
-            return findSNode(head->left, word);
-            return findSNode(head->right, word);
+            if(key.word > word) return findSNode(head->left, word);
+            if(key.word < word) return findSNode(head->right, word);
+            return NULL;
         }
 
         void deleteItems(Node* head){

@@ -52,7 +52,10 @@ class wordList {
 
             data.close();
 
-            /*FIXME | Was using this instead because maps would be easier
+            /*
+             *
+             *
+             * FIXME| Was using this instead because maps would be easier
                     | but design wise, this assignment was stupid
                     |
 
@@ -66,14 +69,17 @@ class wordList {
 
             for (int o =0; o < getSize(); o++)
                 cout << tokens[o].word << " | | " << tokens[o].wordCount << endl;
+            *
             */
 
 	    }
+
+        void empty() { tokens.emptyTree(); }
 }word_list;
 
-bool operator < (Token const &t1, Token const &t2) { return (t1.wordCount < t2.wordCount) && (t1.word == t2.word); }
-bool operator > (Token const &t1, Token const &t2) { return (t1.wordCount >= t2.wordCount) && (t1.word == t2.word); }
-bool operator == (Token const &t1, Token const &t2) { return (t1.wordCount == t2.wordCount) && (t1.word == t2.word); }
+bool operator < (Token const &t1, Token const &t2) { return (t1.word < t2.word); }
+bool operator > (Token const &t1, Token const &t2) { return (t1.word > t2.word); }
+bool operator == (Token const &t1, Token const &t2) { return (t1.word == t2.word); }
 
 ostream & operator << (ostream &out, const Token &t)
 {

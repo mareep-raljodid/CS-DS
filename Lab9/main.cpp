@@ -36,5 +36,7 @@ redo:
         cout << "TRY AGAIN!!" << endl;
         goto redo;
     }
+    
+    goto redo;
 
 }
