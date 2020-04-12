@@ -4,16 +4,15 @@
 #define BINARYTREE
 using namespace std;
 
-template <typename T>
-class BinaryTree{
+ class BinaryTree{
     public:
         struct Node{
             public:
-                T data;
+                int data;
                 int height;
                 Node * left;
                 Node * right;
-                Node(T k){
+                Node(int k){
                     height = 1;
                     data = k;
                     left = NULL;
@@ -22,18 +21,18 @@ class BinaryTree{
         };
 
         Node* root = NULL;
-        vector<T> ascendingOrder;
-        vector<T> descendingOrder;
+        vector<int> ascendingOrder;
+        vector<int> descendingOrder;
 
-        void insert(T x){
+        void insert(int x){
             root=insertNode(root, x);
         }
-        void remove(T x){
+        void remove(int x){
             root=removeNode(root, x);
             ascendingOrder.clear();
             descendingOrder.clear();
         }
-        Node * search(T x){
+        Node * search(int x){
             return findNode(root,x);
         }
         void getAllAscending(){
@@ -57,7 +56,7 @@ class BinaryTree{
             deleteAllItems(root);
         }
 
-        ~BinaryTree();
+        // ~BinaryTree(){ emptyTree(); };
     private:
         int height(Node* head){
             if(head==NULL) return 0;
@@ -97,7 +96,7 @@ class BinaryTree{
             
         }
 
-        Node* insertNode(Node* head, T num){
+        Node* insertNode(Node* head, int num){
             if(head==NULL){
                 Node * temp = new Node(num);
                 return temp;
@@ -123,7 +122,7 @@ class BinaryTree{
             }
             return head;
         }
-        Node* removeNode(Node* head, T num){
+        Node* removeNode(Node* head, int num){
             if(head==NULL) return NULL;
             if(num < head->data){
                 head->left = removeNode(head->left, num);
@@ -164,9 +163,9 @@ class BinaryTree{
             }
             return head;
         }
-        Node* findNode(Node* head, T num){
+        Node* findNode(Node* head, int num){
             if(head == NULL) return NULL;
-            T key = head->data;
+            int key = head->data;
             if(key == num) return head;
             if(key > num) return findNode(head->left, num);
             if(key < num) return findNode(head->right, num);

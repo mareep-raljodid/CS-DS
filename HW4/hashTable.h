@@ -1,118 +1,126 @@
 #include <iostream>
+#ifndef HASHTABLE
+#define HASHTABLE
 using namespace std; 
 
-template<typename K, typename T> 
-
-struct HashItem 
-{ 
+struct HashItem { 
 	public: 
-	T data; 
-	K key; 
+	int data; 
+	//int key; 
 	
-	HashItem(K key, T data) 
+	HashItem(int data) 
 	{ 
 		this->data = data; 
-		this->key = key; 
+		//this->key = key; 
 	} 
 }; 
 
-template<typename K, typename T> 
-
 class HashTable{ 
-	HashItem<K,T> **table; 
+	HashItem **table; 
 	int maxSize; 
 	int size;
-	int numChecks;
+	int insertChecks;
+	int removeChecks;
+	int findChecks;
 
-	public: 
-	HashTable(int newSize){ 
-		maxSize = newSize; 
+
+
+	public:
+	HashTable(){ 
+		maxSize = 15; 
 		size=0; 
-        numChecks = 0;
-		table = new HashItem<K,T>*[maxSize]; 
+        insertChecks = 1;
+		removeChecks = 1;
+		findChecks = 1;
+		table = new HashItem *[maxSize]; 
 		
 		for(int i=0 ; i < maxSize ; i++) 
 			table[i] = NULL; 
 	} 
 
-	int hashCode(K key){ 
-		return key % maxSize; 
+	int hash(int num){ 
+		return num % maxSize; 
 	} 
 	
-	void addItem(K key, T data) { 
-		HashItem<K,T> *tempHash = new HashItem<K,T>(key, data); 
-		
-		int index = hashCode(key); 
+	void addItem(int data) { 
+		 
+		int index = hash(data); 
+		HashItem *tempHash = new HashItem(data);
 
-		while(table[index] != NULL && table[index]->key != key){ 
+		while(table[index] != NULL && table[index]->data != data){ 
 			index++; 
 			index %= maxSize;
+			insertChecks++;
 		} 
 		
 		if(table[index] == NULL) 
 			size++; 
 		table[index] = tempHash; 
+		cout << "Item added successfully" << endl;
 	} 
 	
-	T removeItem(int key) { 
-		int index = hashCode(key); 
+	void removeItem(int num) { 
+		int index = hash(num); 
 		
-		while(table[index] != NULL) 
-		{ 
-			if(table[index]->key == key) 
-			{ 
-				HashItem<K,T> *tempHash = table[index]; 
+		while(table[index] != NULL){ 
+			if(table[index]->data == num){ 
+				HashItem *tempHash = table[index]; 
 				
 				table[index] = NULL; 
 				
 				size--; 
-				return tempHash->data; 
+				delete(tempHash); 
+				cout << "Item removed succesfully" << endl;  
 			} 
 			index++; 
 			index %= maxSize; 
+			removeChecks++;
 
 		} 
-		
-		return NULL; 
 	} 
 	
-	T findItem(int key) { 
-		int index = hashCode(key); 
+	int findItem(int num) { 
+		int index = hash(num); 
 		int counter=0; 
-		while(table[index] != NULL) 
-		{ int counter =0; 
+		while(table[index] != NULL){ 
+			int counter =0; 
 			if(counter++>maxSize) //to avoid infinite loop 
 				return NULL;		 
-			if(table[index]->key == key) 
+			if(table[index]->data == num) 
 				return table[index]->data; 
 			index++; 
 			index %= maxSize; 
+			findChecks++;
 		} 
-		
 		return NULL; 
 	} 
-	
-	int sizeofMap(){ 
-		return size; 
-	} 
 
-	int getNumChecks(){
-		return numChecks;
+	int getInsertChecks(){
+		return insertChecks;
+	}
+	int getRemoveChecks(){
+		return removeChecks;
+	}
+	int getFindChecks(){
+		return findChecks;
 	}
 
-    // void incrementNumChecks(){
-    //     numChecks++;
-    // }
-	
-	bool isEmpty(){ 
-		return size == 0; 
-	} 
-	
 	void printOut(){ 
+		cout << "______________________" << endl;
+		cout << "ITEMS IN HASH TABLE: " << endl;
 		for(int i=0 ; i<maxSize ; i++){ 
-			if(table[i] != NULL) 
-				cout << "key = " << table[i]->key 
-					<<" data = "<< table[i]->data << endl; 
+			if(table[i] == NULL)
+				cout << "EMPTY" << endl;
+			else 
+				cout << " data = "<< table[i]->data << endl; 
 		} 
+		cout << "______________________" << endl;
 	} 
+
+	void empty(){
+		for(int i = 0; i < maxSize; i++){
+			table[i] == NULL;
+		}
+	}
 }; 
+#endif
