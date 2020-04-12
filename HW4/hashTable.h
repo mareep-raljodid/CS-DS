@@ -23,6 +23,7 @@ class HashTable{
 	int removeChecks;
 	int findChecks;
 
+
 	public:
 	HashTable(){ 
 		maxSize = 15; 
