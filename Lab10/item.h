@@ -57,6 +57,7 @@ public:
 bool operator < (Item& obj1, Item& obj2) { return obj1.getSku() < obj2.getSku(); }
 bool operator > (Item& obj1, Item& obj2) { return obj1.getSku() > obj2.getSku(); }
 bool operator == (Item& obj1, Item& obj2) { return obj1.getSku() == obj2.getSku(); }
+Item::operator string() {return to_string(SKU); }
 
 
 #endif
