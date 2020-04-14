@@ -6,6 +6,8 @@ using namespace std;
 
  class BinaryTree{
     public:
+        int operations = 0;
+        void resetOp() { operations = 0; }
         struct Node{
             public:
                 int data;
@@ -43,6 +45,26 @@ using namespace std;
             cout << endl;
         }
 
+        int getAllAscendingTEST(){
+            ascending(root);
+            int x=0;
+            for(int i = 0; i < ascendingOrder.size(); i++){
+                x = x+ascendingOrder.at(i);
+                x = x*10;
+            }
+            return x;
+        }
+
+        int getAllDescendingTEST(){
+            descending(root);
+            int x =0;
+            for(int i = 0; i < descendingOrder.size(); i++){
+                x = x+descendingOrder.at(i);
+                x = x*10;
+            }
+            return x;
+        }
+
         void getAllDescending(){
             descending(root);
             for(int i = 0; i < descendingOrder.size(); i++){
@@ -63,6 +85,7 @@ using namespace std;
             return head->height;
         }
         Node* rotateRight(Node* head){
+            operations++;
             Node* headNode = head->left;
             head->left = headNode->right;
             headNode->right = head;
@@ -72,6 +95,7 @@ using namespace std;
         }
 
         Node* rotateLeft(Node* head){
+            operations++;
             Node* headNode = head->right;
             head->right = headNode->left;
             headNode->left = head;
@@ -81,6 +105,7 @@ using namespace std;
         }
 
         void ascending(Node* head){
+            operations++;
             if(head==NULL) return ;
             ascending(head->left);
             ascendingOrder.push_back(head->data);
@@ -89,6 +114,7 @@ using namespace std;
         }
 
         void descending(Node* head){
+            operations++;
             if(head==NULL) return ;
             descending(head->right);
             descendingOrder.push_back(head->data);
@@ -98,24 +124,31 @@ using namespace std;
 
         Node* insertNode(Node* head, int num){
             if(head==NULL){
+                operations++;
                 Node * temp = new Node(num);
                 return temp;
             }
+            operations++;
             if(num < head->data) head->left = insertNode(head->left, num);
             else if(num > head->data) head->right = insertNode(head->right, num);
             head->height = 1 + max(height(head->left), height(head->right));
             int balance = height(head->left) - height(head->right);
+            operations++;
             if(balance>1){
                 if(num < head->left->data){
+                    operations++;
                     return rotateRight(head);
                 }else{
                     head->left = rotateLeft(head->left);
+                    operations++;
                     return rotateRight(head);
                 }
             }else if(balance<-1){
                 if(num > head->right->data){
+                    operations++;
                     return rotateLeft(head);
                 }else{
+                    operations++;
                     head->right = rotateRight(head->right);
                     return rotateLeft(head);
                 }
@@ -123,6 +156,7 @@ using namespace std;
             return head;
         }
         Node* removeNode(Node* head, int num){
+            operations++;
             if(head==NULL) return NULL;
             if(num < head->data){
                 head->left = removeNode(head->left, num);
@@ -143,20 +177,26 @@ using namespace std;
                     head->right = removeNode(head->right, r->data);
                 }
             }
+            operations++;
             if(head==NULL) return head;
             head->height = 1 + max(height(head->left), height(head->right));
             int balance = height(head->left) - height(head->right);
+            operations++;
             if(balance>1){
                 if(num > head->left->data){
+                    operations++;
                     return rotateRight(head);
                 }else{
+                    operations++;
                     head->left = rotateLeft(head->left);
                     return rotateRight(head);
                 }
             }else if(balance < -1){
                 if(num < head->right->data){
+                    operations++;
                     return rotateLeft(head);
                 }else{
+                    operations++;
                     head->right = rotateRight(head->right);
                     return rotateLeft(head);
                 }
@@ -164,17 +204,25 @@ using namespace std;
             return head;
         }
         Node* findNode(Node* head, int num){
+            operations++;
             if(head == NULL) return NULL;
+            operations++;
             int key = head->data;
             if(key == num) return head;
+            operations++;
             if(key > num) return findNode(head->left, num);
+            operations++;
             if(key < num) return findNode(head->right, num);
         }
 
         void deleteAllItems(Node* head){
+            operations++;
             if(head == NULL) return;
+            operations++;
             deleteAllItems(head->left);
+            operations++;
             deleteAllItems(head->right);
+            operations++;
             delete(head);
         }
 };

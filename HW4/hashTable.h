@@ -25,8 +25,11 @@ class HashTable{
 
 
 	public:
+    int operations = 0;
+    void resetOp() { operations = 0; }
+
 	HashTable(){ 
-		maxSize = 15; 
+		maxSize = 10000; 
 		size=0; 
         insertChecks = 1;
 		removeChecks = 1;
@@ -49,19 +52,21 @@ class HashTable{
 		while(table[index] != NULL && table[index]->data != data){ 
 			index++; 
 			index %= maxSize;
-			insertChecks++;
+		    operations++;
+
 		} 
 		
 		if(table[index] == NULL) 
-			size++; 
+			size++; operations++;
 		table[index] = tempHash; 
-		cout << "Item added successfully" << endl;
+		
 	} 
 	
 	void removeItem(int num) { 
 		int index = hash(num); 
 		
 		while(table[index] != NULL){ 
+            operations++;
 			if(table[index]->data == num){ 
 				HashItem *tempHash = table[index]; 
 				
@@ -69,7 +74,6 @@ class HashTable{
 				
 				size--; 
 				delete(tempHash); 
-				cout << "Item removed succesfully" << endl;  
 			} 
 			index++; 
 			index %= maxSize; 
@@ -80,18 +84,18 @@ class HashTable{
 	
 	int findItem(int num) { 
 		int index = hash(num); 
-		int counter=0; 
 		while(table[index] != NULL){ 
+            operations++;
 			int counter =0; 
 			if(counter++>maxSize) //to avoid infinite loop 
-				return NULL;		 
+				return '\0';		 
 			if(table[index]->data == num) 
 				return table[index]->data; 
 			index++; 
 			index %= maxSize; 
 			findChecks++;
 		} 
-		return NULL; 
+		return '\0'; 
 	} 
 
 	int getInsertChecks(){
