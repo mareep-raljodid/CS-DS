@@ -21,7 +21,7 @@ public:
         this->uom = uom;
         this->qoh = qoh;
     }
-
+    Item() {}
 
 
     string getPartInfo() { return to_string(sku) + description; }
@@ -57,9 +57,8 @@ public:
 bool operator < (Item& obj1, Item& obj2) { return obj1.getSku() < obj2.getSku(); }
 bool operator > (Item& obj1, Item& obj2) { return obj1.getSku() > obj2.getSku(); }
 bool operator == (Item& obj1, Item& obj2) { return obj1.getSku() == obj2.getSku(); }
-Item::operator string() {return to_string(SKU); }
+string toString(Item& obj1) {return to_string(obj1.getSku()); }
 
 
 #endif
 
-#pragma once

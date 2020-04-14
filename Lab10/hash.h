@@ -67,7 +67,7 @@ public:
 		table[index] = tempHash;
 	}
 
-	T removeItem(int key) {
+	string removeItem(int key) {
 		string hashKey = to_string(key);
 		int index = hash(hashKey);
 
@@ -78,7 +78,7 @@ public:
 				HashItem<K, T>* tempHash = table[index];
 				table[index] = NULL;
 				size--;
-				return tempHash->data;
+				return toString(tempHash->data);
 				delete(tempHash);
 			}
 			index++;
@@ -86,10 +86,10 @@ public:
 
 		}
 
-		return NULL;
+		return "";
 	}
 
-	T findItem(int key) {
+	string findItem(int key) {
 		string hashKey = to_string(key);
 		int index = hash(hashKey);
 		int counter = 0;
@@ -97,14 +97,13 @@ public:
 		{
 			int counter = 0;
 			if (counter++ > maxSize) //to avoid infinite loop 
-				return NULL;
+				return "";
 			if (table[index]->key == key)
-				return table[index]->data;
+				return toString(table[index]->data);
 			index++;
 			index %= maxSize;
 		}
-
-		return NULL;
+		return "";
 	}
 
 	int getSize() {
@@ -123,7 +122,7 @@ public:
 		for (int i = 0; i < maxSize; i++) {
 			if (table[i] != NULL)
 				cout << "key = " << table[i]->key
-				<< " data = " << table[i]->data << endl;
+				<< " data = " << toString(table[i]->data) << endl;
 		}
 	}
 
