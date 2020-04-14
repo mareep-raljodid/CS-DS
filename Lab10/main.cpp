@@ -1,6 +1,7 @@
 #include <iostream>
 #include "hash.h"
 #include "item.h"
+#include "chained.h"
 
 using namespace std;
 
@@ -99,11 +100,11 @@ ttop:
             cin >> UOM;
 
             Item* ptrItem = new Item(SKU, price, descrp, UOM, qoh = 0);
-            if (h->findItem(SKU))
+            string val = h->findItem(SKU);
+            if(val != "")
                 cout << "Exists in list" << endl;
             else
                 cout << "Doesn't exist in list" << endl;
-
 
         }
         if (option == "4") {
@@ -117,7 +118,7 @@ ttop:
         }
         if (option == "5") {
             cout << "Checking size" << endl;
-            cout << h->getSize() + 1;
+            cout << h->getSize() <<endl;
         }
         if (option == "6") {
             cout << "Displaying" << endl;
