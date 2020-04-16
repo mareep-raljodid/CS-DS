@@ -9,18 +9,18 @@ using namespace std;
 vector<int> randomNumbers() {
     vector<int> r;
     int i =0;
-    while(i < 50){
-        r.push_back(rand() % 50 + 1);
+    while(i < 250){
+        r.push_back(rand() % 250 + 1);
         i++;
     }
     return r;
 }
 
 int main(){
-    HashTable<int, Item>* h = new HashTable<int, Item>(50);
-    HashList<int, Item>* hl = new HashList<int, Item>(50);
+    HashTable<int, Item>* h = new HashTable<int, Item>(250);
+    HashList<int, Item>* hl = new HashList<int, Item>(250);
 
-    cout << "Generating 50 random items" << endl;
+    cout << "Generating 250 random items" << endl;
 
     vector<int> randomNums = randomNumbers();
 
@@ -30,7 +30,7 @@ int main(){
     string UOM  = "lb";
     unsigned qoh = 50;
 
-    for(int i = 0; i<50; i++){
+    for(int i = 0; i<250; i++){
         SKU = randomNums[i];
         Item* ptrItem = new Item(SKU, price, descrp, UOM, qoh);
         h->addItem(SKU, *ptrItem);
@@ -38,7 +38,7 @@ int main(){
     }
 
     cout << "\n\n";
-    cout << "Added 50 items, showing stats ----------------------" << endl;
+    cout << "Added 250 items, showing stats ----------------------" << endl;
     cout << "Operations Time for Linear Probing Hash Table: " << h->operations << endl;
     cout << "Operations Time for Chained Hash Table: " << hl->operations << endl;
     return 0;
