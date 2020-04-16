@@ -12,7 +12,7 @@ template<typename K, typename T>
 struct HashItem
 {
 public:
-    T data;
+	T data;
 	K key;
 
 	HashItem(K key, T data)
@@ -31,7 +31,7 @@ class HashTable {
 	int numChecks;
 
 public:
-	HashTable(int newSize =0) {
+	HashTable(int newSize) {
 		maxSize = newSize;
 		size = 0;
 		numChecks = 0;

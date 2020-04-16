@@ -2,17 +2,21 @@
 #include "hash.h"
 #include "item.h"
 #include "chained.h"
+#include "list.h"
 
 using namespace std;
 
 int main() {
+
+    HashList<int, int>* h = new HashList<int, int>(10);
+
+    h->addItem(2,5);
+    h->addItem(1,1);
+    h->addItem(1,3);
+    h->printOut();
+    /*
     HashTable<int, Item>* h = new HashTable<int, Item>(10);
 
-    //h->addItem(1, 2);
-   // h->addItem(2, 4);
-    //h->addItem(2, 5);
-   // h->addItem(3, 8);
-   // h->printOut();
 ttop:
 
     string option = "1";
@@ -132,4 +136,5 @@ ttop:
 
     }
     return 0;
+    */
 }

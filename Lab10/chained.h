@@ -1,190 +1,129 @@
-#ifndef LIST
-#define LIST
-//#include "item.h"
+#ifndef LISTI
+#define LISTI
 #include "hash.h"
+#include "list.h"
 #include <cstddef>
 #include <utility>
 
-template <typename T>
-class List : HashTable{
-public:
-    struct node {
-        T* value;
-        node* prev;
-        node* next;
-    };
+template<typename K, typename T>
+struct HashItem_ptr {
+    public:
+        T* data;
+        K key;
 
-    node* top = NULL;
-    node* head = NULL;
-    node* cursor = head;
-    unsigned length = 0;
-
-    node* makeNode(T* elem) {
-
-        node* temp = new node;
-        temp->value = elem;
-        temp->prev = NULL;
-        temp->next = NULL;
-        return temp;
-    }
-
-    void insert(T* elem, bool at_tail = true) {
-        if (at_tail) {
-            node* temp = makeNode(elem);
-            cout << "inserting this- " << temp->value;
-            if (head == NULL) {
-                head = temp;
-                top = head;
-                return;
-            }
-            else {
-                head->next = temp;
-                temp->prev = head;
-                head = temp;
-            }
-            length++;
+        HashItem_ptr<K,T>(K key, List<T> data) {
+            this->data = data;
+            this->key = key;
         }
 
-        else {
-            node* temp = makeNode(elem);
-            if (head == NULL) {
-                head = temp;
-                return;
-            }
-            else {
-                head->prev = temp;
-                temp->next = head;
-                head = temp;
-            }
-            length++;
-        }
-
-    }
-
-    T* getItem(T* elem) {
-
-        node* temp = top;
-        node* to_be_deleted = NULL;
-        if (temp == NULL)
-            return NULL;
-
-        while (temp != NULL)
-            if (temp->value == elem)
-                to_be_deleted = temp;
-
-        T* val = to_be_deleted->value;
-
-        if (to_be_deleted == NULL)
-            return NULL;
-
-        if (to_be_deleted == top)
-            top = to_be_deleted->next;
-
-        if (to_be_deleted->next != NULL)
-            to_be_deleted->next->prev = to_be_deleted->prev;
-
-        if (to_be_deleted->prev != NULL)
-            to_be_deleted->prev->next = to_be_deleted->next;
-
-        free(to_be_deleted);
-        length--;
-        return val;
-    }
-
-    bool inList(T* elem) {
-        node* temp = top;
-
-        if (temp == NULL)
-            return false;
-
-        while (temp != NULL) {
-            if (temp->value == elem)
-                return true;
-            else temp = temp->next;
-        }
-
-        return false;
-    }
-
-    bool isEmpty() {
-        return ((length == 0) && (head == NULL));
-    }
-
-    unsigned size() {
-        if(top == NULL)
-            return -1;
-        return length;
-    }
-
-    T* seeNext() {
-
-        if (top == NULL) throw "Empty List";
-
-        T* val = cursor->value;
-        cursor = cursor->next;
-        return val;
-    }
-
-    T* seePrev() {
-
-        if (head == NULL) throw "Empty List";
-
-        T* val = cursor->value;
-        cursor = cursor->prev;
-        return val;
-    }
-
-    T* seeAt(unsigned pos) {
-
-        if (top == NULL) throw "Empty List";
-
-        if (pos > length) throw "Out of Range Error";
-        T* val;
-        for (int i = 0; i <= pos; i++) {
-            val = cursor->value;
-            cursor = cursor->next;
-        }
-        cursor = cursor->prev;
-        return val;
-    }
-
-    void display() {
-        node* temp = top;
-
-        if (temp == NULL) throw "Empty List";
-
-        while (temp != NULL){
-            temp->value->displ();
-            temp = temp->next;
-        }
-
-    }
-
-    void reset() {
-        cursor = top;
-    }
-
-    ~List(void) {
-        
-        node* temp = top;
-        while( temp != NULL ) {
-            node* next = temp->next;
-            delete temp;
-            temp = next;
-        }
-        length = 0;
-        cursor = NULL;
-        head = NULL;
-        top = NULL;
-    }
+        HashItem_ptr<K,T>(){}
 };
 
-template<typename T>
-bool operator < (List<T> const& obj1, List<T> const& obj2) { return *(obj1->value) < *(obj2->value); }
-template<typename T>
-bool operator > (List<T> const& obj1, List<T> const& obj2) { return *(obj1->value) > * (obj2->value); }
-template<typename T>
-bool operator == (List<T> const& obj1, List<T> const& obj2) { return *(obj1->value) == *(obj2->value); }
+template <typename K, typename T>
+class HashList : public HashItem_ptr<K, T>, HashTable<K, T>, List<T>{
 
+private:
+    HashItem_ptr<K, List<T>>** hl;
+    int maxSize;
+    int size;
+    int numChecks;
+    int hash(string word) {
+        int asciiSum;
+        for (int i = 0; word[i] != '\0'; i++) {
+            asciiSum = asciiSum + word[i];
+        }
+        return asciiSum % maxSize;
+    }
+public:
+    HashList<K,T>(int newSize) {
+        maxSize = newSize;
+        size = 0;
+        numChecks = 0;
+        hl = new HashItem_ptr<K, List<T>> * [maxSize];
 
+        for (int i = 0; i < maxSize; i++)
+            hl[i]->data = new List<T>;
+    }
+
+    int hashCode(K key) {
+        return HashTable<K,T>::hashCode(key);
+    }
+
+    void addItem(K key, T data) {
+        
+        HashItem_ptr<K, List<T>>* tempHash = new HashItem_ptr<K, List<T>>(key, data);
+
+        string hashKey = to_string(key);
+        int index = hash(hashKey);
+
+        while (hl[index].seeAt(0) != NULL && hl[index].seeAt(0)->key != key) {
+            index++;
+            index %= maxSize;
+            numChecks++;
+        }
+
+        if (hl[index].seeAt(0) == NULL)
+            size++;
+        hl[index].insert(tempHash, true);
+    }
+
+    string removeItem(int key) {
+        string hashKey = to_string(key);
+        int index = hash(hashKey);
+
+        while (hl[index]->data.val != NULL)
+        {
+            if (hl[index]->key == key)
+            {
+                HashItem_ptr<K, List<T>>* tempHash = hl[index];
+                hl[index].~List();
+                hl[index]->data.val = NULL;
+                size--;
+                return toString(tempHash->data);
+                delete(tempHash);
+            }
+            index++;
+            index %= maxSize;
+
+        }
+
+        return "";
+    }
+
+    string findItem(int key, int val=0) {
+        string hashKey = to_string(key);
+        int index = hash(hashKey);
+
+        while (hl[index]->data.val != NULL)
+        {
+            int counter = 0;
+            if (counter++ > maxSize) //to avoid infinite loop
+                return "";
+            if (hl[index]->key == key){
+                if(hl[index]->data.inList(val)){
+                    cout << "Exists" << endl;
+                    return "Exists";
+                }
+            }
+            index++;
+            index %= maxSize;
+        }
+        return "";
+    }
+
+    int getSize() {
+        return HashTable<K,List<T>>::getSize();
+    }
+
+    void printOut() {
+        for (int i = 0; i < maxSize; i++) {
+            if (hl[i] != NULL){
+                cout << "key = " << hl[i]->key
+                << " data : " << endl;
+                hl[i]->data.display();
+            }
+        }
+    }
+
+};
 #endif
