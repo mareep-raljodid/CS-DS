@@ -45,41 +45,49 @@ public:
         maxSize = newSize;
         size = 0;
         numChecks = 0;
+        operations++;
 
         for (int i = 0; i < maxSize; i++){
             hl.push_back(new HashItem_ptr<K,T>());
+            operations++;
         }
     }
 
     int hashCode(K key) {
+        operations++;
         return HashTable<K,T>::hashCode(key);
     }
 
     void addItem(K key, T data) {
+        operations++;
 
         string hashKey = to_string(key);
         int index = hash(hashKey);
 
         if (hl[index]->data->top == NULL)
             size++;
+        operations++;
         hl[index]->data->insert(data, true);
         hl[index]->key = key;
     }
 
     string removeItem(int key) {
+        operations++;
         string hashKey = to_string(key);
         int index = hash(hashKey);
 
-        while (hl[index]->data.val != NULL)
+        while (hl[index]->data->top != NULL)
         {
+            operations++;
             if (hl[index]->key == key)
             {
-                HashItem_ptr<K, List<T>>* tempHash = hl[index];
-                hl[index].~List();
-                hl[index]->data.val = NULL;
+                operations++;
+                HashItem_ptr<K, T>* tempHash = hl[index];
+                hl[index]->data->~List();
+                hl[index]->data = new List<T>();
                 size--;
-                return toString(tempHash->data);
                 delete(tempHash);
+                hl[index]->key =0;
             }
             index++;
             index %= maxSize;
@@ -90,19 +98,23 @@ public:
     }
 
     string findItem(int key, int val=0) {
+        operations++;
         string hashKey = to_string(key);
         int index = hash(hashKey);
 
-        while (hl[index]->data.val != NULL)
+        while (hl[index]->data->top != NULL)
         {
+            operations++;
             int counter = 0;
             if (counter++ > maxSize) //to avoid infinite loop
                 return "";
             if (hl[index]->key == key){
-                if(hl[index]->data.inList(val)){
-                    cout << "Exists" << endl;
+                operations++;
+                if(hl[index]->data->inList(val)){
                     return "Exists";
                 }
+                else if(val ==0)
+                    return "Key exists with possible multiple values";
             }
             index++;
             index %= maxSize;
@@ -111,14 +123,18 @@ public:
     }
 
     int getSize() {
+        operations++;
         return HashTable<K,List<T>>::getSize();
     }
 
     void printOut() {
+        operations++;
         for (int i = 0; i < maxSize; i++) {
+            operations++;
             if (hl[i] != NULL){
-                cout << "key = " << hl[i]->key
-                << " data : " << endl;
+                operations++;
+                cout << "K: " << hl[i]->key
+                << " V: " << endl;
                 hl[i]->data->display();
             }
         }

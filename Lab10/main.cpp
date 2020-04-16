@@ -9,7 +9,18 @@ using namespace std;
 int main() {
 
      HashList<int, int>* hl = new HashList<int, int>(10);
-   
+     hl->addItem(1,10);
+     hl->addItem(1,11);
+     hl->addItem(2,20);
+     hl->addItem(3,32);
+     hl->addItem(5,55);
+
+     cout<<hl->findItem(3,32)<< endl;
+     cout << hl->findItem(1) << endl;
+
+     hl->printOut();
+
+   /*
      HashTable<int, Item>* h = new HashTable<int, Item>(10);
 
 ttop:
@@ -130,5 +141,5 @@ ttop:
         }
 
     }
-    return 0;
+    return 0;*/
 }
