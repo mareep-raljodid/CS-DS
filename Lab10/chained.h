@@ -4,27 +4,32 @@
 #include "list.h"
 #include <cstddef>
 #include <utility>
+#include <vector>
 
 template<typename K, typename T>
 struct HashItem_ptr {
     public:
-        T* data;
+        List<T>* data = new List<T>;
         K key;
 
-        HashItem_ptr<K,T>(K key, List<T> data) {
+        HashItem_ptr<K,T>(K key, T dat) {
+            data->insert(dat);
             this->data = data;
             this->key = key;
         }
 
-        HashItem_ptr<K,T>(){}
+        HashItem_ptr<K,T>(){
+        this->data = data;
+        this->key = '\0';
+        }
 };
 
 template <typename K, typename T>
 class HashList : public HashItem_ptr<K, T>, HashTable<K, T>, List<T>{
 
 private:
-    HashItem_ptr<K, List<T>>** hl;
     int maxSize;
+    vector<HashItem_ptr<K, T>*> hl;
     int size;
     int numChecks;
     int hash(string word) {
@@ -40,10 +45,10 @@ public:
         maxSize = newSize;
         size = 0;
         numChecks = 0;
-        hl = new HashItem_ptr<K, List<T>> * [maxSize];
 
-        for (int i = 0; i < maxSize; i++)
-            hl[i]->data = new List<T>;
+        for (int i = 0; i < maxSize; i++){
+            hl.push_back(new HashItem_ptr<K,T>());
+        }
     }
 
     int hashCode(K key) {
@@ -51,21 +56,14 @@ public:
     }
 
     void addItem(K key, T data) {
-        
-        HashItem_ptr<K, List<T>>* tempHash = new HashItem_ptr<K, List<T>>(key, data);
 
         string hashKey = to_string(key);
         int index = hash(hashKey);
 
-        while (hl[index].seeAt(0) != NULL && hl[index].seeAt(0)->key != key) {
-            index++;
-            index %= maxSize;
-            numChecks++;
-        }
-
-        if (hl[index].seeAt(0) == NULL)
+        if (hl[index]->data->top == NULL)
             size++;
-        hl[index].insert(tempHash, true);
+        hl[index]->data->insert(data, true);
+        hl[index]->key = key;
     }
 
     string removeItem(int key) {
@@ -121,7 +119,7 @@ public:
             if (hl[i] != NULL){
                 cout << "key = " << hl[i]->key
                 << " data : " << endl;
-                hl[i]->data.display();
+                hl[i]->data->display();
             }
         }
     }

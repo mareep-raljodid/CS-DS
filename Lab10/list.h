@@ -3,6 +3,8 @@
 
 #include <cstddef>
 #include <utility>
+#include <iostream>
+using namespace std;
 
 template <typename T>
 class Node {
@@ -141,7 +143,9 @@ public:
 
     T seeAt(unsigned pos) {
 
-        if (top == NULL) throw "Empty List";
+        if (top == NULL){
+            return NULL;
+        }
 
         if (pos > length) throw "Out of Range Error";
         T val;
@@ -156,12 +160,13 @@ public:
     void display() {
         Node<T>* temp = top;
 
-        if (temp == NULL) throw "Empty List";
-
+        if (temp == NULL) cout << "[]" <<endl;
+       
         while (temp != NULL){
-            temp->value->displ();
+            cout <<" |-" << temp->value << endl;
             temp = temp->next;
         }
+        cout << "__" << endl;
 
     }
 

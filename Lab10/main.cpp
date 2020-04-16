@@ -8,7 +8,9 @@ using namespace std;
 
 int main() {
 
-    HashTable<int, Item>* h = new HashTable<int, Item>(10);
+     HashList<int, int>* hl = new HashList<int, int>(10);
+   
+     HashTable<int, Item>* h = new HashTable<int, Item>(10);
 
 ttop:
 
@@ -129,5 +131,4 @@ ttop:
 
     }
     return 0;
-    
 }
