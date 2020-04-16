@@ -8,13 +8,6 @@ using namespace std;
 
 int main() {
 
-    HashList<int, int>* h = new HashList<int, int>(10);
-
-    h->addItem(2,5);
-    h->addItem(1,1);
-    h->addItem(1,3);
-    h->printOut();
-    /*
     HashTable<int, Item>* h = new HashTable<int, Item>(10);
 
 ttop:
@@ -136,5 +129,5 @@ ttop:
 
     }
     return 0;
-    */
+    
 }

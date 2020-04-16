@@ -35,6 +35,7 @@ private:
         return asciiSum % maxSize;
     }
 public:
+    int operations = 0;
     HashList<K,T>(int newSize) {
         maxSize = newSize;
         size = 0;
