@@ -124,7 +124,7 @@ public:
 
     int getSize() {
         operations++;
-        return HashTable<K,List<T>>::getSize();
+        return HashTable<K,List<T> >::getSize();
     }
 
     void printOut() {

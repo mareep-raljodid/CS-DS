@@ -31,6 +31,8 @@ class HashTable {
 	int numChecks;
 
 public:
+ 	int operations = 0;
+    void resetOp() { operations = 0; }
 	HashTable(int newSize =0) {
 		maxSize = newSize;
 		size = 0;
@@ -59,10 +61,11 @@ public:
 			index++;
 			index %= maxSize;
 			numChecks++;
+			operations++;
 		}
 
 		if (table[index] == NULL)
-			size++;
+			size++; operations++;
 		table[index] = tempHash;
 	}
 
@@ -70,8 +73,8 @@ public:
 		string hashKey = to_string(key);
 		int index = hash(hashKey);
 
-		while (table[index] != NULL)
-		{
+		while (table[index] != NULL){
+			operations++;
 			if (table[index]->key == key)
 			{
 				HashItem<K, T>* tempHash = table[index];
@@ -92,8 +95,8 @@ public:
 		string hashKey = to_string(key);
 		int index = hash(hashKey);
 		
-		while (table[index] != NULL)
-		{
+		while (table[index] != NULL){
+			operations++;
 			int counter = 0;
 			if (counter++ > maxSize) //to avoid infinite loop 
 				return "";
@@ -112,10 +115,6 @@ public:
 	int getNumChecks() {
 		return numChecks;
 	}
-
-	// void incrementNumChecks(){
-	//     numChecks++;
-	// }
 
 	void printOut() {
 		for (int i = 0; i < maxSize; i++) {
