@@ -33,13 +33,25 @@ class DirectedGraph{
             graph[root] = newnode;
         }
 
+        void removeEdge(int root, int destination){
+            for(int i = 0; i<numVertices;  i++){
+                
+            }
+        }
+
         void printList(node* ptr){
 	        while (ptr != nullptr){
                 cout << " -> " << ptr->value << " ";
                 ptr = ptr->next;
 	        }
 	        cout << endl;
-}
+        }
+
+        ~DirectedGraph() {
+		for (int i = 0; i < numVertices; i++)
+			delete[] graph[i];
+		delete[] graph;
+	}   
 
 
 };
