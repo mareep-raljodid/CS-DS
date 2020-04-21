@@ -17,7 +17,7 @@ class DirectedGraph{
             graph = new node*[v]();
 
             for(int i = 0; i < v; i++){
-                graph[i] == NULL;
+                graph[i] = NULL;
             }
         }
 
@@ -34,16 +34,24 @@ class DirectedGraph{
         }
 
         void removeEdge(int root, int destination){
-            for(int i = 0; i<numVertices;  i++){
-                
+            node* temp;
+            temp = graph[root];
+            while(temp != NULL){
+                if(temp->value == destination){
+                    temp = NULL;
+                    cout << "REMOVED" << endl;
+                    delete(temp);
+                }
+                temp = temp->next;
             }
         }
 
         void printList(node* ptr){
-	        while (ptr != nullptr){
+	        while (ptr != NULL){
                 cout << " -> " << ptr->value << " ";
                 ptr = ptr->next;
 	        }
+            
 	        cout << endl;
         }
 
