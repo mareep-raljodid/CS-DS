@@ -15,7 +15,7 @@ int main(){
     dirGraph.addEdge(1, 4);
     dirGraph.addEdge(2, 3);
     dirGraph.addEdge(3, 4);
-    dirGraph.removeEdge(3, 4);
+    dirGraph.removeEdge(3, 4);  //if the removeEdge code works, might need to modify the printOut function so that you don't hit a segmentation fault in testing
     dirGraph.removeEdge(1,2);
 
     for (int i = 0; i < n; i++){
