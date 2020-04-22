@@ -58,12 +58,30 @@ class DirectedGraph{
             }
         }
 
+        bool isEdge(int root, int destination){
+            node* temp;
+            int i =0;
+            temp = graph[root];
+            while(temp != NULL){
+                if ( (temp->value == destination) && (temp->next != NULL) ){
+                    return false;
+                }
+                else if ( (temp->next == NULL) && (temp->value == destination) && (i==0)){
+                    return true;
+                }
+                else if ( (temp->next == NULL) && (temp->value == destination) && (i!=0)){
+                    return true;
+                }
+                else temp = temp->next;
+                i++;
+            }
+        }
+
         void printList(node* ptr){
 	        while (ptr != NULL){
                 cout << " -> " << ptr->value << " ";
                 ptr = ptr->next;
 	        }
-            
 	        cout << endl;
         }
 
@@ -72,7 +90,6 @@ class DirectedGraph{
 			delete[] graph[i];
 		delete[] graph;
 	}   
-
 
 };
 #endif
