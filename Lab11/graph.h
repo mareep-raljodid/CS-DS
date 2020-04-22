@@ -11,6 +11,7 @@ struct node{
 class DirectedGraph{
     public:
         int numVertices;
+        bool exists;
         node** graph;
         DirectedGraph(int v){
             this->numVertices  = v;
@@ -60,21 +61,17 @@ class DirectedGraph{
 
         bool isEdge(int root, int destination){
             node* temp;
-            int i =0;
             temp = graph[root];
+            exists = false;
             while(temp != NULL){
-                if ( (temp->value == destination) && (temp->next != NULL) ){
-                    return false;
+                if (temp->value == destination){
+                    exists = true;
                 }
-                else if ( (temp->next == NULL) && (temp->value == destination) && (i==0)){
-                    return true;
-                }
-                else if ( (temp->next == NULL) && (temp->value == destination) && (i!=0)){
-                    return true;
-                }
-                else temp = temp->next;
-                i++;
+                else if(temp->value == destination && temp->next == NULL)
+                    exists = true;
+                temp = temp->next;
             }
+            return exists;
         }
 
         void printList(node* ptr){
