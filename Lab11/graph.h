@@ -35,14 +35,26 @@ class DirectedGraph{
 
         void removeEdge(int root, int destination){
             node* temp;
+            int i =0;
             temp = graph[root];
             while(temp != NULL){
-                if(temp->value == destination){
-                    temp = NULL;
-                    cout << "REMOVED" << endl;
-                    delete(temp);
+                if ( (temp->value == destination) && (temp->next != NULL) ){
+                    temp->value = temp->next->value;
+                    temp->next = temp->next->next;
+                    return;
                 }
-                temp = temp->next;
+                else if ( (temp->next == NULL) && (temp->value == destination) && (i==0)){
+                    delete(temp);
+                    graph[root]= NULL;
+                    return;
+                }
+                else if ( (temp->next == NULL) && (temp->value == destination) && (i!=0)){
+                    node* t = temp;
+                    delete(t);
+                    temp = NULL;
+                }
+                else temp = temp->next;
+                i++;
             }
         }
 
