@@ -1,6 +1,5 @@
 #include "graph.h"
 #include <iostream>
-
 using namespace std;
 
 void print(int n, DirectedGraph& dirGraph) {
@@ -68,24 +67,25 @@ top:
 
         case 4:
             cout << "Enter the first edge parameter : ";
+            
             cin >> a;
-            cout << "Enter the second edge parameter : ";
-            cin >> b;
-            dirGraph.addEdge(a,b);
-            cout << "\nAdded! " << endl;
+            dirGraph.outEdges(a);
+
+            cout << "Success!" << endl;
             break;
 
         case 5:
             cout << "Enter the first edge parameter : ";
+            
             cin >> a;
-            cout << "Enter the second edge parameter : ";
-            cin >> b;
-            dirGraph.addEdge(a,b);
-            cout << "\nAdded! " << endl;
+
+            dirGraph.inEdges(a);
+
+            cout << "Success!" << endl;
             break;
 
         case 6:
-              cout << "Exitting!";
+              cout << "Exiting!";
               exit(0);
 
         default:

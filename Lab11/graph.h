@@ -1,6 +1,7 @@
 #ifndef DIRGRAPH
 #define DIRGRAPH
 #include <iostream>
+#include <vector>
 using namespace  std;
 
 struct node{
@@ -72,6 +73,45 @@ class DirectedGraph{
                 temp = temp->next;
             }
             return exists;
+        }
+
+        vector<int> outEdges(int x) {
+            vector<int> outEd;
+
+            node* ptr = graph[x];
+
+            while (ptr != NULL) {
+                outEd.push_back(ptr->value);
+                ptr = ptr->next;
+            }
+            reverse(outEd.begin(), outEd.end());
+            for (int i = 0; i < outEd.size(); i++) {
+                cout << outEd[i] << " ";
+            }
+            
+            return outEd;
+        }
+
+        vector<int> inEdges(int i) {
+            vector<int> inEd;
+            int j = 1;
+            node* curr = graph[j];
+
+            while (curr != NULL) {
+
+                if (isEdge(j, i)) {
+                    inEd.push_back(j);
+                }
+                j++;
+
+                curr = curr->next;
+            }
+
+            for (int k = 0; k < inEd.size(); k++) {
+                cout << inEd[k] << " ";
+            }
+            return inEd;
+
         }
 
         void printList(node* ptr){
