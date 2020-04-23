@@ -2,7 +2,7 @@
 #define DIRGRAPH
 #include <iostream>
 #include <vector>
-using namespace  std;
+using namespace std;
 
 struct node{
     int value;
@@ -88,6 +88,8 @@ class DirectedGraph{
             for (int i = 0; i < outEd.size(); i++) {
                 cout << outEd[i] << " ";
             }
+
+            cout << endl;
             
             return outEd;
         }
@@ -95,23 +97,18 @@ class DirectedGraph{
         vector<int> inEdges(int i) {
             vector<int> inEd;
             int j = 1;
-            node* curr = graph[j];
+            node* curr = graph[i];
 
-            while (curr != NULL) {
-
-                if (isEdge(j, i)) {
-                    inEd.push_back(j);
-                }
-                j++;
-
+            while (curr != NULL && curr->value) {
+                inEd.push_back(curr->value);
                 curr = curr->next;
             }
 
             for (int k = 0; k < inEd.size(); k++) {
                 cout << inEd[k] << " ";
             }
+            cout << endl;
             return inEd;
-
         }
 
         void printList(node* ptr){
