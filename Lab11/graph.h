@@ -2,6 +2,7 @@
 #define DIRGRAPH
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 struct node{
@@ -85,7 +86,7 @@ class DirectedGraph{
                 ptr = ptr->next;
             }
             reverse(outEd.begin(), outEd.end());
-            for (int i = 0; i < outEd.size(); i++) {
+            for (unsigned i = 0; i < outEd.size(); i++) {
                 cout << outEd[i] << " ";
             }
 
@@ -96,7 +97,6 @@ class DirectedGraph{
 
         vector<int> inEdges(int i) {
             vector<int> inEd;
-            int j = 1;
             node* curr = graph[i];
 
             while (curr != NULL && curr->value) {
@@ -104,7 +104,7 @@ class DirectedGraph{
                 curr = curr->next;
             }
 
-            for (int k = 0; k < inEd.size(); k++) {
+            for (unsigned k = 0; k < inEd.size(); k++) {
                 cout << inEd[k] << " ";
             }
             cout << endl;
@@ -119,11 +119,38 @@ class DirectedGraph{
 	        cout << endl;
         }
 
+        vector<int> d;
+        vector<int> dfs_d(int v, bool visited[]) { 
+            visited[v] = true; 
+            cout << v << " -> ";
+            d.push_back(v);
+            unsigned j =0;
+            for (node* i = graph[v]; i != NULL; i = i->next) {
+                if (!visited[j]) 
+                    dfs_d(j, visited); 
+                j++;
+            }
+
+            return d;
+        } 
+  
+        bool dfs(int v) { 
+            bool *visited = new bool[v]; 
+            for (int i = 0; i < v; i++) 
+                visited[i] = false; 
+  
+            vector<int> x = dfs_d(v, visited); 
+            for (unsigned i =0; i<x.size(); i++)
+                if (x[i] == v)
+                    return true;
+            return false;
+        } 
+
         ~DirectedGraph() {
 		for (int i = 0; i < numVertices; i++)
 			delete[] graph[i];
 		delete[] graph;
-	}   
+	    }   
 
 };
 #endif

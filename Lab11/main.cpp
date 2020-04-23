@@ -17,7 +17,12 @@ int main(){
     cin>>n;
     DirectedGraph dirGraph(n);
     char selection = 'y';
-
+    
+    dirGraph.addEdge(1,3);
+    dirGraph.addEdge(1,5);
+    print(n,dirGraph);
+    dirGraph.dfs(3) ? cout << "yes" : cout << "no";
+/*
 top:
     while(selection == 'y'){
       cout << "Here are your options:" << endl;
@@ -94,5 +99,5 @@ top:
       }
       cout << "Would you like to make another selection? Enter y for yes and n for no: ";
       cin >> selection;
-    }
+    }*/
 }
