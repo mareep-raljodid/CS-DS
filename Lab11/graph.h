@@ -2,6 +2,7 @@
 #define DIRGRAPH
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <algorithm>
 using namespace std;
 
@@ -156,6 +157,48 @@ class DirectedGraph{
                     rr = true;
             }
             return rr;
+        }
+        vector<int> m;
+        bool bfs(int search) {
+            int x = search;
+            queue <int> g;
+            bool *visited = new bool[numVertices];
+            for (int i = 0; i < numVertices+1; i++)
+                visited[i] = false;
+
+            visited[search] = true;
+            g.push(search);
+
+            cout << "                                  ## NOTE ## " << endl;
+            cout << " 0 in nodes may mean either extra spots (unfilled), or undeclared edges" << endl;
+            cout << " If it is the latter, please add the edge with root ad the missing node" << endl;
+            cout << " #########                                                    #########\n\n" << endl;
+            cout << "Printing Breadth-First Traversal" << "(with begining node " << search << "): " << endl;
+            cout << "<HEAD>(" << search << ") ";
+            if (graph[search] == NULL) {
+                cout << "<Connection to other NODES Doesn't Exists>" << endl;
+                return false;
+            }
+
+            while(!g.empty()) {
+                search = g.front();
+                cout << "-> " << search << " ";
+                m.push_back(search);
+                g.pop();
+
+                if(graph[search] == NULL) break;
+
+                node* temp = graph[search];
+                temp = temp->next;
+                for (; temp != NULL; temp = temp->next){
+                    if (!visited[temp->value])
+                    g.push(temp->value);
+                }
+            }
+            for(int i = 0; i < m.size(); i++)
+                if (m[i] == x)
+                    return true;
+            return false;
         }
 
         ~DirectedGraph() {
