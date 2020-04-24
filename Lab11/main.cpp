@@ -18,10 +18,13 @@ int main(){
     DirectedGraph dirGraph(n);
     char selection = 'y';
     
+    dirGraph.addEdge(1,2);
     dirGraph.addEdge(1,3);
-    dirGraph.addEdge(1,5);
-    print(n,dirGraph);
-    dirGraph.dfs(3) ? cout << "yes" : cout << "no";
+ dirGraph.addEdge(2,3);
+  dirGraph.addEdge(2,4);
+  dirGraph.addEdge(3,4);
+  print(n, dirGraph);
+    dirGraph.dfs(2) ? cout << "y" : cout << "n";
 /*
 top:
     while(selection == 'y'){

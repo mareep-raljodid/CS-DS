@@ -118,33 +118,45 @@ class DirectedGraph{
 	        }
 	        cout << endl;
         }
-
-        vector<int> d;
-        vector<int> dfs_d(int v, bool visited[]) { 
-            visited[v] = true; 
-            cout << v << " -> ";
-            d.push_back(v);
-            unsigned j =0;
-            for (node* i = graph[v]; i != NULL; i = i->next) {
-                if (!visited[j]) 
-                    dfs_d(j, visited); 
-                j++;
+        vector<int> v;
+        void dfs_d(int search, bool visited[]) {
+            visited[search]  = true;
+            v.push_back(search);
+            if(graph[search] == NULL) return;
+            
+            node* temp = graph[search];
+            temp = temp->next;
+            for (; temp != NULL; temp = temp->next){
+                if (!visited[temp->value]) 
+                    dfs_d(temp->value, visited);
             }
+            return;
+        }
 
-            return d;
-        } 
-  
-        bool dfs(int v) { 
-            bool *visited = new bool[v]; 
-            for (int i = 0; i < v; i++) 
-                visited[i] = false; 
-  
-            vector<int> x = dfs_d(v, visited); 
-            for (unsigned i =0; i<x.size(); i++)
-                if (x[i] == v)
-                    return true;
-            return false;
-        } 
+        bool dfs(int search) {
+
+            cout << "                                  ## NOTE ## " << endl;
+            cout << " 0 in nodes may mean either extra spots (unfilled), or undeclared edges" << endl;
+            cout << " If it is the latter, please add the edge with root ad the missing node" << endl;
+            cout << " #########                                                    #########\n\n" << endl;
+            cout << "Printing Dept-First Traversal" << "(with begining node " << search << "): " << endl;
+            cout << "<HEAD>(" << search << ") ";
+            if (graph[search] == NULL) {
+                cout << "<Connection to other NODES Doesn't Exists>" << endl;
+                return false;
+            }
+            bool *visited = new bool[numVertices];
+            for (int i = 0; i < numVertices+1; i++)
+                visited[i] = false;
+            bool rr = false;
+            dfs_d(search, visited);
+            for(int i = 0; i < numVertices; i++){
+                cout << "-> " << v[i] << " ";
+                if(v[i] == search)
+                    rr = true;
+            }
+            return rr;
+        }
 
         ~DirectedGraph() {
 		for (int i = 0; i < numVertices; i++)
