@@ -101,7 +101,7 @@ top:
                 cin >> dd;
                 cout << endl;
 
-                dirGraph.bfs(dd) ? cout << "\nExists" : cout << "\n Do not Exist";
+                dirGraph.bfs(dd) ? cout << "\nExists\n" : cout << "\n Do not Exist\n";
                 break;
 
           case 8:
@@ -110,7 +110,7 @@ top:
                 cin >> tt;
                 cout << endl;
 
-                dirGraph.dfs(tt) ? cout << "\nExists" : cout << "\n Do not Exist";
+                dirGraph.dfs(tt) ? cout << "\nExists\n" : cout << "\n Do not Exist\n";
                 break;
   
           default:
