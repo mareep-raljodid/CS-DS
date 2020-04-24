@@ -99,6 +99,7 @@ top:
                 cout << "Enter element for BFS to traverse and check: ";
                 int dd;
                 cin >> dd;
+                cout << endl;
 
                 dirGraph.bfs(dd) ? cout << "\nExists" : cout << "\n Do not Exist";
                 break;
@@ -107,6 +108,7 @@ top:
                 cout << "Enter element for DFS to traverse and check: ";
                 int tt;
                 cin >> tt;
+                cout << endl;
 
                 dirGraph.dfs(tt) ? cout << "\nExists" : cout << "\n Do not Exist";
                 break;
