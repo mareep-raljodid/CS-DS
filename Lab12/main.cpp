@@ -78,6 +78,31 @@ void mergeSort(int a[], int left, int right){
         mergeArray(a, left, b, right); 
     } 
 }
+
+int part (int a[], int low, int high){  
+    int p = a[high];  
+    int i = (low - 1);  
+  
+    for (int j = low; j <= high - 1; j++){   
+        if (a[j] < p){  
+            i++; 
+            swap(&a[i], &a[j]);  
+        }  
+    }  
+    swap(&a[i + 1], &a[high]);  
+    return (i + 1);  
+} 
+
+void quickSort(int a[], int low, int high){  
+    if (low < high){  
+        int index = part(a, low, high);  
+  
+        // Separately sort elements before  
+        // partition and after partition  
+        quickSort(a, low, index - 1);  
+        quickSort(a, index + 1, high);  
+    }  
+}
   
 void outputArray(int a[], int size){  
     int i;  
@@ -91,14 +116,18 @@ int main(){
     int s = sizeof(a)/sizeof(a[0]); 
     cout << "Bubble sort: " << endl;
     bubbleSort(a,s);   
-    outputArray(a,s); 
+    //outputArray(a,s); 
     cout << "\n";
     cout << "Insertion Sort: " << endl;
     insertionSort(a,s);
-    outputArray(a,s);
+    //outputArray(a,s);
     cout << "\n";
     cout << "Merge Sort: " << endl;
     mergeSort(a, 0, s-1);
-    outputArray(a,s);
+    //outputArray(a,s);
+    cout << "\n";
+    cout << "Quick Sort: " << endl;
+    quickSort(a,0,s-1);
+    //outputArray(a,s);
     return 0;  
 }
