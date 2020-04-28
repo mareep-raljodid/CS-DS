@@ -87,40 +87,9 @@ void mergeSort(int a[], int left, int right) {
     }
 }
 
+void countingSort(int a[]){
 
-int partition(int arr[], int low, int high)
-{
-    int pivot = arr[high];
-    int i = (low - 1);
-
-    for (int j = low; j <= high - 1; j++)
-    {
-
-        if (arr[j] < pivot)
-        {
-            i++;
-            swap(&arr[i], &arr[j]);
-        }
-    }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
-}
-
-void quickSort(int arr[], int low, int high) {
-    if (low < high)
-    {
-
-        int pi = partition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-
-void countingSort(int a[]) {
-
-    char output[sizeof(a)];
+    char out[sizeof(a)];
 
     int count[RANGE + 1], i;
     memset(count, 0, sizeof(count));
@@ -134,14 +103,13 @@ void countingSort(int a[]) {
         count[i] += count[i - 1];
 
 
-    for (i = 0; a[i]; ++i)
-    {
-        output[count[a[i]] - 1] = a[i];
+    for (i = 0; a[i]; ++i){
+        out[count[a[i]] - 1] = a[i];
         --count[a[i]];
     }
 
     for (i = 0; a[i]; ++i)
-        a[i] = output[i];
+        a[i] = out[i];
 }
 
 int getMax(int a[], int n){
@@ -161,8 +129,7 @@ void countSort(int a[], int n, int ex){
     for (i = 1; i < 10; i++)
         count[i] += count[i - 1];
 
-    for (i = n - 1; i >= 0; i--)
-    {
+    for (i = n - 1; i >= 0; i--){
         output[count[(a[i] / ex) % 10] - 1] = a[i];
         count[(a[i] / ex) % 10]--;
     }
@@ -207,13 +174,6 @@ void outputArray(int a[], int size){
         cout << a[i] << " ";  
     cout << endl;  
 }  
-  
-void outputArray(int a[], int size) {
-    int i;
-    for (i = 0; i < size; i++)
-        cout << a[i] << " ";
-    cout << endl;
-}
 
 int main() {
     //10 100 500 5000 25000 100000
