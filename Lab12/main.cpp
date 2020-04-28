@@ -118,70 +118,65 @@ void quickSort(int arr[], int low, int high) {
 }
 
 
-void countingSort(int arr[]) {
+void countingSort(int a[]) {
 
-    char output[sizeof(arr)];
-
-
+    char output[sizeof(a)];
 
     int count[RANGE + 1], i;
     memset(count, 0, sizeof(count));
 
 
-    for (i = 0; arr[i]; ++i)
-        ++count[arr[i]];
+    for (i = 0; a[i]; ++i)
+        ++count[a[i]];
 
 
     for (i = 1; i <= RANGE; ++i)
         count[i] += count[i - 1];
 
 
-    for (i = 0; arr[i]; ++i)
+    for (i = 0; a[i]; ++i)
     {
-        output[count[arr[i]] - 1] = arr[i];
-        --count[arr[i]];
+        output[count[a[i]] - 1] = a[i];
+        --count[a[i]];
     }
 
-    for (i = 0; arr[i]; ++i)
-        arr[i] = output[i];
+    for (i = 0; a[i]; ++i)
+        a[i] = output[i];
 }
 
-int getMax(int arr[], int n)
-{
-    int mx = arr[0];
+int getMax(int a[], int n){
+    int mx = a[0];
     for (int i = 1; i < n; i++)
-        if (arr[i] > mx)
-            mx = arr[i];
+        if (a[i] > mx)
+            mx = a[i];
     return mx;
 }
 
-void countSort(int arr[], int n, int exp)
-{
+void countSort(int a[], int n, int ex){
     int output[n];
     int i, count[10] = { 0 };
     for (i = 0; i < n; i++)
-        count[(arr[i] / exp) % 10]++;
+        count[(a[i] / ex) % 10]++;
 
     for (i = 1; i < 10; i++)
         count[i] += count[i - 1];
 
     for (i = n - 1; i >= 0; i--)
     {
-        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-        count[(arr[i] / exp) % 10]--;
+        output[count[(a[i] / ex) % 10] - 1] = a[i];
+        count[(a[i] / ex) % 10]--;
     }
 
     for (i = 0; i < n; i++)
-        arr[i] = output[i];
+        a[i] = output[i];
 }
 
 
-void radixsort(int arr[], int n)
-{
-    int m = getMax(arr, n);
+void radixsort(int a[], int n){
+    int m = getMax(a, n);
 
-    for (int exp = 1; m / exp > 0; exp *= 10)
-        countSort(arr, n, exp);
+    for (int ex = 1; m / ex > 0; ex *= 10)
+        countSort(a, n, ex);
 }
 
 int part (int a[], int low, int high){  
@@ -201,9 +196,6 @@ int part (int a[], int low, int high){
 void quickSort(int a[], int low, int high){  
     if (low < high){  
         int index = part(a, low, high);  
-  
-        // Separately sort elements before  
-        // partition and after partition  
         quickSort(a, low, index - 1);  
         quickSort(a, index + 1, high);  
     }  
