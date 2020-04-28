@@ -3,8 +3,9 @@
 #include <vector> 
 #include <cstdio>
 #include <ctime>
+#include <time.h> 
 #include<string.h> 
-#define RANGE 100
+
 
 
 
@@ -87,164 +88,288 @@ void mergeSort(int a[], int left, int right) {
     }
 }
 
-void countingSort(int a[]){
 
-    char out[sizeof(a)];
+int partition(int arr[], int low, int high)
+{
+    int pivot = arr[high];
+    int i = (low - 1);
 
-    int count[RANGE + 1], i;
-    memset(count, 0, sizeof(count));
+    for (int j = low; j <= high - 1; j++)
+    {
 
-
-    for (i = 0; a[i]; ++i)
-        ++count[a[i]];
-
-
-    for (i = 1; i <= RANGE; ++i)
-        count[i] += count[i - 1];
-
-
-    for (i = 0; a[i]; ++i){
-        out[count[a[i]] - 1] = a[i];
-        --count[a[i]];
+        if (arr[j] < pivot)
+        {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
     }
-
-    for (i = 0; a[i]; ++i)
-        a[i] = out[i];
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
 }
 
-int getMax(int a[], int n){
-    int mx = a[0];
+void quickSort(int arr[], int low, int high) {
+    if (low < high)
+    {
+
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void CountingSort(int a[], int s) {
+	int i, j, k;
+	int index = 0;
+	int min, max;
+ 
+	min = max = a[0];
+	for(i = 1; i < s; i++) {
+		min = (a[i] < min) ? a[i] : min;
+		max = (a[i] > max) ? a[i] : max;
+	}
+ 
+	k = max - min + 1;
+	int *B = new int [k]; 
+	for(i = 0; i < k; i++) B[i] = 0;
+
+	for(i = 0; i < s; i++) B[a[i] - min]++;
+	for(i = min; i <= max; i++) 
+		for(j = 0; j < B[i - min]; j++) a[index++] = i;
+
+	delete [] B;
+}
+
+
+int getMax(int arr[], int n)
+{
+    int mx = arr[0];
     for (int i = 1; i < n; i++)
-        if (a[i] > mx)
-            mx = a[i];
+        if (arr[i] > mx)
+            mx = arr[i];
     return mx;
 }
 
-void countSort(int a[], int n, int ex){
+void RadixcountSort(int arr[], int n, int exp)
+{
     int output[n];
     int i, count[10] = { 0 };
     for (i = 0; i < n; i++)
-        count[(a[i] / ex) % 10]++;
+        count[(arr[i] / exp) % 10]++;
 
     for (i = 1; i < 10; i++)
         count[i] += count[i - 1];
 
-    for (i = n - 1; i >= 0; i--){
-        output[count[(a[i] / ex) % 10] - 1] = a[i];
-        count[(a[i] / ex) % 10]--;
+    for (i = n - 1; i >= 0; i--)
+    {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
     }
 
     for (i = 0; i < n; i++)
-        a[i] = output[i];
+        arr[i] = output[i];
 }
 
 
-void radixsort(int a[], int n){
-    int m = getMax(a, n);
+void radixsort(int arr[], int n)
+{
+    int m = getMax(arr, n);
 
-    for (int ex = 1; m / ex > 0; ex *= 10)
-        countSort(a, n, ex);
+    for (int exp = 1; m / exp > 0; exp *= 10)
+        RadixcountSort(arr, n, exp);
 }
 
-int part (int a[], int low, int high){  
-    int p = a[high];  
-    int i = (low - 1);  
-  
-    for (int j = low; j <= high - 1; j++){   
-        if (a[j] < p){  
-            i++; 
-            swap(&a[i], &a[j]);  
-        }  
-    }  
-    swap(&a[i + 1], &a[high]);  
-    return (i + 1);  
-} 
-
-void quickSort(int a[], int low, int high){  
-    if (low < high){  
-        int index = part(a, low, high);  
-        quickSort(a, low, index - 1);  
-        quickSort(a, index + 1, high);  
-    }  
+void outputArray(int a[], int size) {
+    int i;
+    for (i = 0; i < size; i++)
+        cout << a[i] << " ";
+    cout << endl;
 }
-  
-void outputArray(int a[], int size){  
-    int i;  
-    for (i = 0; i < size; i++)  
-        cout << a[i] << " ";  
-    cout << endl;  
-}  
 
 int main() {
-    //10 100 500 5000 25000 100000
+    srand(time(NULL));
 
-    for (int i; i < 10; i++) {
+    char ch;
+    int size;
 
+    cout << "Enter size of the array! " << endl;
+    cout << "a: 10" << endl;
+    cout << "b: 100" << endl;
+    cout << "c: 500" << endl;
+    cout << "d: 5000" << endl;
+    cout << "e: 25000" << endl;
+    cout << "x: 100000" << endl;
 
+    cin >> ch;
+
+    switch (ch) {
+    case 'a':
+        cout << "Size 10: " << endl;
+        size = 10;
+        break;
+
+    case 'b':
+        cout << "Size 100: " << endl;
+        size = 100;
+        break;
+
+    case 'c':
+        cout << "Size 500: " << endl;
+        size = 500;
+        break;
+
+    case 'd':
+        cout << "Size 5000: " << endl;
+        size = 5000;
+        break;
+
+    case 'e':
+        cout << "Size 25000: " << endl;
+        size = 25000;
+        break;
+
+    case 'x':
+        cout << "Size 100000: " << endl;
+        size = 100000;
+        break;
     }
 
-    for (int i; i < 100; i++) {
 
-
+    int a[size];
+    for (int i = 0; i < size; i++) { //array with 10
+        a[i] = rand() % (2 * size);
     }
-
-    for (int i; i < 500; i++) {
-
-
-    }
-
-    for (int i; i < 5000; i++) {
-
-
-    }
-
-    for (int i; i < 25000; i++) {
-
-
-    }
-
-    for (int i; i < 100000; i++) {
-
-
-    }
-
-    int a[] = { 64, 34, 25, 12, 22, 11, 90 };
-
-
-
 
     int s = sizeof(a) / sizeof(a[0]);
 
+    cout << "Enter what sort method: " << endl;
+    cout << "f: Bubble Sort " << endl;
+    cout << "g: Insertion Sort " << endl;
+    cout << "h: Merge Sort " << endl;
+    cout << "i: Quick Sort " << endl;
+    cout << "j: Counting Sort" << endl;
+    cout << "k: Radix Sort" << endl;
+    cout << "l: Quit" << endl;
 
-    cout << "Bubble sort: " << endl;
-    bubbleSort(a, s);
-    outputArray(a, s);
-
-    cout << "\n";
-    cout << "Insertion Sort: " << endl;
-    insertionSort(a, s);
-    outputArray(a, s);
-
-    cout << "\n";
-    cout << "Merge Sort: " << endl;
-    mergeSort(a, 0, s - 1);
-    outputArray(a, s);
-
-    cout << "\n";
-    cout << "Quick Sort: " << endl;
-    quickSort(a, 0, s - 1);
-    outputArray(a, s);
-
-    cout << "\n";
-    cout << "Counting Sort: " << endl;
-    countingSort(a);
-    outputArray(a, s);
-
-    cout << "\n";
-    cout << "Radix Sort: " << endl;
-    radixsort(a, s);
-    outputArray(a, s);
+    char num;
+    cin >> num;
 
 
-    return 0;
+
+    switch (num) {
+
+    case 'f':
+
+        double durationBubble;
+        clock_t startBubble;
+
+        startBubble = clock();
+
+        cout << "\n";
+        cout << "Bubble sort: " << endl;
+        bubbleSort(a, s);
+
+
+        durationBubble = (clock() - startBubble) / (double)CLOCKS_PER_SEC;
+
+        cout << "Time for Bubble Sort: " << durationBubble << '\n';
+
+        break;
+
+    case 'g':
+
+        double durationInsertion;
+        clock_t startInsertion;
+
+        startInsertion = clock();
+
+        cout << "\n";
+        cout << "Insertion Sort: " << endl;
+        insertionSort(a, s);
+
+
+        durationInsertion = (clock() - startInsertion) / (double)CLOCKS_PER_SEC;
+
+        cout << "Time for Insertion Sort: " << durationInsertion << '\n';
+
+
+        break;
+
+    case 'h':
+
+        double durationMerge;
+        clock_t startMerge;
+
+        startMerge = clock();
+
+        cout << "\n";
+        cout << "Merge Sort: " << endl;
+        mergeSort(a, 0, s - 1);
+
+
+        durationMerge = (clock() - startMerge) / (double)CLOCKS_PER_SEC;
+
+        cout << "Time for Merge Sort: " << durationMerge << '\n';
+
+        break;
+
+    case 'i':
+        double durationQuick;
+        clock_t startQuick;
+
+        startQuick = clock();
+
+        cout << "\n";
+        cout << "Quick Sort: " << endl;
+        quickSort(a, 0, s - 1);
+
+        durationQuick = (clock() - startQuick) / (double)CLOCKS_PER_SEC;
+
+        cout << "Time for quick Sort: " << durationQuick << '\n';
+
+        break;
+
+    case 'j':
+
+        double durationCounting;
+        clock_t startCounting;
+
+        startCounting = clock();
+
+        cout << "\n";
+        cout << "Counting Sort: " << endl;
+
+        CountingSort(a, s);
+        outputArray(a, s);
+
+        durationCounting = (clock() - startCounting) / (double)CLOCKS_PER_SEC;
+
+        cout << "Time for Counting Sort: " << durationCounting << '\n';
+
+        break;
+
+    case 'k':
+
+        double durationRadix;
+        clock_t startRadix;
+
+        startRadix = clock();
+
+        cout << "\n";
+        cout << "Radix Sort: " << endl;
+        radixsort(a, s);
+
+        durationRadix = (clock() - startRadix) / (double)CLOCKS_PER_SEC;
+
+        cout << "Time for Radix Sort: " << durationRadix << '\n';
+
+        break;
+
+    case 'l':
+
+        break;
+    }
+
+
 }
+
