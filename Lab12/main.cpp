@@ -119,25 +119,25 @@ void quickSort(int arr[], int low, int high) {
 }
 
 void CountingSort(int a[], int s) {
-	int i, j, k;
-	int index = 0;
-	int min, max;
- 
-	min = max = a[0];
-	for(i = 1; i < s; i++) {
-		min = (a[i] < min) ? a[i] : min;
-		max = (a[i] > max) ? a[i] : max;
-	}
- 
-	k = max - min + 1;
-	int *B = new int [k]; 
-	for(i = 0; i < k; i++) B[i] = 0;
+    int i, j, k;
+    int index = 0;
+    int min, max;
 
-	for(i = 0; i < s; i++) B[a[i] - min]++;
-	for(i = min; i <= max; i++) 
-		for(j = 0; j < B[i - min]; j++) a[index++] = i;
+    min = max = a[0];
+    for (i = 1; i < s; i++) {
+        min = (a[i] < min) ? a[i] : min;
+        max = (a[i] > max) ? a[i] : max;
+    }
 
-	delete [] B;
+    k = max - min + 1;
+    int* B = new int[k];
+    for (i = 0; i < k; i++) B[i] = 0;
+
+    for (i = 0; i < s; i++) B[a[i] - min]++;
+    for (i = min; i <= max; i++)
+        for (j = 0; j < B[i - min]; j++) a[index++] = i;
+
+    delete[] B;
 }
 
 
@@ -198,7 +198,7 @@ int main() {
     cout << "c: 500" << endl;
     cout << "d: 5000" << endl;
     cout << "e: 25000" << endl;
-    cout << "x: 100000" << endl;
+    cout << "f: 100000" << endl;
 
     cin >> ch;
 
@@ -228,7 +228,8 @@ int main() {
         size = 25000;
         break;
 
-    case 'x':
+
+    case 'f':
         cout << "Size 100000: " << endl;
         size = 100000;
         break;
@@ -236,139 +237,112 @@ int main() {
 
 
     int a[size];
-    for (int i = 0; i < size; i++) { //array with 10
+    for (int i = 0; i < size; i++) { 
         a[i] = rand() % (2 * size);
     }
 
     int s = sizeof(a) / sizeof(a[0]);
 
-    cout << "Enter what sort method: " << endl;
-    cout << "f: Bubble Sort " << endl;
-    cout << "g: Insertion Sort " << endl;
-    cout << "h: Merge Sort " << endl;
-    cout << "i: Quick Sort " << endl;
-    cout << "j: Counting Sort" << endl;
-    cout << "k: Radix Sort" << endl;
-    cout << "l: Quit" << endl;
-
-    char num;
-    cin >> num;
 
 
 
-    switch (num) {
-
-    case 'f':
-
-        double durationBubble;
-        clock_t startBubble;
-
-        startBubble = clock();
-
-        cout << "\n";
-        cout << "Bubble sort: " << endl;
-        bubbleSort(a, s);
 
 
-        durationBubble = (clock() - startBubble) / (double)CLOCKS_PER_SEC;
 
-        cout << "Time for Bubble Sort: " << durationBubble << '\n';
+    double durationBubble;
+    clock_t startBubble;
 
-        break;
+    startBubble = clock();
 
-    case 'g':
+    cout << "\n";
+    cout << "Bubble sort: " << endl;
+    bubbleSort(a, s);
+    durationBubble = (clock() - startBubble) / (double)CLOCKS_PER_SEC;
 
-        double durationInsertion;
-        clock_t startInsertion;
-
-        startInsertion = clock();
-
-        cout << "\n";
-        cout << "Insertion Sort: " << endl;
-        insertionSort(a, s);
+    cout << "Time for Bubble Sort: " << durationBubble << '\n';
 
 
-        durationInsertion = (clock() - startInsertion) / (double)CLOCKS_PER_SEC;
 
-        cout << "Time for Insertion Sort: " << durationInsertion << '\n';
+    double durationInsertion;
+    clock_t startInsertion;
 
+    startInsertion = clock();
 
-        break;
+    cout << "\n";
+    cout << "Insertion Sort: " << endl;
+    insertionSort(a, s);
+    
 
-    case 'h':
+    durationInsertion = (clock() - startInsertion) / (double)CLOCKS_PER_SEC;
 
-        double durationMerge;
-        clock_t startMerge;
-
-        startMerge = clock();
-
-        cout << "\n";
-        cout << "Merge Sort: " << endl;
-        mergeSort(a, 0, s - 1);
+    cout << "Time for Insertion Sort: " << durationInsertion << '\n';
 
 
-        durationMerge = (clock() - startMerge) / (double)CLOCKS_PER_SEC;
 
-        cout << "Time for Merge Sort: " << durationMerge << '\n';
+    double durationMerge;
+    clock_t startMerge;
 
-        break;
+    startMerge = clock();
 
-    case 'i':
-        double durationQuick;
-        clock_t startQuick;
+    cout << "\n";
+    cout << "Merge Sort: " << endl;
+    mergeSort(a, 0, s - 1);
+    
 
-        startQuick = clock();
+    durationMerge = (clock() - startMerge) / (double)CLOCKS_PER_SEC;
 
-        cout << "\n";
-        cout << "Quick Sort: " << endl;
-        quickSort(a, 0, s - 1);
+    cout << "Time for Merge Sort: " << durationMerge << '\n';
 
-        durationQuick = (clock() - startQuick) / (double)CLOCKS_PER_SEC;
 
-        cout << "Time for quick Sort: " << durationQuick << '\n';
 
-        break;
+    double durationQuick;
+    clock_t startQuick;
 
-    case 'j':
+    startQuick = clock();
 
-        double durationCounting;
-        clock_t startCounting;
+    cout << "\n";
+    cout << "Quick Sort: " << endl;
+    quickSort(a, 0, s - 1);
+    
 
-        startCounting = clock();
+    durationQuick = (clock() - startQuick) / (double)CLOCKS_PER_SEC;
 
-        cout << "\n";
-        cout << "Counting Sort: " << endl;
+    cout << "Time for quick Sort: " << durationQuick << '\n';
 
-        CountingSort(a, s);
-        outputArray(a, s);
 
-        durationCounting = (clock() - startCounting) / (double)CLOCKS_PER_SEC;
 
-        cout << "Time for Counting Sort: " << durationCounting << '\n';
+    double durationCounting;
+    clock_t startCounting;
 
-        break;
+    startCounting = clock();
 
-    case 'k':
+    cout << "\n";
+    cout << "Counting Sort: " << endl;
+    CountingSort(a, s);
+    
 
-        double durationRadix;
-        clock_t startRadix;
+    durationCounting = (clock() - startCounting) / (double)CLOCKS_PER_SEC;
 
-        startRadix = clock();
+    cout << "Time for Counting Sort: " << durationCounting << '\n';
 
-        cout << "\n";
-        cout << "Radix Sort: " << endl;
-        radixsort(a, s);
 
-        durationRadix = (clock() - startRadix) / (double)CLOCKS_PER_SEC;
 
-        cout << "Time for Radix Sort: " << durationRadix << '\n';
+    double durationRadix;
+    clock_t startRadix;
 
-        break;
+    startRadix = clock();
 
-    case 'l':
+    cout << "\n";
+    cout << "Radix Sort: " << endl;
+    radixsort(a, s);
+    
 
-        break;
-    }
+    durationRadix = (clock() - startRadix) / (double)CLOCKS_PER_SEC;
+
+    cout << "Time for Radix Sort: " << durationRadix << '\n';
+
+
+
 
 
 }
