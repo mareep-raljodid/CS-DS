@@ -6,7 +6,7 @@
 #include <time.h> 
 #include<string.h> 
 
-
+#include "strList.h"
 
 
 using namespace std;
@@ -187,6 +187,23 @@ void outputArray(int a[], int size) {
 }
 
 int main() {
+
+    cout << "Press 1 to check out String List operations (Task 3),\nor any other ket to proceed to other tasks: ";
+    char xx;
+    cin>> xx;
+top:
+    if (xx == '1'){
+        StringList();
+        cout << "Continue checking other functions in Task 3? (Y/N)" << endl;
+        char yy;
+        cin >> yy;
+        if((yy == 'y') || (yy == 'Y'))
+            goto top;
+        else
+            goto bottom;
+    }
+bottom:
+    cout << "\nMoving on to other tasks, other than task 3" << endl;
     srand(time(NULL));
 
     char ch;
